@@ -1,0 +1,93 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+
+div.container a
+{
+    text-decoration: none;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.5rem;
+}
+
+
+div.navLinks a
+{
+    color: rgb(177, 175, 175); 
+}
+
+div.btnDiv a
+{
+    color: rgb(201, 200, 200); 
+}
+
+div.btnDiv a:before, div.btnDiv a:before
+{
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    font-size: 1.01rem;
+    top: 0px;
+    left: 0px;
+    padding: 9px;
+    overflow: hidden;
+    content: attr(alt);
+    transition: all 0.2s;
+    transform: scale(0.8);
+    opacity: 0;
+} 
+
+div.navLinks a:before, div.navLinks a:before
+{
+    position: absolute;
+    color: rgb(255, 0, 64);
+    font-weight: bold;
+    font-size: 1.01rem;
+    top: 0px;
+    left: 0px;
+    padding: 9px;
+    overflow: hidden;
+    content: attr(alt);
+    transition: all 0.2s;
+    transform: scale(0.8);
+    opacity: 0;
+} 
+
+div.highlightTextOut a:hover:before, div.highlightTextIn a:hover:before
+{
+    transform: scale(1);
+    opacity: 1;
+}
+
+div.highlightTextIn a
+{
+    color: rgba(0, 0, 0, 0.4); 
+}
+
+div.highlightTextIn a:before
+{
+    transform: scale(1.2);
+} 
+
+.logoDiv {
+    margin-right: auto; 
+    margin-left: 4rem;
+}
+
+.logo{
+    width: 10rem;
+    height: auto; 
+}
+.btnDiv{
+    margin-right: 2rem;
+    background-color: rgb(255, 0, 89);
+    height: 1.75rem;
+    border-radius: 10px;
+}
