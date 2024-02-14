@@ -24,7 +24,7 @@ const Navbar = () =>{
                 <img src={logo} className="logo" alt="Vite logo" />
             </div>
             <div className={navClassName}>
-                <a alt="HOME">HOME</a>
+                <a alt="HOME"><Link className="nav-link" to="/">Home</Link></a>
                 <a alt="ABOUT">ABOUT</a>
                 <a alt="SERVICES" href=''>SERVICES</a>
                 <a alt="CONTACT">CONTACT</a>
