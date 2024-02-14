@@ -6,8 +6,7 @@ import Navbar from '../components/NavBar';
 const ProductPage = () => {
   return (
     <>
-        <Navbar></Navbar>
-        
+        {/* <Navbar></Navbar> */}
         <div>ProductPage</div>
     </>
     
@@ -15,3 +14,5 @@ const ProductPage = () => {
 }
 
 export default ProductPage
+
+
