@@ -6,6 +6,8 @@ import About from './pages/about';
 import Service from './pages/services';
 import Contact from './pages/contact';
 import LoginSignup from './pages/userLoginSignup';
+import DriverLoginSignup from './pages/driverLoginSignup';
+import CompanyLoginSignup from './pages/companyLoginSignup';
 
 function App() {
 
@@ -17,7 +19,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Service />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/loginSignup" element={<LoginSignup />} />
+          <Route path="/userLoginSignup" element={<LoginSignup />} />
+          <Route path="/driverLoginSignup" element={<DriverLoginSignup/>} />
+          <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
           
         </Routes>
       </>
