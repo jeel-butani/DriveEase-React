@@ -6,7 +6,7 @@ const About = ()=> {
       <header>
       <Navbar />
       </header>
-      <h1>About</h1>
+      <h1 className='text-3xl font-bold mb-6'>About</h1>
     </>
   )
 }

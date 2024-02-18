@@ -6,7 +6,7 @@ const Services=()=> {
       <header>
       <Navbar />
       </header>
-      <h1>Services</h1>
+      <h1 className='text-3xl font-bold mb-6'>Services</h1>
     </>
   )
 }

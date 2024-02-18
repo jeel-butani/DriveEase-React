@@ -6,7 +6,7 @@ const Contact=()=> {
       <header>
       <Navbar />
       </header>
-      <h1>Contact</h1>
+      <h1 className='text-3xl font-bold mb-6'>Contact</h1>
     </>
   )
 }
