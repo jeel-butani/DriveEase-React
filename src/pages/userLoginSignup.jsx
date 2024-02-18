@@ -35,7 +35,9 @@ const LoginSignup = () => {
 
     return (
         <>
+            <header>
             <Navbar/>
+            </header>
             <div className="body">
                 <div className="main-container">
                     <div className="slider" ref={sliderRef}></div>

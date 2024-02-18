@@ -24,7 +24,8 @@ const Navbar = () =>{
     return(
         <div className="container-nav highlightTextOut" id='navbar'> 
             <div className='logoDiv'> 
-                <img src={logo} className="logo" alt="Vite logo" />
+                <Link to="/"><img src={logo} className="logo" alt="Vite logo" /></Link>
+                
             </div>
             <div className={navClassName}>
                 <Link to="/" alt="HOME" className='font-medium'>HOME</Link>
