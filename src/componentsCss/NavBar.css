@@ -1,16 +1,16 @@
 @import 'https://fonts.googleapis.com/css?family=Raleway';
 
-div.container a
+div.container-nav a
 {
     text-decoration: none;
     margin: 0px 10px;
-    padding: 10px 10px;
+    padding: 15px 15px;
     position: relative;
     z-index: 0;
     cursor: pointer;
 }
 
-.container{
+.container-nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -25,7 +25,8 @@ div.navLinks a
 
 div.btnDiv a
 {
-    color: rgb(201, 200, 200); 
+  display: inline-table;
+  color: rgb(201, 200, 200); 
 }
 
 div.btnDiv a:before, div.btnDiv a:before
@@ -36,7 +37,7 @@ div.btnDiv a:before, div.btnDiv a:before
     font-size: 1.01rem;
     top: 0px;
     left: 0px;
-    padding: 9px;
+    padding: 14px;
     overflow: hidden;
     content: attr(alt);
     transition: all 0.2s;
@@ -44,7 +45,7 @@ div.btnDiv a:before, div.btnDiv a:before
     opacity: 0;
 } 
 
-div.navLinks a:before, div.navLinks a:before
+div.navLinks a:before, div.navLinks a:before, div.signUpOptions a:before, div.signUpOptions a:before
 {
     position: absolute;
     color: rgb(255, 0, 64);
@@ -52,7 +53,7 @@ div.navLinks a:before, div.navLinks a:before
     font-size: 1.01rem;
     top: 0px;
     left: 0px;
-    padding: 9px;
+    padding: 14px;
     overflow: hidden;
     content: attr(alt);
     transition: all 0.2s;
@@ -91,7 +92,7 @@ div.highlightTextIn a:before
     height: 1.75rem;
     border-radius: 10px;
 }
-.container .icon {
+.container-nav .icon {
     margin-left: -1rem;
   display: none;
 }
@@ -101,7 +102,7 @@ div.highlightTextIn a:before
     .navLinks {
       display: none;
     }
-    .container .icon {
+    .container-nav .icon {
       float: right;
       margin-left: 0.5rem;
       margin-right: 0.5rem;
@@ -122,7 +123,7 @@ div.highlightTextIn a:before
     .btnDiv{
       width: auto;
     }
-    .container .icon {
+    .container-nav .icon {
       float: right;
       margin-left: 0rem;
       margin-right: 0rem;
@@ -135,15 +136,18 @@ div.highlightTextIn a:before
   
   @media screen and (max-width: 850px) {
     .navLinks.responsive {
-      position: relative;
-      display: block;
-      margin-top: 14rem;
-      margin-right: -7rem;
-      z-index: 1;
+      position: absolute;
+      top: calc(0% + 3.5rem);
+      right: 0;
+      display: flex;
+      flex-direction: column;
       background-color: white;
-      box-shadow: 0 25px 40px -20px rgba(40,44,63,.15);
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    .container.responsive .icon {
+    .container-nav.responsive .icon {
       position: absolute;
       right: 0;
       top: 0;
@@ -154,3 +158,29 @@ div.highlightTextIn a:before
       text-align: left;
     }
   }
+
+  .signUpOptions {
+    position: absolute;
+    top: calc(0% + 3.5rem);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.signUpOptions a {
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+    .signUpOptions {
+        right: -5px;
+    }
+}
