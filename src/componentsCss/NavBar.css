@@ -20,7 +20,7 @@ div.container-nav a
 
 div.navLinks a
 {
-    color: rgb(177, 175, 175); 
+    color: rgba(173, 170, 170, 0.703); 
 }
 
 div.btnDiv a
@@ -50,10 +50,10 @@ div.navLinks a:before, div.navLinks a:before, div.signUpOptions a:before, div.si
     position: absolute;
     color: rgb(255, 0, 64);
     font-weight: bold;
-    font-size: 1.01rem;
+    font-size: 1.02rem;
     top: 0px;
-    left: 0px;
-    padding: 14px;
+    left: 1px;
+    padding: 12px;
     overflow: hidden;
     content: attr(alt);
     transition: all 0.2s;
@@ -86,19 +86,22 @@ div.highlightTextIn a:before
     width: 10rem;
     height: auto; 
 }
-.btnDiv a{
+.loginBtn{
 
-    background-color: rgb(255, 0, 89);
+  background-image: linear-gradient(to top,
+  rgb(255, 136, 67),
+  rgb(196, 15, 160));
     height: 1.75rem;
     border-radius: 10px;
 }
+
 .container-nav .icon {
     margin-left: -1rem;
   display: none;
 }
 
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 875px) {
     .navLinks {
       display: none;
     }
@@ -175,7 +178,8 @@ div.highlightTextIn a:before
 .signUpOptions a {
     padding: 10px;
     border: none;
-    background-color: transparent;
+
+    background-color: white;
     cursor: pointer;
 }
 

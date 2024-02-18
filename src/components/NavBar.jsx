@@ -36,7 +36,7 @@ const Navbar = () =>{
                 <a className='loginBtn font-bold' alt="SIGNUP" onClick={toggleSignUpOptions}>SIGNUP</a>
                 {showSignUpOptions && 
                     <div className="signUpOptions">
-                        <a alt='USER' className='font-medium'>USER</a>
+                        <Link to="/loginSignup" alt='USER' className='font-medium'>USER</Link>
                         <a alt='DRIVER' className='font-medium'>DRIVER</a>
                         <a alt='COMPANY' className='font-medium'>COMPANY</a>
                     </div>
