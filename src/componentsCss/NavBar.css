@@ -20,13 +20,13 @@ div.container-nav a
 
 div.navLinks a
 {
-    color: rgba(173, 170, 170, 0.703); 
+    color: rgba(103, 103, 103, 0.703); 
 }
 
 div.btnDiv a
 {
   display: inline-table;
-  color: rgb(201, 200, 200); 
+  color: rgb(179, 179, 179); 
 }
 
 div.btnDiv a:before, div.btnDiv a:before
