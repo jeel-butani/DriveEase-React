@@ -36,7 +36,7 @@ const LoginSignup = () => {
     return (
         <>
             <header>
-            <Navbar/>
+                <Navbar/>
             </header>
             <div className="body">
                 <div className="main-container">
