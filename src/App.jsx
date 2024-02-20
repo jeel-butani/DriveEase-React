@@ -25,8 +25,8 @@ function App() {
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
           
         </Routes>
-
-        <ProductPage/>
+        {/* <Home/> */}
+        {/* <ProductPage/> */}
       </>
     </BrowserRouter>
         // <div class="iconWidget">
