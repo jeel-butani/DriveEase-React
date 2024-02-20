@@ -190,7 +190,7 @@ body {
     color: #000000;
   }
   .pagination-a .pagination .page-link:hover, .pagination-a .pagination .page-link:active, .pagination-a .pagination .page-link:focus {
-    background-color: #2eca6a;
+    background-color: rgb(196, 15, 160);
   }
   .pagination-a .pagination .page-link span {
     font-size: 1.2rem;
@@ -225,7 +225,7 @@ body {
     display: table-cell;
     vertical-align: top;
     font-size: 36px;
-    color: #000000;
+    color: rgb(196, 15, 160);
     width: 50px;
     padding-top: 8px;
   }
@@ -1384,7 +1384,7 @@ body {
   .post-content .blockquote {
     padding: 1rem 3rem 1.7rem 3rem;
     border-left: 3px solid #2eca6a;
-    color: #000000;
+    color: rgb(196, 15, 160);
   }
   .post-content .blockquote footer {
     text-align: left;
@@ -1473,11 +1473,11 @@ body {
   
   .card-box-ico {
     padding: 1rem 3rem 1rem 2.5rem;
-    border: 5px solid #2eca6a;
+    border: 5px solid rgb(196, 15, 160);
   }
   .card-box-ico span {
     font-size: 4rem;
-    color: #000000;
+    color: rgb(196, 15, 160);
   }
   
   .title-c {
