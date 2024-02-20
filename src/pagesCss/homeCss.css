@@ -1,0 +1,127 @@
+:root {
+    --white: #fff;
+    --blck: #000;
+    --light: 300;
+    --regular: 400;
+    --medium: 500;
+    --semibold: 600;
+    --bold: 700;
+    --blk: 900;
+}
+.carCol {
+    position: relative;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: var(--white);
+    box-shadow: 4px 9px 15px 0px rgba(32, 33, 36, 0.2);
+    flex: 31.33%;
+    max-width: 31.33%;
+}
+.carCol .cardTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.carCol .cardTitle img {
+    margin-right: 8px;
+    width: 35px;
+    height: 35px;
+}
+.carCol .cardTitle strong {
+    font-size: 18px;
+    font-weight: var(--bold);
+    color: var(--blck);
+}
+.carCol .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.carCol .cardContainer figure {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    max-width: calc((100%) - 98px);
+}
+.carCol .cardContainer figure img {
+    display: block;
+    max-width: 100%;
+}
+.carCol .cardContainer .specifications {
+    max-width: 98px;
+    flex: 98px;
+    padding-left: 15px;
+}
+.carCol .cardContainer .specifications .speList {
+    display: grid;
+    grid-template-columns: 17px 1fr;
+    display: inline-flex;
+    color: #9C9C9C;
+    font-size: 14px;
+    font-weight: var(--medium);
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.carCol .cardBtm {
+    display: flex;
+    align-items: center;
+}
+.carCol .cardBtm .priceDetails {
+    display: flex;
+    flex-direction: column;
+}
+.carCol .cardBtm .priceDetails b {
+    font-weight: var(--semibold);
+    font-size: 12px;
+}
+.carCol .cardBtm .priceDetails strong {
+    font-weight: var(--semibold);
+    font-size: 24px;
+}
+.carCol .cardBtm .priceDetails b {
+    font-weight: var(--semibold);
+    font-size: 12px;
+}
+.carCol .cardBtm .cardCtrl {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+.carCol .cardBtm .cardCtrl .selectBtn {
+    padding: 0 20px;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    font-weight: var(--medium);
+    font-size: 16px;
+    color: white;
+    background-image: linear-gradient(to top,
+  rgb(255, 136, 67),
+  rgb(196, 15, 160));
+    border-radius: 10px;
+    transition: ease-in-out .4s;
+    position: relative;
+}
+.cardRow{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 25px;
+    row-gap: 25px;
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 1024px){ 
+    .cardRow .carCol {
+        flex: 48%;
+        max-width: 46%;
+    }
+}
+@media screen and (max-width: 680px){ 
+    .cardRow .carCol {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
