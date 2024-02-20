@@ -32,7 +32,7 @@ const Home = () => {
         <Navbar />
       </header>
 
-      
+      <Footer/>
       <Footer/>
     </>
   );
