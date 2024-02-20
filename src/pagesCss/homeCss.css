@@ -509,7 +509,7 @@ body {
     color: #ffffff;
   }
   .btn.btn-a:hover {
-    background-color: #2eca6a;
+    background-color: rgb(196, 15, 160);
     color: #000000;
   }
   .btn.btn-b {
@@ -991,7 +991,7 @@ body {
     padding: 1rem 0 1rem 2rem;
   }
   .intro-single .title-single-box {
-    border-left: 3px solid #2eca6a;
+    border-left: 3px solid rgb(196, 15, 160);
   }
   .intro-single .title-single-box .title-single {
     font-weight: 600;
@@ -1473,7 +1473,7 @@ body {
   
   .card-box-ico {
     padding: 1rem 3rem 1rem 2.5rem;
-    border: 5px solid rgb(196, 15, 160);
+    /* border: 5px solid rgb(196, 15, 160); */
   }
   .card-box-ico span {
     font-size: 4rem;
