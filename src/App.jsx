@@ -8,6 +8,7 @@ import Contact from './pages/contact';
 import LoginSignup from './pages/userLoginSignup';
 import DriverLoginSignup from './pages/driverLoginSignup';
 import CompanyLoginSignup from './pages/companyLoginSignup';
+import CarProduct from './pages/carProduct';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/userLoginSignup" element={<LoginSignup />} />
           <Route path="/driverLoginSignup" element={<DriverLoginSignup/>} />
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
+          <Route path="/carProduct" element={<CarProduct/>} />
           
         </Routes>
         {/* <Home/> */}
