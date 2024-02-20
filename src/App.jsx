@@ -8,7 +8,6 @@ import Contact from './pages/contact';
 import LoginSignup from './pages/userLoginSignup';
 import DriverLoginSignup from './pages/driverLoginSignup';
 import CompanyLoginSignup from './pages/companyLoginSignup';
-import ProductPage from './pages/ProductPage';
 
 function App() {
 
