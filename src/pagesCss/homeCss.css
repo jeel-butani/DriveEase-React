@@ -1,3 +1,13 @@
+/**
+* Template Name: EstateAgency - v4.6.0
+* Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
 body {
     font-family: "Poppins", sans-serif;
     color: #555555;
@@ -190,7 +200,7 @@ body {
     color: #000000;
   }
   .pagination-a .pagination .page-link:hover, .pagination-a .pagination .page-link:active, .pagination-a .pagination .page-link:focus {
-    background-color: rgb(196, 15, 160);
+    background-color: #2eca6a;
   }
   .pagination-a .pagination .page-link span {
     font-size: 1.2rem;
@@ -225,7 +235,7 @@ body {
     display: table-cell;
     vertical-align: top;
     font-size: 36px;
-    color: rgb(196, 15, 160);
+    color: #000000;
     width: 50px;
     padding-top: 8px;
   }
@@ -509,7 +519,7 @@ body {
     color: #ffffff;
   }
   .btn.btn-a:hover {
-    background-color: rgb(196, 15, 160);
+    background-color: #2eca6a;
     color: #000000;
   }
   .btn.btn-b {
@@ -991,7 +1001,7 @@ body {
     padding: 1rem 0 1rem 2rem;
   }
   .intro-single .title-single-box {
-    border-left: 3px solid rgb(196, 15, 160);
+    border-left: 3px solid #2eca6a;
   }
   .intro-single .title-single-box .title-single {
     font-weight: 600;
@@ -1384,7 +1394,7 @@ body {
   .post-content .blockquote {
     padding: 1rem 3rem 1.7rem 3rem;
     border-left: 3px solid #2eca6a;
-    color: rgb(196, 15, 160);
+    color: #000000;
   }
   .post-content .blockquote footer {
     text-align: left;
@@ -1473,11 +1483,11 @@ body {
   
   .card-box-ico {
     padding: 1rem 3rem 1rem 2.5rem;
-    /* border: 5px solid rgb(196, 15, 160); */
+    border: 5px solid #2eca6a;
   }
   .card-box-ico span {
     font-size: 4rem;
-    color: rgb(196, 15, 160);
+    color: #000000;
   }
   
   .title-c {
@@ -1888,7 +1898,7 @@ body {
   .section-footer .item-list-a i {
     font-size: 18px;
     padding-right: 4px;
-    color:  rgb(196, 15, 160);
+    color: #2eca6a;
   }
   .section-footer .widget-a .w-title-a {
     margin-bottom: 1rem;
