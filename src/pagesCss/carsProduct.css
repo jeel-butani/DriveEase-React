@@ -114,6 +114,7 @@
     column-gap: 25px;
     row-gap: 25px;
     margin-left: 25px;
+    margin-top: 10px;
 }
 
 
@@ -356,6 +357,7 @@ a {
   border: 2px solid black;
   cursor: pointer;
   align-items: flex-start;
+  margin-right: 5px;
 }
 .radioCheck label {
   font-weight: var(--regular);
@@ -375,7 +377,7 @@ a {
   justify-content: space-around;
   border-bottom: solid 1px #9C9C9C;
   position: sticky;
-  top: 110px;
+  top: 63px;
   z-index: 5;
   background-color: #ffffff;
   /* box-shadow: 0 3px 5px 0 rgba(32, 33, 36, 0.2); */
