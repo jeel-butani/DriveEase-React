@@ -470,6 +470,7 @@ a {
   border: 2px solid;
 }
 
+
 @media screen and (max-width: 991px){
   .bookingWidget .templateContainer .templateRow .navWidget {
     background-color: #fff;
@@ -498,6 +499,10 @@ a {
   }
   .wrapper {
     display: ruby;
+  }
+  .cardRow {
+    column-gap: 15px;
+    row-gap: 15px;
   }
 }
 @media screen and (min-width: 992px){

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import Navbar from '../components/NavBar';
+import Navbar from '../components/navBar';
 
 const companyLoginSignup = ()=> {
     const signupRef = useRef(null);

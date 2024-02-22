@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../components/NavBar';
-import Footer from '../components/Footer';
+import Navbar from '../components/navBar.jsx';
+import Footer from '../components/footer.jsx';
 
 import "../assets/animate.css/animate.min.css";
 import "../assets/bootstrap/css/bootstrap.min.css";
