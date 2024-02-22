@@ -1,0 +1,235 @@
+:root {
+    --white: #fff;
+    --blck: #000;
+    --light: 300;
+    --regular: 400;
+    --medium: 500;
+    --semibold: 600;
+    --bold: 700;
+    --blk: 900;
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: var(--medium);
+    font-size: 16px;
+    line-height: auto;
+}
+.bookingWidget {
+    background-color: #ffffff;
+}
+.bookingWidget .templateContainer {
+    height: 100%;
+    padding: 0 80px;
+}
+.bookingSummary {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    padding-bottom: 100px;
+    padding-top: 50px;
+}
+.bookingSummary .leftWidget {
+    flex: calc((70%) - 30px);
+    max-width: calc((100%) - 10px);
+    display: flex;
+    flex-wrap: wrap;
+}
+.bookingSummary .rightWidget {
+    flex: 30%;
+    max-width: 30%;
+}
+.bookingSummary .leftWidget .paymentWidget.w100 {
+    max-width: 100%;
+}
+.bookingSummary .leftWidget .paymentWidget {
+    padding-bottom: 40px;
+    max-width: 690px;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.bookingSummary .leftWidget .productWidget {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    max-height: 900px;
+    padding: 40px;
+    border-radius: 12px;
+    background-color: var(--white);
+    box-shadow: 0 3px 5px 0 rgba(32, 33, 36, 0.2);
+    margin-bottom: 25px;
+    margin-right: auto;
+}
+.bookingSummary .leftWidget .productWidget .productImage {
+    flex: 55%;
+    max-width: 55%;
+    padding-right: 35px;
+}
+.bookingSummary .leftWidget .productWidget .productDetails {
+    display: flex;
+    flex-direction: column;
+    flex: 45%;
+    max-width: 45%;
+}
+.bookingSummary .leftWidget .productWidget .productImage h2 {
+    font-weight: var(--semibold);
+    font-size: 32px;
+    color: var(--black);
+}
+.bookingSummary .leftWidget .productWidget .productImage figure img {
+    display: block;
+    width: 100%;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .timeList {
+    /* margin-bottom: auto; */
+}
+.timeList {
+    max-width: 450px;
+    display: flex;
+    align-items: center;
+    /* grid-template-columns: repeat(4, 1fr); */
+    margin-bottom: 15px;
+}
+.timeList .tTitle {
+    /* padding-right: 24px; */
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: var(--semibold);
+    color: var(--blck);
+}
+.timeList .hours, .timeList .day, .timeList .mins {
+    padding: 0 5px;
+}
+.timeList .hours, .timeList .mins {
+    position: relative;
+}
+.timeList .mins {
+    padding-right: 0px;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .timeList b {
+    font-size: 28px;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .timeList p {
+    font-size: 10px;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .timeList .hours:after, .bookingSummary .leftWidget .productWidget .productDetails .timeList .mins:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: ':';
+    font-size: 20px;
+    line-height: 40px;
+    color: #4D4D4D;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 60px;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable .pickupCol {
+    flex: 50%;
+    max-width: 50%;
+    position: relative;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable .pickupCol .tableTitle {
+    color: #9C9C9C;
+    font-size: 14px;
+    font-weight: var(--medium);
+    margin-bottom: 15px;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable .pickupCol .tableContent {
+    color: #4D4D4D;
+    font-size: 16px;
+    font-weight: var(--medium);
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable .pickupCol .tableContent {
+    color: #4D4D4D;
+    font-size: 16px;
+    font-weight: var(--medium);
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable .pickupCol:first-child::after {
+    position: absolute;
+    content: '';
+    width: 3px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 3px;
+    background-color: #E3E3E3;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable .pickupCol:last-child {
+    padding-left: 30px;
+}
+.bookingSummary .leftWidget .productWidget .productDetails .pickupTable .pickupCol {
+    flex: 50%;
+    max-width: 50%;
+    position: relative;
+}
+.bookingSummary .leftWidget .productContent {
+    padding: 40px;
+    background-color: var(--white);
+    border-radius: 12px;
+}
+.productContent .scroller .sec {
+    font-size: 11.0pt;
+    font-family: "poppins", sans-serif;
+}
+.productContent {
+    height: auto;
+    max-height: 400px;
+    width: auto;
+    max-width: 800px;
+    display: flex;
+    overflow-y: auto;
+    /* border: solid 1px #000; */
+    border-radius: 15px;
+    box-shadow: 0 3px 5px 0 rgba(32, 33, 36, 0.2);
+    padding: 30px;
+}
+.productContent .scroller .sec p {
+    margin-top: 0in;
+    margin-right: 0in;
+    margin-bottom: 0in;
+    margin-left: 0in;
+    font-size: 13.5px;
+    font-family: "poppins", sans-serif;
+    line-height: normal;
+    border: none;
+    padding: 0in;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.productContent .scroller .sec li {
+    margin-top: 0in;
+    margin-right: 0in;
+    font-size: 13pt;
+    font-family: "Calibri", sans-serif;
+    color: #29261B;
+    line-height: normal;
+    border: none;
+    padding: 0in;
+    list-style-type: disc;
+}
+.productContent .scroller .sec1 ol {
+    list-style-type: decimal;
+    margin-left: -0.25in;
+}
+.productContent .scroller .sec1 {
+    font-size: 9pt;
+    margin: 20px;
+    font-family: "Segoe UI", sans-serif;
+    padding: 0in 0in 0in 0in;
+}
