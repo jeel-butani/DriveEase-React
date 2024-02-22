@@ -233,3 +233,37 @@ h3 {
     font-family: "Segoe UI", sans-serif;
     padding: 0in 0in 0in 0in;
 }
+.bookingSummary .rightWidget .pricingWidget {
+    width: 100%;
+    padding: 40px;
+    border-radius: 12px;
+    background-color: var(--white);
+    box-shadow: 0 0 5px 0 rgba(32, 33, 36, 0.2);
+}
+.bookingSummary .rightWidget .pricingWidget h2 {
+    font-size: 32px;
+    font-weight: var(--medium);
+    color: var(--black);
+    margin-bottom: 20px;
+}
+.bookingSummary .rightWidget .pricingWidget .paymentList {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+.bookingSummary .rightWidget .pricingWidget .paymentList .payKey, .bookingSummary .rightWidget .pricingWidget .paymentList .payValue {
+    font-weight: var(--regular);
+    font-size: 18px;
+    color: var(--black);
+}
+.bookingSummary .rightWidget .pricingWidget .paymentList .payKey, .bookingSummary .rightWidget .pricingWidget .paymentList .payValue {
+    font-weight: var(--regular);
+    font-size: 18px;
+    color: var(--black);
+}
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+.mb-15 {
+    margin-bottom: 15px !important;
+}
