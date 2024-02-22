@@ -267,3 +267,46 @@ h3 {
 .mb-15 {
     margin-bottom: 15px !important;
 }
+@media screen and (max-width: 1199px) {
+    .bookingSummary .leftWidget .paymentWidget {
+        padding: 40px 0;
+        max-width: 100%;
+    }
+    .bookingSummary .leftWidget .productWidget .productImage {
+        flex: 100%;
+        max-width: 100%;
+    }
+    .bookingSummary .leftWidget .productWidget .productDetails {
+        flex: 100%;
+        max-width: 100%;
+    }
+    .bookingSummary {
+        column-gap: 20px;
+        padding-top: 20px;
+    }
+    .bookingSummary .leftWidget .paymentWidget {
+        padding: 0px 0;
+        max-width: 100%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .bookingWidget .templateContainer {
+        padding: 0 15px;
+    }
+    .bookingSummary .leftWidget .productContent {
+        padding: 15px;
+    }
+    .bookingSummary .leftWidget .paymentWidget {
+        padding: 10px 0;
+        margin-left: auto;
+    }
+    .bookingSummary .rightWidget {
+        flex: 100%;
+        max-width: 100%;
+        order: -1;
+        margin-bottom: 20px;
+    }
+    .bookingSummary .rightWidget .pricingWidget {
+        padding: 15px;
+    }
+}

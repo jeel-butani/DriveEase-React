@@ -183,12 +183,16 @@ div.highlightTextIn a:before
     background-color: white;
     cursor: pointer;
 }
+.userIcon{
+  margin-right: 20px;
+}
 .userIcon a{
   background-image: linear-gradient(to top,
   rgb(255, 136, 67),
   rgb(196, 15, 160));
   color: #fff;
   border-radius: 50%;
+  margin-right: 10px;
 }
 @media screen and (max-width: 850px) {
     .signUpOptions {
