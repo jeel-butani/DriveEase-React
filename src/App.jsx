@@ -8,8 +8,12 @@ import Contact from './pages/contact';
 import LoginSignup from './pages/userLoginSignup';
 import DriverLoginSignup from './pages/driverLoginSignup';
 import CompanyLoginSignup from './pages/companyLoginSignup';
+<<<<<<< HEAD
 import CarProduct from './pages/carProduct';
 import ConfirmCarBook from './pages/confirmCarBook';
+=======
+import ProductPage from './pages/ProductPage';
+>>>>>>> 2a97fc19556754bbe48b0c0b950d059e38e9edf9
 
 function App() {
 
@@ -24,8 +28,11 @@ function App() {
           <Route path="/userLoginSignup" element={<LoginSignup />} />
           <Route path="/driverLoginSignup" element={<DriverLoginSignup/>} />
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
+<<<<<<< HEAD
           <Route path="/carProduct" element={<CarProduct/>} />
           <Route path="/confirmCarBook" element={<ConfirmCarBook/>} />
+=======
+>>>>>>> 2a97fc19556754bbe48b0c0b950d059e38e9edf9
           
         </Routes>
       </>
