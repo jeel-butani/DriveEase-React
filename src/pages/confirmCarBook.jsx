@@ -1,6 +1,13 @@
 import NavBarEmpty from '../components/navBar.empty';
+import payment from '../assets/images/payment.png'
 import '../pagesCss/confirmCarBook.css';
+import React, { useState } from 'react';
 const ConfirmCarBook = ()=> {
+  const [isChecked, setIsChecked] = useState(true);
+  const handleCheckboxChange = () => {
+    console.log("Hello");
+    setIsChecked(!isChecked); 
+  };
   return (
     <>
         <NavBarEmpty/>
@@ -512,13 +519,15 @@ The terms and conditions of the company are the policies that govern the relatio
 
                   
                   <div class="radioCheck">
-                  
-                    
+                  <label class="container">
+                    <input checked={isChecked} type="checkbox" onClick={handleCheckboxChange}/>
+                    <div class="checkmark"></div>
+                  </label>
                     <label for="termsCheck">I understand and agree to the terms and conditions.</label>
                   </div>
                   <div id="error-terms" >Agree the terms and conditions to continue </div>
                           <div class="promoCodWidget">
-                      
+
                     
                     <span class="promo_code_error" ></span>
                   </div>
@@ -574,7 +583,7 @@ The terms and conditions of the company are the policies that govern the relatio
                     </div>                    
             </div>
             <div class="mt-15">
-              <img src="https://evmwheels.com/front-theme/images/secpay.png" alt=""/>
+              <img src={payment} alt=""/>
             </div>
             <span class="terms-error"></span>
 					</div>
