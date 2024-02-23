@@ -2,10 +2,12 @@ import NavBarEmpty from '../components/navBar.empty';
 import payment from '../assets/images/payment.png'
 import '../pagesCss/confirmCarBook.css';
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 const ConfirmCarBook = ()=> {
+
+  const { id } = useParams();
   const [isChecked, setIsChecked] = useState(true);
   const handleCheckboxChange = () => {
-    console.log("Hello");
     setIsChecked(!isChecked); 
   };
   return (

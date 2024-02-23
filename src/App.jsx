@@ -24,7 +24,7 @@ function App() {
           <Route path="/driverLoginSignup" element={<DriverLoginSignup/>} />
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
           <Route path="/carProduct" element={<CarProduct/>} />
-          <Route path="/confirmCarBook" element={<ConfirmCarBook/>} />
+          <Route path="/confirmCarBook/:id" element={<ConfirmCarBook />} />
           
         </Routes>
       </>
