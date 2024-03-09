@@ -9,6 +9,7 @@ import DriverLoginSignup from './pages/driverLoginSignup';
 import CompanyLoginSignup from './pages/companyLoginSignup';
 import CarProduct from './pages/carProduct';
 import ConfirmCarBook from './pages/confirmCarBook';
+import CarDriverInput from './pages/carDriverInput';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
           <Route path="/carProduct" element={<CarProduct/>} />
           <Route path="/confirmCarBook/:id" element={<ConfirmCarBook />} />
+          <Route path="/carDriverInput" element={<CarDriverInput/>} />
           
         </Routes>
       </>
