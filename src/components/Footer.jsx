@@ -8,7 +8,6 @@ import "../assets/swiper/swiper-bundle.min.js";
 import "../assets/bootstrap/js/bootstrap.bundle.min.js";
 const Footer = () => {
   return (
-    // <div>Footer</div>
     <>
       <section class="section-footer">
         <div class="container">

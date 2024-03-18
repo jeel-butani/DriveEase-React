@@ -6,9 +6,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 const NavBarEmpty = ()=> {
   return (
     <>
-    {/* <div>
-      Hello
-    </div> */}
     <div className="container-nav highlightTextOut" id='navbar'>
         <div className='logoDiv'>
           <Link to="/"><img src={logo} className="logo" alt="Vite logo" /></Link>
