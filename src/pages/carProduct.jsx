@@ -1,8 +1,9 @@
 import Navbar from '../components/navBar';
 import discount from '../assets/images/discount.png';
 import '../pagesCss/carsProduct.css';
-
+import React, { useState } from 'react';
 const carProduct = ()=> {
+    
     const cardData = [
         {
             id: 1,
@@ -42,6 +43,8 @@ const carProduct = ()=> {
         },
         
     ];
+    
+    
     return (
         <>
             <header>
@@ -241,30 +244,7 @@ const carProduct = ()=> {
                         </div>
         
                         <div className="tabWidget">
-                            <div class="tabNavWidget">
-                                <div class="tabNavList body_type_sort active" data-id="1">Hatchback</div>
-                                <div class="tabNavList  body_type_sort" data-id="2">Sedan</div>
-                                <div class="tabNavList  body_type_sort" data-id="3">Compact SUV</div>
-                                <div class="tabNavList  body_type_sort" data-id="4">SUV</div>
-                                <div class="tabNavList  body_type_sort" data-id="5">MUV</div>
-                                <div class="tabNavList  body_type_sort" data-id="6">Luxury</div>
-                            </div>
-                            <div class="tabNavWidget1">
-                                <div class="wrapper">
-                                    <button class="tabNavList body_type_sort active" data-id="1">Hatchback</button>
-                                    <button class="tabNavList  body_type_sort" data-id="2">Sedan</button>
-                                    <button class="tabNavList  body_type_sort" data-id="3">Compact SUV</button>
-                                    <button class="tabNavList  body_type_sort" data-id="4">SUV</button>
-                                    <button class="tabNavList  body_type_sort" data-id="5">MUV</button>
-                                    <button class="tabNavList  body_type_sort" data-id="6">Luxury</button>
-                                </div>
-                                <button id="openFilterBtn" onclick="scrollToTop()">
-                                    <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4.99986 4.99932V9.3765C5.01986 9.54315 4.96987 9.7209 4.85488 9.83755C4.80863 9.88905 4.75369 9.9299 4.69322 9.95778C4.63274 9.98565 4.5679 10 4.50243 10C4.43695 10 4.37212 9.98565 4.31164 9.95778C4.25117 9.9299 4.19623 9.88905 4.14998 9.83755L3.14512 8.72104C3.09059 8.66181 3.04913 8.58938 3.02398 8.5094C2.99883 8.42942 2.99067 8.34406 3.00014 8.25999V4.99932H2.98514L0.105539 0.899878C0.0243545 0.784077 -0.0122776 0.637279 0.00364727 0.491561C0.0195721 0.345843 0.0867593 0.213052 0.190527 0.122206C0.285514 0.0444384 0.3905 0 0.500485 0H7.49951C7.6095 0 7.71449 0.0444384 7.80947 0.122206C7.91324 0.213052 7.98043 0.345843 7.99635 0.491561C8.01228 0.637279 7.97565 0.784077 7.89446 0.899878L5.01486 4.99932H4.99986Z" fill="#4D4D4D"></path>
-                                    </svg>
-                                    filter
-                                </button>
-                            </div>
+                            
                             <div className="navWidget">
                             <div class="filterWidget">
                                     <div class="filterTitle">

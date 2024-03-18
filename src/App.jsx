@@ -9,7 +9,7 @@ import DriverLoginSignup from './pages/driverLoginSignup';
 import CompanyLoginSignup from './pages/companyLoginSignup';
 import CarProduct from './pages/carProduct';
 import ConfirmCarBook from './pages/confirmCarBook';
-import CarDriverInput from './pages/carDriverInput';
+import CarDriverInput from './pages/CarDriverInput';
 
 function App() {
 
