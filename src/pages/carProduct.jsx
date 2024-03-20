@@ -43,6 +43,35 @@ const carProduct = ()=> {
         },
         
     ];
+    const [transmissionFilters, setTransmissionFilters] = useState([]);
+    const [fuelFilters, setFuelFilters] = useState([]);
+    const [brandFilters, setBrandFilters] = useState([]);
+    const handleTransmissionChange = (event) => {
+        const { value, checked } = event.target;
+        if (checked) {
+            setTransmissionFilters([...transmissionFilters, value]);
+        } else {
+            setTransmissionFilters(transmissionFilters.filter(filter => filter !== value));
+        }
+    };
+
+    const handleFuelChange = (event) => {
+        const { value, checked } = event.target;
+        if (checked) {
+            setFuelFilters([...fuelFilters, value]);
+        } else {
+            setFuelFilters(fuelFilters.filter(filter => filter !== value));
+        }
+    };
+    
+    const handleBrandChange = (event) => {
+        const { value, checked } = event.target;
+        if (checked) {
+            setBrandFilters([...brandFilters, value]);
+        } else {
+            setBrandFilters(brandFilters.filter(filter => filter !== value));
+        }
+    };
     
     
     return (
