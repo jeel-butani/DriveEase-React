@@ -1,9 +1,10 @@
-import React from 'react'
-import Navbar from '../components/NavBar';
+import React from "react";
+// <<<<<<< HEAD
+import Navbar from "../components/NavBar";
 import "../pagesCss/homeCss.css";
 import car3 from "../assets/images/car3.jpg";
-import Footer from '../components/Footer';
-const About = ()=> {
+import Footer from "../components/Footer";
+const About = () => {
   return (
     <>
       <header>
@@ -174,6 +175,6 @@ const About = ()=> {
       <Footer />
     </>
   );
-}
+};
 
-export default About
+export default About;
