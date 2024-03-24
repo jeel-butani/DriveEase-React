@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import Navbar from '../components/NavBar';
 
+
 const companyLoginSignup = ()=> {
     const signupRef = useRef(null);
     const loginRef = useRef(null);
