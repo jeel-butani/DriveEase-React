@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import Navbar from '../components/NavBar';
 
+
 const driverLoginSignup = ()=> {
     const signupRef = useRef(null);
     const loginRef = useRef(null);
@@ -35,7 +36,7 @@ const driverLoginSignup = ()=> {
     return (
         <>
             <header>
-            <Navbar/>
+                <Navbar/>
             </header>
             <div className="body">
                 <div className="main-container">
