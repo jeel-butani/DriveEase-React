@@ -16,7 +16,7 @@ const Services=()=> {
       <header>
       <Navbar />
       </header>
-      <h1 className='text-3xl font-bold mb-6'>Services</h1>
+      {/* <h1 className='text-3xl font-bold mb-6'>Services</h1> */}
       
       <section class="section-services section-t8">
       <div class="container">
@@ -46,7 +46,7 @@ const Services=()=> {
                 </p>
               </div>
               <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">Read more
+                <a href="#" class="link-c link-icon">Go for Car Rent
                   <span class="bi bi-chevron-right"></span>
                 </a>
               </div>
@@ -68,7 +68,7 @@ const Services=()=> {
                 </p>
               </div>
               <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">Read more
+                <a href="#" class="link-c link-icon">Go for Driver
                   <span class="bi bi-calendar4-week"></span>
                 </a>
               </div>
@@ -90,7 +90,7 @@ const Services=()=> {
                 </p>
               </div>
               <div class="card-footer-c">
-                <a href="#" class="link-c link-icon">Read more
+                <a href="#" class="link-c link-icon">Go for Sell
                   <span class="bi bi-chevron-right"></span>
                 </a>
               </div>
