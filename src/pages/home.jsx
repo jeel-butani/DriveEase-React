@@ -4,7 +4,7 @@ import Navbar from "../components/NavBar";
 import Slider from "../components/Slider";
 import car3 from "../assets/images/car3.jpg";
 import "../pagesCss/homeCss.css";
-
+import '../pagesCss/homeCss.css'
 const Home = () => {
   return (
     <>
