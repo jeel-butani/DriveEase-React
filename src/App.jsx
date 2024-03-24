@@ -1,5 +1,4 @@
 import './App.css'
-import Navbar from './components/NavBar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import About from './pages/about';
@@ -9,6 +8,8 @@ import LoginSignup from './pages/userLoginSignup';
 import DriverLoginSignup from './pages/driverLoginSignup';
 import CompanyLoginSignup from './pages/companyLoginSignup';
 import CarProduct from './pages/carProduct';
+import ConfirmCarBook from './pages/confirmCarBook';
+import CarDriverInput from './pages/CarDriverInput';
 
 function App() {
 
@@ -24,10 +25,10 @@ function App() {
           <Route path="/driverLoginSignup" element={<DriverLoginSignup/>} />
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
           <Route path="/carProduct" element={<CarProduct/>} />
+          <Route path="/confirmCarBook/:id" element={<ConfirmCarBook />} />
+          <Route path="/carDriverInput" element={<CarDriverInput/>} />
           
         </Routes>
-        {/* <Home/> */}
-        {/* <ProductPage/> */}
       </>
     </BrowserRouter>
         // <div class="iconWidget">
