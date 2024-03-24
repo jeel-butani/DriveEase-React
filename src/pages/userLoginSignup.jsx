@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import '../pagesCss/userLoginSignup.css';
 import Navbar from '../components/NavBar';
 
+
 const LoginSignup = () => {
     const signupRef = useRef(null);
     const loginRef = useRef(null);
