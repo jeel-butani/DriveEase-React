@@ -1,6 +1,5 @@
 import React from 'react'
-import Navbar from '../components/navBar.jsx';
-import Footer from '../components/footer.jsx';
+
 
 import "../assets/animate.css/animate.min.css";
 import "../assets/bootstrap/css/bootstrap.min.css";
@@ -9,12 +8,14 @@ import "../assets/swiper/swiper-bundle.min.css";
 import "../pagesCss/homeCss.css";
 import "../assets/swiper/swiper-bundle.min.js"
 import "../assets/bootstrap/js/bootstrap.bundle.min.js"
+import Navbar from '../components/NavBar.jsx';
+import Footer from '../components/Footer.jsx';
 
 const Services=()=> {
   return (
     <>
       <header>
-      <Navbar />
+      <Navbar/>
       </header>
       {/* <h1 className='text-3xl font-bold mb-6'>Services</h1> */}
       
