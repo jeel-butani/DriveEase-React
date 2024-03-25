@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import '../pagesCss/carDriverInput.css'
-import Navbar from '../components/NavBar';
-// import Navbar from '../components/navBar';
+// import Navbar from '../components/NavBar';
 
 const CarDriverInput = () => {
     const carRef = useRef(null);
@@ -37,7 +36,7 @@ const CarDriverInput = () => {
     return (
         <>
             <header>
-                <Navbar/>
+                {/* <Navbar/> */}
             </header>
             <div className="body">
                 <div className="main-container">
