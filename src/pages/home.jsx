@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 import Navbar from '../components/navBar';
 import Slider from "../components/Slider";
 import car3 from "../assets/images/car3.jpg";

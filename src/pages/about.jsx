@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/navBar";
 import "../pagesCss/homeCss.css";
 import car3 from "../assets/images/car3.jpg";
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 const About = () => {
   return (
     <>

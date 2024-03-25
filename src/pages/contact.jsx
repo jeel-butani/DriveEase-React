@@ -9,7 +9,7 @@ import "../pagesCss/homeCss.css";
 import "../assets/swiper/swiper-bundle.min.js";
 import "../assets/bootstrap/js/bootstrap.bundle.min.js";
 import Navbar from "../components/navBar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer.jsx";
 
 const Contact = () => {
   return (
