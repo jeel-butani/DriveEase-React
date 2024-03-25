@@ -3,7 +3,6 @@ import "../pagesCss/ProductPageCss.css";
 
 const product = () => {
   return (
-    // <div>product</div>
     <>
         <div class="card">
                 <img
