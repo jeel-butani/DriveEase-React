@@ -990,7 +990,7 @@ body {
   
   /*------/ Intro Single /------*/
   .intro-single {
-    padding: 12rem 0 3rem;
+    padding: 1rem 0 2rem;
   }
   @media (max-width: 767px) {
     .intro-single {

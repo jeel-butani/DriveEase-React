@@ -17,7 +17,6 @@ const Contact = () => {
       <header>
         <Navbar/>
       </header>
-      {/* <h1 className='text-3xl font-bold mb-6'>Contact</h1> */}
       <section class="intro-single">
         <div class="container">
           <div class="row">
