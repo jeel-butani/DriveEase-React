@@ -5,7 +5,6 @@ import car2 from "../assets/images/car2.jpg";
 import car3 from "../assets/images/car3.jpg";
 const Slider = () => {
   return (
-    // <div>Slider</div>
     <MDBCarousel showControls showIndicators>
       <MDBCarouselItem itemId={1}>
         <img
