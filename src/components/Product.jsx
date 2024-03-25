@@ -1,5 +1,4 @@
 import React from "react";
-import "../pagesCss/ProductPageCss.css";
 
 const product = () => {
   return (
