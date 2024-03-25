@@ -6,7 +6,7 @@ import "../assets/swiper/swiper-bundle.min.css";
 import "../pagesCss/homeCss.css";
 import "../assets/swiper/swiper-bundle.min.js"
 import "../assets/bootstrap/js/bootstrap.bundle.min.js"
-import Navbar from '../components/NavBar.jsx';
+import Navbar from '../components/navBar';
 import Footer from '../components/Footer.jsx';
 
 const Services=()=> {
