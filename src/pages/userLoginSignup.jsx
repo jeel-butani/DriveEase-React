@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import '../pagesCss/userLoginSignup.css';
-import Navbar from '../components/NavBar';
+import Navbar from '../components/navBar';
 
 
 const LoginSignup = () => {
