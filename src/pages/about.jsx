@@ -93,8 +93,6 @@ const About = () => {
                 </div>
               </div>
 
-              {/* aaa */}
-
               <div className="col-md-4">
                 <div className="card-box-d">
                   <div className="card-img-d">
