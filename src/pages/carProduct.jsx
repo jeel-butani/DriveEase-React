@@ -1,4 +1,4 @@
-import Navbar from "../components/NavBar";
+// import Navbar from "../components/NavBar";
 import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
 import React, { useState } from "react";
@@ -76,7 +76,7 @@ const carProduct = () => {
   return (
     <>
       <header>
-        <Navbar />
+        {/* <Navbar /> */}
       </header>
       <section className="bookingWidget">
         <div className="templateContainer">
