@@ -1,6 +1,5 @@
 import React from "react";
-// <<<<<<< HEAD
-import Navbar from "../components/NavBar";
+import Navbar from "../components/navBar";
 import "../pagesCss/homeCss.css";
 import car3 from "../assets/images/car3.jpg";
 import Footer from "../components/Footer";
@@ -10,7 +9,6 @@ const About = () => {
       <header>
         <Navbar />
       </header>
-      {/* <h1 className='text-3xl font-bold mb-6'>About</h1> */}
       <main id="main">
         <section className="section-agents section-t8">
           <div className="container">
