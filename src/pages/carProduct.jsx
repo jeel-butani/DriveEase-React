@@ -45,37 +45,10 @@ const carProduct = () => {
       companyName: "bcd",
     },
   ];
-  const [transmissionFilters, setTransmissionFilters] = useState([]);
-  const [fuelFilters, setFuelFilters] = useState([]);
-  const [brandFilters, setBrandFilters] = useState([]);
-  const handleTransmissionChange = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setTransmissionFilters([...transmissionFilters, value]);
-    } else {
-      setTransmissionFilters(
-        transmissionFilters.filter((filter) => filter !== value)
-      );
-    }
-  };
-
-  const handleFuelChange = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setFuelFilters([...fuelFilters, value]);
-    } else {
-      setFuelFilters(fuelFilters.filter((filter) => filter !== value));
-    }
-  };
-
-  const handleBrandChange = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setBrandFilters([...brandFilters, value]);
-    } else {
-      setBrandFilters(brandFilters.filter((filter) => filter !== value));
-    }
-  };
+  const handleSelect = (id) => {
+    const encodedId = btoa(id); 
+    window.location.href = `/confirmCarBook/${encodedId}`; 
+  };  
 
   return (
     <>
@@ -713,28 +686,28 @@ const carProduct = () => {
                           <b>onwards</b>
                         </div>
                         <div className="cardCtrl">
-                          <a
-                            href="https://evmwheels.com/choose-plan"
-                            className="selectBtn open-inv-popup"
-                            data-id="31"
-                          >
-                            Select
-                            <svg
-                              width="13"
-                              height="13"
-                              viewBox="0 0 11 16"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M2.005 0L10.005 8L2.005 16L0 14L6.005 8L0 2L2.005 0Z"
-                                fill="white"
-                              ></path>
-                            </svg>
-                          </a>
-                        </div>
+              <button
+                onClick={() => handleSelect(card.id)}
+                className="selectBtn open-inv-popup"
+                data-id="31"
+              >
+                Select
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 11 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M2.005 0L10.005 8L2.005 16L0 14L6.005 8L0 2L2.005 0Z"
+                    fill="white"
+                  ></path>
+                </svg>
+              </button>
+            </div>
                       </div>
                     </div>
                   ))}

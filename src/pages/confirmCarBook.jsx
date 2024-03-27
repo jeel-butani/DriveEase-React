@@ -3,13 +3,26 @@ import payment from '../assets/images/payment.png'
 import '../pagesCss/confirmCarBook.css';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-const ConfirmCarBook = ()=> {
-
+const ConfirmCarBook = ()=> {     
+  
   const { id } = useParams();
   const [isChecked, setIsChecked] = useState(true);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked); 
   };
+
+  function getEncodedIdFromUrl() {
+    const urlParts = window.location.href.split('/');
+    return urlParts[urlParts.length - 1];
+  }
+  function decodeId(encodedId) {
+    return atob(encodedId);
+  }
+  const encodedId = getEncodedIdFromUrl();
+  
+  const ids = decodeId(encodedId);
+  console.log('Decoded ID:', ids);
+  
   return (
     <>
         <NavBarEmpty/>
