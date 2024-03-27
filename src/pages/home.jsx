@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import Footer from "../components/footer";
 import Navbar from '../components/navBar';
 import Slider from "../components/slider";
@@ -11,22 +12,9 @@ const Home = () => {
       <header>
         <Navbar />
       </header>
-      {/* <h1 className='text-3xl font-bold mb-6'>Home</h1> */}
       <Slider />
 
-      {/* Main */}
-
       <main id="main">
-        {/* <section class="section-property section-t8">
-        
-          <div class="container">
-            <div id="property-carousel" class="swiper">
-              <div class="swiper-wrapper">
-                aa
-              </div>
-            </div>
-          </div>
-        </section> */}
 
         <section class="section-agents section-t8">
           <div class="container">
@@ -37,15 +25,14 @@ const Home = () => {
                     <h2 class="title-a">New Cars</h2>
                   </div>
                   <div class="title-link">
-                    <a href="#">
+                    <Link to="/carProduct">
                       All Cars
                       <span class="bi bi-chevron-right"></span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-
             <div class="row">
               <div class="col-md-4">
                 <div class="card-box-d">
@@ -80,8 +67,6 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              {/*  */}
-
               <div class="col-md-4">
                 <div class="card-box-d">
                   <div class="card-img-d">
@@ -116,8 +101,6 @@ const Home = () => {
                 </div>
               </div>
 
-              {/*  */}
-
               <div class="col-md-4">
                 <div class="card-box-d">
                   <div class="card-img-d">
@@ -151,17 +134,10 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-
-              {/*  */}
-
-              
             </div>
-            
           </div>
         </section>
       </main>
-
-      {/* Main Over */}
       <Footer />
     </>
   );

@@ -1,4 +1,4 @@
-// import Navbar from "../components/NavBar";
+import Navbar from "../components/navBar";  
 import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
 import React, { useState } from "react";
@@ -12,6 +12,7 @@ const carProduct = () => {
       fuel: "Petrol",
       space: "5 Seater",
       price: "₹2300",
+      companyName: "abc",
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ const carProduct = () => {
       fuel: "Petrol",
       space: "4 Seater",
       price: "₹1200",
+      companyName: "abc",
     },
     {
       id: 3,
@@ -30,6 +32,7 @@ const carProduct = () => {
       fuel: "Petrol",
       space: "5 Seater",
       price: "₹2300",
+      companyName: "bcd",
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ const carProduct = () => {
       fuel: "Petrol",
       space: "5 Seater",
       price: "₹4900",
+      companyName: "bcd",
     },
   ];
   const [transmissionFilters, setTransmissionFilters] = useState([]);
@@ -76,7 +80,7 @@ const carProduct = () => {
   return (
     <>
       <header>
-        {/* <Navbar /> */}
+        <Navbar />
       </header>
       <section className="bookingWidget">
         <div className="templateContainer">
