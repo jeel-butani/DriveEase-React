@@ -10,6 +10,8 @@ import CompanyLoginSignup from './pages/companyLoginSignup';
 import CarProduct from './pages/carProduct';
 import ConfirmCarBook from './pages/confirmCarBook';
 import CarDriverInput from './pages/carDriverInput';
+import CompanyCars from './pages/companyCars';
+import EditCar from './pages/editCar';
 
 function App() {
 
@@ -27,6 +29,8 @@ function App() {
           <Route path="/carProduct" element={<CarProduct/>} />
           <Route path="/confirmCarBook/:id" element={<ConfirmCarBook />} />
           <Route path="/carDriverInput" element={<CarDriverInput/>} />
+          <Route path="/companyCars" element={<CompanyCars/>} />
+          <Route path="/editCar/:id" element={<EditCar/>} />
           
         </Routes>
       </>

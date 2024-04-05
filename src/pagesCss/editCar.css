@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.car-input-container {
+    height: 300px; 
+    overflow-y: auto;
+}
+
+.body {
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    background-color: rgba(234, 234, 234, 0.927);
+}
+
+.main-container {
+    height: 600px;
+    width: 500px;
+    background-color: white;
+    box-shadow: 8px 8px 20px rgb(128, 128, 128);
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.btn {
+    height: 60px;
+    width: 300px;
+    margin: 20px auto;
+    box-shadow: 10px 10px 30px rgb(237, 177, 244);
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.car,
+.driver {
+    font-size: 22px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.slider-edit {
+    height: 60px;
+    width: 60%;
+    border-radius: 50px;
+    background-image: linear-gradient(to top, rgb(255, 136, 67), rgb(196, 15, 160));
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    transition: all 0.5s ease-in-out;
+}
+
+.moveslider {
+    left: 250px;
+}
+
+.form-section-edit {
+    height: 500px;
+    padding: 20px 0;
+    display: flex;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    left: 0px;
+    overflow: auto;
+}
+
+.form-section-move {
+    left: -500px;
+}
+
+.car-input-box,
+.driver-input-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 40px;
+}
+
+.car-input-container {
+    width: 100%; 
+    height: 300px;
+    overflow-y: auto;
+}
+
+.car-input-box {
+    gap: 20px;
+}
+
+.driver-input-box {
+    gap: 30px;
+}
+
+.ele {
+    height: 50px;  
+    width: 80%; 
+    outline: none;
+    border: none;
+    color: rgb(62, 62, 62);
+    background-color: rgb(240, 240, 240);
+    border-radius: 50px;
+    padding-left: 30px;
+    font-size: 18px;
+}
+
+.clkbtn {
+    height: 60px;
+    width: 150px;
+    border-radius: 50px;
+    background-image: linear-gradient(to top, rgb(255, 136, 67), rgb(196, 15, 160));
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.car-submit-btn-edit, .driver-submit-btn{
+        height: 60px;
+        width: 150px;
+        border-radius: 50px;
+        background-image: linear-gradient(to top, rgb(255, 136, 67), rgb(196, 15, 160));
+        font-size: 22px;
+        border: none;
+        cursor: pointer;
+    
+}
+
+.car-submit-btn-edit:hover{
+    color: white;
+}
