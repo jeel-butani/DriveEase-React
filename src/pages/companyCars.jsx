@@ -4,48 +4,58 @@ import "../pagesCss/carsProduct.css";
 import React, { useState } from "react";
 
 const companyCars = () => {
-    const cardData = [
-        {
-          id: 1,
-          title: "MARUTI WAGON R Petrol MT",
-          imageUrl: "https://evmwheels.com/uploads/inventory/WAGON%20R-P-MT.png",
-          transmission: "Manual",
-          fuel: "Petrol",
-          space: "5 Seater",
-          price: "₹2300",
-          companyName: "abc",
-        },
-        {
-          id: 2,
-          title: "DATSUN REDI GO Petrol MT",
-          imageUrl: "https://evmwheels.com/uploads/inventory/REDI%20GO-P-MT.png",
-          transmission: "Manual",
-          fuel: "Petrol",
-          space: "4 Seater",
-          price: "₹1200",
-          companyName: "abc",
-        },
-        {
-          id: 3,
-          title: "NISSAN MICRA Petrol MT",
-          imageUrl: "https://evmwheels.com/uploads/inventory/MICRA-P-MT.png",
-          transmission: "Manual",
-          fuel: "Petrol",
-          space: "5 Seater",
-          price: "₹2300",
-          companyName: "bcd",
-        },
-        {
-          id: 4,
-          title: "HYUNDAI CRETA Diesel AT",
-          imageUrl: "https://evmwheels.com/uploads/inventory/CRETA-D-AT.png",
-          transmission: "Automatic",
-          fuel: "Petrol",
-          space: "5 Seater",
-          price: "₹4900",
-          companyName: "bcd",
-        },
-      ];
+  const cardData = [
+    {
+      id: 1,
+      title: "MARUTI WAGON R Petrol MT",
+      imageUrl: "https://evmwheels.com/uploads/inventory/WAGON%20R-P-MT.png",
+      transmission: "Manual",
+      fuel: "Petrol",
+      space: "5 Seater",
+      price: "₹2300",
+      companyName: "abc",
+      totalCar: 5,
+      availableCar: 1
+    },
+    {
+      id: 2,
+      title: "DATSUN REDI GO Petrol MT",
+      imageUrl: "https://evmwheels.com/uploads/inventory/REDI%20GO-P-MT.png",
+      transmission: "Manual",
+      fuel: "Petrol",
+      space: "4 Seater",
+      price: "₹1200",
+      companyName: "abc",
+      totalCar: 5,
+      availableCar: 4
+    },
+    {
+      id: 3,
+      title: "NISSAN MICRA Petrol MT",
+      imageUrl: "https://evmwheels.com/uploads/inventory/MICRA-P-MT.png",
+      transmission: "Manual",
+      fuel: "Petrol",
+      space: "5 Seater",
+      price: "₹2300",
+      companyName: "bcd",
+      totalCar: 5,
+      availableCar: 2
+    },
+    {
+      id: 4,
+      title: "HYUNDAI CRETA Diesel AT",
+      imageUrl: "https://evmwheels.com/uploads/inventory/CRETA-D-AT.png",
+      transmission: "Automatic",
+      fuel: "Petrol",
+      space: "5 Seater",
+      price: "₹4900",
+      companyName: "bcd",
+      totalCar: 5,
+      availableCar: 3
+    },
+  ];
+  const sumTotalCars = cardData.reduce((sum, card) => sum + card.totalCar, 0);
+  console.log("Sum of total cars:", sumTotalCars);  
       const handleSelect = (id) => {
         const encodedId = btoa(id); 
         window.location.href = `/editCar/${encodedId}`; 
@@ -57,13 +67,10 @@ const companyCars = () => {
       </header>
       <section className="bookingWidget">
         <div className="templateContainer">
-          <div className="templateRow">
-          <h1 class="text-4xl font-semibold mb-3"> 
-               Your Cars 
-            </h1> 
+          <div className="templateRow1">
 
             <div className="tabWidget">
-              
+              <div className="text-3xl font-bold">Your Cars</div>
               <div class="tabList" id="filteredResults">
                 <div class="cardRow inv_list_wrap" data-filter-id="1">
                   {cardData.map((card) => (
@@ -168,7 +175,14 @@ const companyCars = () => {
                                 </svg>
                             </button>
                         </div>
+                        
                       </div>
+                      <div className="totalCars text-xl font-bold">
+                          Total Cars: {card.totalCar}
+                        </div>
+                      <div className="totalCars text-l font-bold">
+                        Available Cars: {card.availableCar}
+                        </div>
                     </div>
                   ))}
                 </div>

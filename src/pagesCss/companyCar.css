@@ -146,7 +146,7 @@
   padding:0 50px;
 }
 
-.bookingWidget .templateContainer .templateRow {
+.bookingWidget .templateContainer .templateRow1 {
   display: block;
   padding-top: 45px;
   padding-bottom: 50px;
@@ -183,13 +183,15 @@
   text-align: center;
 }
 
-.bookingWidget .templateContainer .templateRow .tabWidget .tabBody {
+
+
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabBody {
   padding-top: 18px;
-}
-.bookingWidget .templateContainer .templateRow .tabWidget {
+}w
+.bookingWidget .templateContainer .templateRow1 .tabWidget {
   padding-left: 40px;
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget {
   /* padding-top: 20px; */
   padding-top: -6px;
   display: flex;
@@ -211,10 +213,10 @@
   box-shadow: 0 3px 5px 0 rgba(32, 33, 36, 0.2);
 
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList.active, .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList:hover {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList.active, .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList:hover {
   color: var(--blck);
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList {
   white-space: nowrap;
   padding-bottom: 10px;
   flex: 1;
@@ -226,7 +228,7 @@
   position: relative;
 }
 
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList::before, .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 button::before {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList::before, .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 button::before {
   position: relative;
   top: -3px;
   margin-right: 3px;
@@ -239,7 +241,7 @@
   transition: ease-in-out .4s;
 }
 
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList::after, .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 button::after {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList::after, .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 button::after {
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -250,13 +252,13 @@
   opacity: 0;
   transition: ease-in-out .4s;
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList.active::after, .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList:hover::after {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList.active::after, .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList:hover::after {
   opacity: 1;
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList.active::before, .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget .tabNavList:hover::before {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList.active::before, .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget .tabNavList:hover::before {
   background-color: var(--blck);
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -268,7 +270,7 @@
 .wrapper {
   position: relative;
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 #openFilterBtn {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 #openFilterBtn {
   background-color: #DDF1E6;
   color: #000;
 }
@@ -277,12 +279,12 @@
   top: 0;
   right: 0px;
 }
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 .tabNavList.active, .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 button:hover {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 .tabNavList.active, .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 button:hover {
   color: #000000;
   background-color: #feb51b;
 }
 
-.bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 button {
+.bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 button {
   white-space: nowrap;
   padding: 5px;
   flex: 1;
@@ -305,17 +307,17 @@
   .filterWidget1 {
     display: none;
   }
-  .bookingWidget .templateContainer .templateRow {
+  .bookingWidget .templateContainer .templateRow1 {
     display: flex;
     flex-direction: column;
   }
-  .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget, .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 {
+  .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget, .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 {
     top: 70px;
   }
-  .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget {
+  .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget {
     display: none;
   }
-  .bookingWidget .templateContainer .templateRow .tabWidget {
+  .bookingWidget .templateContainer .templateRow1 .tabWidget {
     padding-left: 0;
   }
   .bookingWidget .templateContainer {
@@ -335,7 +337,7 @@
   .timeList1 {
     display: none;
   }
-  .bookingWidget .templateContainer .templateRow .tabWidget .tabNavWidget1 button {
+  .bookingWidget .templateContainer .templateRow1 .tabWidget .tabNavWidget1 button {
     display: none;
   }
 

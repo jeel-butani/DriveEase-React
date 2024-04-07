@@ -13,6 +13,8 @@ const carProduct = () => {
       space: "5 Seater",
       price: "₹2300",
       companyName: "abc",
+      totalCar: 5,
+      availableCar: 1
     },
     {
       id: 2,
@@ -23,6 +25,8 @@ const carProduct = () => {
       space: "4 Seater",
       price: "₹1200",
       companyName: "abc",
+      totalCar: 5,
+      availableCar: 4
     },
     {
       id: 3,
@@ -33,6 +37,8 @@ const carProduct = () => {
       space: "5 Seater",
       price: "₹2300",
       companyName: "bcd",
+      totalCar: 5,
+      availableCar: 2
     },
     {
       id: 4,
@@ -43,6 +49,8 @@ const carProduct = () => {
       space: "5 Seater",
       price: "₹4900",
       companyName: "bcd",
+      totalCar: 5,
+      availableCar: 3
     },
   ];
   const handleSelect = (id) => {
