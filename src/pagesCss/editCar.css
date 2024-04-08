@@ -5,7 +5,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-.car-input-container {
+.car-input-container1 {
     height: 300px; 
     overflow-y: auto;
 }
@@ -20,7 +20,7 @@
     background-color: rgba(234, 234, 234, 0.927);
 }
 
-.main-container {
+.main-container1 {
     height: 600px;
     width: 500px;
     background-color: white;
@@ -30,7 +30,7 @@
     border-radius: 20px;
 }
 
-.btn {
+.btn1 {
     height: 60px;
     width: 300px;
     margin: 20px auto;
@@ -41,7 +41,7 @@
     align-items: center;
 }
 
-.car,
+.car1,
 .driver {
     font-size: 22px;
     border: none;
@@ -51,7 +51,7 @@
     cursor: pointer;
 }
 
-.slider-edit {
+.slider-edit1 {
     height: 60px;
     width: 60%;
     border-radius: 50px;
@@ -62,11 +62,11 @@
     transition: all 0.5s ease-in-out;
 }
 
-.moveslider {
+.moveslider1 {
     left: 250px;
 }
 
-.form-section-edit {
+.form-section-edit1 {
     height: 500px;
     padding: 20px 0;
     display: flex;
@@ -76,12 +76,11 @@
     overflow: auto;
 }
 
-.form-section-move {
+.form-section-move1 {
     left: -500px;
 }
 
-.car-input-box,
-.driver-input-box {
+.car-input-box1{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -90,18 +89,14 @@
     padding: 0px 40px;
 }
 
-.car-input-container {
+.car-input-container1 {
     width: 100%; 
     height: 300px;
     overflow-y: auto;
 }
 
-.car-input-box {
+.car-input-box1 {
     gap: 20px;
-}
-
-.driver-input-box {
-    gap: 30px;
 }
 
 .ele {
@@ -116,7 +111,7 @@
     font-size: 18px;
 }
 
-.clkbtn {
+.clkbtn1 {
     height: 60px;
     width: 150px;
     border-radius: 50px;

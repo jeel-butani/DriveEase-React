@@ -26,26 +26,22 @@ const editCar = () => {
                 <Navbar/>
             </header>
             <div className="body">
-                <div className="main-container">
-                    <div className="slider-edit"></div>
-                    <div className="btn">
-                        <button className="car" >Update Car Details</button>
+                <div className="main-container1">
+                    <div className="slider-edit1"></div>
+                    <div className="btn1">
+                        <button className="car1" >Update Car Details</button>
                     </div>
-                    <div className="form-section-edit" >
+                    <div className="form-section-edit1" >
                         
-                        <div className="car-input-box">
+                        <div className="car-input-box1">
                             <input type="file" className="image ele" accept="image/*"/>
                             <input type="text" className="car-name ele" placeholder="Car Name" />
-                            <select className="car-type ele">
-                                <option value="manual">Manual</option>
-                                <option value="automatic">Automatic</option>
-                            </select>
-                            <input type="number" className="seater ele" placeholder="Number of Seats" />
+                            <input type="number" className="car-name ele" placeholder="Total number of cars" />
+                            <input type="number" className="car-name ele" placeholder="Available number of cars" />
                             <input type="number" className="amount ele" placeholder="Amount" />
                             
                             <button className="car-submit-btn-edit">Submit</button>
                         </div>
-                        
                     </div>
                 </div>
             </div>
