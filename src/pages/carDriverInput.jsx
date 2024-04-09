@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import '../pagesCss/carDriverInput.css';
 import Navbar from '../components/navBar';
 
-const CarDriverInput = () => {
+const carDriverInput = () => {
     const carRef = useRef(null);
     const driverRef = useRef(null);
     const sliderRef = useRef(null);
@@ -106,4 +106,4 @@ const CarDriverInput = () => {
     );
 };
 
-export default CarDriverInput;
+export default carDriverInput;

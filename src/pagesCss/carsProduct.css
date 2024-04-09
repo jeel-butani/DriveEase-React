@@ -155,8 +155,6 @@
 }
 
 .bookingWidget .templateContainer .templateRow1 {
-
-  padding-top: 45px;
   padding-bottom: 50px;
   display: block;
   grid-template-columns: 362px auto;

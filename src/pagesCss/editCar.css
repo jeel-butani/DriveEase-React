@@ -5,7 +5,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-.car-input-container1 {
+.car-input-container1, .driver-input-container1 {
     height: 300px; 
     overflow-y: auto;
 }
@@ -42,7 +42,7 @@
 }
 
 .car1,
-.driver {
+.driver1 {
     font-size: 22px;
     border: none;
     outline: none;
@@ -80,7 +80,7 @@
     left: -500px;
 }
 
-.car-input-box1{
+.car-input-box1, .driver-input-box1{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -89,13 +89,13 @@
     padding: 0px 40px;
 }
 
-.car-input-container1 {
+.car-input-container1, .driver-input-container1 {
     width: 100%; 
     height: 300px;
     overflow-y: auto;
 }
 
-.car-input-box1 {
+.car-input-box1, .driver-input-box1 {
     gap: 20px;
 }
 
@@ -129,7 +129,7 @@ header {
     z-index: 1;
 }
 
-.car-submit-btn-edit, .driver-submit-btn{
+.car-submit-btn-edit, .driver-submit-btn-edit{
         height: 60px;
         width: 150px;
         border-radius: 50px;
@@ -140,6 +140,6 @@ header {
     
 }
 
-.car-submit-btn-edit:hover{
+.car-submit-btn-edit:hover, .driver-submit-btn-edit:hover{
     color: white;
 }

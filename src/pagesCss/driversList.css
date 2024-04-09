@@ -1,0 +1,85 @@
+:root {
+  --white: #fff;
+  --blck: #000;
+  --light: 300;
+  --regular: 400;
+  --medium: 500;
+  --semibold: 600;
+  --bold: 700;
+  --blk: 900;
+  font-family: 'Poppins', sans-serif;
+}
+.headDriver{
+  margin:10px 100px 0px 100px  ;
+}
+.head{
+  margin:10px 100px 0px 25px  ;
+}
+
+.drivers-list {
+  column-gap: 25px;
+  row-gap: 25px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.driver-card {
+  background-color: var(--white);
+  box-shadow: 4px 9px 15px 0px rgba(32, 33, 36, 0.2);
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 10px; /* Adjust margin as needed */
+  padding: 15px;
+  width: 300px;
+  white-space: normal; /* Reset white-space for card content */
+}
+
+.driver-card h3 {
+  margin-top: 0;
+}
+
+.driver-card p {
+  margin: 5px 0;
+}
+
+.driver-card button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px 15px;
+  transition: background-color 0.3s;
+}
+
+.driver-card button:hover {
+  background-color: #0056b3;
+}
+.wrapper{
+  padding: 0 80px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .drivers-list {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .head{
+    transition-delay:1.5s ease-in-out;
+    margin:10px 0px 0px 70px  ;
+  }
+  .driver-card {
+    width: calc(50% - 20px); /* Two cards per row */
+    margin: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .driver-card {
+    width: calc(100% - 20px); /* Single card per row */
+  }
+}

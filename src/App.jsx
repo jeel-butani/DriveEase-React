@@ -12,6 +12,8 @@ import ConfirmCarBook from './pages/confirmCarBook';
 import CarDriverInput from './pages/carDriverInput';
 import CompanyCars from './pages/companyCars';
 import EditCar from './pages/editCar';
+import EditDriver from './pages/editDriver';
+import DriversList from './pages/driversList';
 
 function App() {
 
@@ -31,6 +33,8 @@ function App() {
           <Route path="/carDriverInput" element={<CarDriverInput/>} />
           <Route path="/companyCars" element={<CompanyCars/>} />
           <Route path="/editCar/:id" element={<EditCar/>} />
+          <Route path="/editDriver/:id" element={<EditDriver/>} />
+          <Route path="/driversList/" element={<DriversList/>} />
           
         </Routes>
       </>

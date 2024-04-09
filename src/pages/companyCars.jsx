@@ -2,6 +2,7 @@ import Navbar from "../components/navBar";
 import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";  
 
 const companyCars = () => {
   const cardData = [
@@ -70,7 +71,13 @@ const companyCars = () => {
           <div className="templateRow1">
 
             <div className="tabWidget">
-              <div className="text-3xl font-bold">Your Cars</div>
+              <div className="flex justify-between items-center">
+                <div className="head text-3xl font-bold">
+                  Your Cars
+                </div>
+                <Link className="btn text-xl font-bold" to="/driversList">Drivers</Link>
+                <Link className="btn  text-xl font-bold" to="/carDriverInput">Add Cars/Driver</Link>
+              </div>
               <div class="tabList" id="filteredResults">
                 <div class="cardRow inv_list_wrap" data-filter-id="1">
                   {cardData.map((card) => (

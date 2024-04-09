@@ -164,6 +164,9 @@
     .driver-input-box{
         gap: 20px;
     }
+    .carRight, .driverRight{
+        margin-top: 10px;
+    }
 }
 
 header {
