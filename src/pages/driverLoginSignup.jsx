@@ -53,13 +53,31 @@ const driverLoginSignup = ()=> {
                             <input type="password" className="password ele" placeholder="password" />
                             <button className="clkbtn text3xl font-medium">Login</button>
                         </div>
-                        <div className="signup-box">
-                            <p className='text-2xl font-bold'>Driver Signup</p>
-                            <input type="text" className="name ele" placeholder="Enter your name" />
-                            <input type="email" className="email ele" placeholder="youremail@email.com" />
-                            <input type="password" className="password ele" placeholder="password" />
-                            <input type="password" className="password ele" placeholder="Confirm password" />
-                            <button className="clkbtn font-medium">Signup</button>
+                        <div className="driver-input-box">
+                            <p className='text-2xl font-bold'>Driver Details</p>
+                            <div className="driverSideBySide">
+                                <div className="driverLeft">
+                                    <input type="text" className="driver-name ele" placeholder="Driver Name" />
+                                    <input type="text" className="license-number ele" placeholder="License Number" />
+                                    <input type="file" className="license-photo ele" accept="image/*" />
+                                    <input type="file" className="adharcard-photo ele" accept="image/*" />
+                                    <input type="text" className="adharcard-number ele" placeholder="Adharcard Number" />
+                                    <input type="password" className="password ele" placeholder="password" />
+                                </div>
+                                <div className="driverRight">
+                                    <input type="date" className="birthdate ele" placeholder="Birthdate" />
+                                    <input type="number" className="price ele" placeholder="Price" />
+                                    <input type="email" className="email-address ele" placeholder="Email Address" />
+                                    <input type="tel" className="phone-number ele" placeholder="Phone Number" />
+                                    <select className="driver-wheel-type ele">
+                                        <option value="2-wheel">2 Wheel Driver</option>
+                                        <option value="4-wheel">4 Wheel Driver</option>
+                                    </select>
+                                    
+                                    <input type="password" className="confirm-password ele" placeholder="confirm password" />
+                                </div>
+                            </div>
+                            <button className="driver-submit-btn">Submit</button>
                         </div>
                     </div>
                 </div>

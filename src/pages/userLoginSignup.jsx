@@ -55,11 +55,24 @@ const LoginSignup = () => {
                             <button className="clkbtn text3xl font-medium">Login</button>
                         </div>
                         <div className="signup-box">
-                            <p className='text-2xl font-bold'>User Signup</p>
-                            <input type="text" className="name ele" placeholder="Enter your name" />
-                            <input type="email" className="email ele" placeholder="youremail@email.com" />
-                            <input type="password" className="password ele" placeholder="password" />
-                            <input type="password" className="password ele" placeholder="Confirm password" />
+                            <p className="text-2xl font-bold">User Signup</p>
+                            <div className="driverSideBySide">
+                                <div className="driverLeft">
+                                    <input type="text" className="full-name ele" placeholder="Full Name" />
+                                    <input type="date" className="birthdate ele" placeholder="Birthdate" />
+                                    <input type="email" className="email ele" placeholder="Email Address" />
+                                    <input type="tel" className="phone-number ele" placeholder="Phone Number" />
+                                    <input type="text" className="location ele" placeholder="Location" />
+                                </div>
+                                <div className="driverRight">
+                                    <input type="text" className="aadharcard-number ele" placeholder="Aadhar Card Number" />
+                                    <input type="file" className="aadharcard-photo ele" accept="image/*" />
+                                    <input type="password" className="password ele" placeholder="Password" />
+                                    <input type="password" className="confirm-password ele" placeholder="Confirm Password" />
+                                </div>
+                                
+                                
+                            </div>
                             <button className="clkbtn font-medium">Signup</button>
                         </div>
                     </div>

@@ -55,10 +55,20 @@ const companyLoginSignup = ()=> {
                         </div>
                         <div className="signup-box">
                             <p className='text-2xl font-bold'>Company Signup</p>
-                            <input type="text" className="name ele" placeholder="Enter your name" />
-                            <input type="email" className="email ele" placeholder="youremail@email.com" />
-                            <input type="password" className="password ele" placeholder="password" />
-                            <input type="password" className="password ele" placeholder="Confirm password" />
+                            <div className="driverSideBySide">
+                                <div className="driverLeft">
+                                    <input type="text" className="company-name ele" placeholder="Company Name" />
+                                    <input type="text" className="gst-number ele" placeholder="GST Number" />
+                                    <input type="email" className="email ele" placeholder="Email Address" />
+                                    <input type="text" className="owner-name ele" placeholder="Owner Name" />
+                                </div>
+                                <div className="driverRight">
+                                    <input type="tel" className="owner-contact ele" placeholder="Owner Contact" />
+                                    <input type="text" className="location ele" placeholder="Location" />
+                                    <input type="password" className="password ele" placeholder="Password" />
+                                    <input type="password" className="confirm-password ele" placeholder="Confirm Password" />
+                                </div>
+                            </div>
                             <button className="clkbtn font-medium">Signup</button>
                         </div>
                     </div>
