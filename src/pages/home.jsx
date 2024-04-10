@@ -6,6 +6,7 @@ import Slider from "../components/slider";
 import car3 from "../assets/images/car3.jpg";
 import "../pagesCss/homeCss.css";
 import '../pagesCss/homeCss.css'
+import DriProfile from './DriProfile';
 const Home = () => {
   return (
     <>
@@ -139,6 +140,7 @@ const Home = () => {
         </section>
       </main>
       <Footer />
+      {/* <DriProfile/> */}
     </>
   );
 };
