@@ -81,6 +81,11 @@ const carDriverInput = () => {
                 </div>
                 <div className="carRight">
                   <input
+                    type="text"
+                    className="company-name ele"
+                    placeholder="Company Name"
+                  />
+                  <input
                     type="number"
                     className="amount ele"
                     placeholder="Amount"

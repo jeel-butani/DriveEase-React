@@ -63,6 +63,7 @@ const driverLoginSignup = ()=> {
                                     <input type="file" className="adharcard-photo ele" accept="image/*" />
                                     <input type="text" className="adharcard-number ele" placeholder="Adharcard Number" />
                                     <input type="password" className="password ele" placeholder="password" />
+                                    <input type="password" className="confirm-password ele" placeholder="confirm password" />
                                 </div>
                                 <div className="driverRight">
                                     <input type="date" className="birthdate ele" placeholder="Birthdate" />
@@ -73,8 +74,8 @@ const driverLoginSignup = ()=> {
                                         <option value="2-wheel">2 Wheel Driver</option>
                                         <option value="4-wheel">4 Wheel Driver</option>
                                     </select>
+                                    <input type="text" className="Location ele" placeholder="Location" />
                                     
-                                    <input type="password" className="confirm-password ele" placeholder="confirm password" />
                                 </div>
                             </div>
                             <button className="driver-submit-btn">Submit</button>
