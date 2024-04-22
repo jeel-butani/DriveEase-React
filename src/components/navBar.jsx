@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import logo from '../assets/images/logo-vectore.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react'; 
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect } from "react";
 
 const Navbar = () =>{
     const [navClassName, setNavClassName] = useState('navLinks');
     const [showSignUpOptions, setShowSignUpOptions] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const toggleNav = () => {
         if (navClassName === 'navLinks' ) {
@@ -21,6 +23,17 @@ const Navbar = () =>{
         setShowSignUpOptions(!showSignUpOptions);
     }
 
+    
+
+    const checkToken = () => {
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        console.log("Token:", token); 
+        setIsLoggedIn(!!token); 
+    };
+
+    useEffect(() => {
+        checkToken();
+    }, []); 
     return(
         <div className="container-nav highlightTextOut" id='navbar'> 
             <div className='logoDiv'> 
@@ -33,6 +46,7 @@ const Navbar = () =>{
                 <Link to="/services" alt="SERVICES" className='font-medium'>SERVICES</Link>
                 <Link to="/contact" alt="CONTACT" className='font-medium'>CONTACT</Link>
             </div>
+            {isLoggedIn? (
             <div className='btnDiv'>
                 <a className='loginBtn font-bold' alt="SIGNUP" onClick={toggleSignUpOptions}>SIGNUP</a>
                 {showSignUpOptions && 
@@ -43,9 +57,17 @@ const Navbar = () =>{
                     </div>
                 }
             </div>
+            ):(
+                <div className='userIcon'>
+                    <a href="" className="user">
+                    <FontAwesomeIcon icon={faUser} />
+                    </a>
+                </div> 
+            )}
             <a href="javascript:void(0);" className="icon" onClick={toggleNav}>
                 <FontAwesomeIcon icon={faBars} />
             </a>
+            
         </div>
     );
 };
