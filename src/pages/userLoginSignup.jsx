@@ -2,7 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import '../pagesCss/userLoginSignup.css';
 import Navbar from '../components/navBar';
 import { useForm } from "react-hook-form";
-const multer = require("multer");
+import axios from 'axios';
+
 
 const LoginSignup = () => {
     const signupRef = useRef(null);
@@ -13,16 +14,16 @@ const LoginSignup = () => {
         register: registerLogin,
         handleSubmit: handleSubmitLogin,
         formState: { errors: errorsLogin },
-      } = useForm();
+    } = useForm();
     const {
         register: registerSignup,
         handleSubmit: handleSubmitSignup,
         formState: { errors: errorsSignup },
-        watch: watchSignup // <-- add watch function for signup form
-      } = useForm();
+        watch: watchSignup 
+    } = useForm();
     const [isLoginFormSubmitting, setIsLoginFormSubmitting] = useState(false);
     const [isSignupFormSubmitting, setIsSignupFormSubmitting] = useState(false);
-    const signupPassword = watchSignup("signupPassword"); // <-- watch the signup password field
+    const signupPassword = watchSignup("signupPassword");
 
     useEffect(() => {
         const signupButton = signupRef.current;
@@ -49,45 +50,73 @@ const LoginSignup = () => {
         };
     }, []);
 
-    const onSubmitLogin = (data) => {
+    const onSubmitLogin = async (data) => {
         setIsLoginFormSubmitting(true);
-        console.log(data);
-        // Simulate form submission (API call, etc.)
-        setTimeout(() => {
+    
+        try {
+            const formData = {
+                email: data.loginEmail,
+                password: data.loginPassword
+            };
+            const loginResponse = await axios.post('http://localhost:3000/api/user/login', formData);
+    
+            const user = loginResponse.data.user;
+            const token = loginResponse.data.token;
+    
+            if (!user) {
+                console.log('User does not exist');
+            } else if (user && user.password === data.loginPassword) {
+                console.log('Login successful');
+                console.log(token);
+                
+                document.cookie = `token=${token}; path=/;`;
+                window.location.href = '/'
+            } else {
+                console.log('Invalid email or password');
+            }
+    
+            setTimeout(() => {
+                setIsLoginFormSubmitting(false);
+            }, 1000);
+        } catch (error) {
+            console.error('Error:', error);
             setIsLoginFormSubmitting(false);
-        }, 1000); // Set a timeout to reset the submitting state after 1 second (replace with actual submission logic)
-    }
+        }
+    };
+    
+    
 
     const onSubmitSignup = async (data) => {
         setIsSignupFormSubmitting(true);
         console.log(data);
-    
-        const formData = {
-            name: data.fullName,
-            birthdate: data.birthdate,
-            email: data.signupEmail,
-            phoneNumber: data.phoneNumber,
-            location: data.location,
-            aadharCard: data.aadharCardNumber,
-            aadharCardImageUrl: "assets/aadharImage/Aadhaar_3.pdf",
-            password: data.signupPassword
-        };  
-    
-        try {
-            const response = await fetch('http://localhost:3000/api/user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-    
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log(responseData);
 
+        try {
+            const fileFormData = new FormData();
+            fileFormData.append('userAadhar ele', data.aadharCardPhoto);
+            console.log(fileFormData); 
+            console.log(data.aadharCardPhoto); 
+
+            const uploadResponse = await axios.post('http://localhost:3000/user/profile', data.aadharCardPhoto);
+            const filename = uploadResponse.data.filename;
+            console.log(uploadResponse.data);
+
+            const formData = {
+                name: data.fullName,
+                birthdate: data.birthdate,
+                email: data.signupEmail,
+                phoneNumber: data.phoneNumber,
+                location: data.location,
+                aadharCard: data.aadharCardNumber,
+                aadharCardImageUrl: `assets/aadharImage/${filename}`, 
+                password: data.signupPassword
+            };
+
+            const createUserResponse = await axios.post('http://localhost:3000/api/user', formData);
+            
+            if (createUserResponse.status === 200) {
+                console.log(createUserResponse.data);
             } else {
-                console.error('Error:', response.statusText);
+                console.error('Error:', createUserResponse.statusText);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -120,28 +149,27 @@ const LoginSignup = () => {
                         <form className="signup-box" onSubmit={handleSubmitSignup(onSubmitSignup)}>
                             <p className="text-2xl font-bold">User Signup</p>
                             <div className="driverSideBySide">
-                            <div className="driverLeft">
-                                <input type="text" className="full-name ele" placeholder="Full Name" {...registerSignup("fullName", { required: "Please enter your full name!" })} />
-                                {errorsSignup.fullName && <span className="error">{errorsSignup.fullName.message}</span>}
-                                <input type="date" className="birthdate ele" placeholder="Birthdate" {...registerSignup("birthdate", { required: "Please enter your birthdate!" })} />
-                                {errorsSignup.birthdate && <span className="error">{errorsSignup.birthdate.message}</span>}
-                                <input type="email" className="email ele" placeholder="Email Address" {...registerSignup("signupEmail", { required: "Please enter email!!"})} />
-                                {errorsSignup.signupEmail && <span className="error">{errorsSignup.signupEmail.message}</span>}
-                                <input type="tel" className="phone-number ele" placeholder="Phone Number" {...registerSignup("phoneNumber", { required: "Please enter your phone number!" })} />
-                                {errorsSignup.phoneNumber && <span className="error">{errorsSignup.phoneNumber.message}</span>}
-                                <input type="text" className="location ele" placeholder="Location" {...registerSignup("location", { required: "Please enter your location!" })} />
-                                {errorsSignup.location && <span className="error">{errorsSignup.location.message}</span>}
-                            </div>
-                            <div className="driverRight">
-                                
-                                <input type="text" className="aadharcard-number ele" placeholder="Aadhar Card Number" {...registerSignup("aadharCardNumber", { required: "Please enter your Aadhar card number!" })} />
-                                {errorsSignup.aadharCardNumber && <span className="error">{errorsSignup.aadharCardNumber.message}</span>}
-                                <input type="file" className="aadharcard-photo ele" accept="image/*" {...registerSignup("aadharCardPhoto")} />
-                                <input type="password" className="password ele" placeholder="Password" {...registerSignup("signupPassword", { required: "Please enter Password!", maxLength: {value: 16, message:"Password max size is 16"} })}/>
-                                {errorsSignup.signupPassword && <span className="error">{errorsSignup.signupPassword.message}</span>}
-                                <input type="password" className="confirm-password ele" placeholder="Confirm Password" {...registerSignup("confirmPassword", { required: "Please confirm your password!", validate: value => value === signupPassword || "The passwords do not match." })} />
-                                {errorsSignup.confirmPassword && <span className="error">{errorsSignup.confirmPassword.message}</span>}
-                            </div>
+                                <div className="driverLeft">
+                                    <input type="text" className="full-name ele" placeholder="Full Name" {...registerSignup("fullName", { required: "Please enter your full name!" })} />
+                                    {errorsSignup.fullName && <span className="error">{errorsSignup.fullName.message}</span>}
+                                    <input type="date" className="birthdate ele" placeholder="Birthdate" {...registerSignup("birthdate", { required: "Please enter your birthdate!" })} />
+                                    {errorsSignup.birthdate && <span className="error">{errorsSignup.birthdate.message}</span>}
+                                    <input type="email" className="email ele" placeholder="Email Address" {...registerSignup("signupEmail", { required: "Please enter email!!"})} />
+                                    {errorsSignup.signupEmail && <span className="error">{errorsSignup.signupEmail.message}</span>}
+                                    <input type="tel" className="phone-number ele" placeholder="Phone Number" {...registerSignup("phoneNumber", { required: "Please enter your phone number!" })} />
+                                    {errorsSignup.phoneNumber && <span className="error">{errorsSignup.phoneNumber.message}</span>}
+                                    <input type="text" className="location ele" placeholder="Location" {...registerSignup("location", { required: "Please enter your location!" })} />
+                                    {errorsSignup.location && <span className="error">{errorsSignup.location.message}</span>}
+                                </div>
+                                <div className="driverRight">
+                                    <input type="text" className="aadharcard-number ele" placeholder="Aadhar Card Number" {...registerSignup("aadharCardNumber", { required: "Please enter your Aadhar card number!" })} />
+                                    {errorsSignup.aadharCardNumber && <span className="error">{errorsSignup.aadharCardNumber.message}</span>}
+                                    <input type="file" className="userAadhar ele" accept="image/*,.pdf" {...registerSignup("aadharCardPhoto")} />
+                                    <input type="password" className="password ele" placeholder="Password" {...registerSignup("signupPassword", { required: "Please enter Password!", maxLength: {value: 16, message:"Password max size is 16"} })}/>
+                                    {errorsSignup.signupPassword && <span className="error">{errorsSignup.signupPassword.message}</span>}
+                                    <input type="password" className="confirm-password ele" placeholder="Confirm Password" {...registerSignup("confirmPassword", { required: "Please confirm your password!", validate: value => value === signupPassword || "The passwords do not match." })} />
+                                    {errorsSignup.confirmPassword && <span className="error">{errorsSignup.confirmPassword.message}</span>}
+                                </div>
                             </div>
                             <button type='submit' className="clkbtn font-medium" disabled={isSignupFormSubmitting || isLoginFormSubmitting}>{isSignupFormSubmitting ? "Signing up..." : "Signup"}</button>
                         </form>
