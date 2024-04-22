@@ -1,8 +1,29 @@
 import Navbar from "../components/navBar";  
 import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const carProduct = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const checkToken = () => {
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log("Token:", token); 
+    setIsLoggedIn(!!token); 
+  };
+
+  useEffect(() => {
+    checkToken();
+  }, []); 
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      const timer = setTimeout(() => {
+        window.location.href = '/userLoginSignup'; 
+      }, 1000);
+      return () => clearTimeout(timer); 
+    }
+  },[isLoggedIn]);
+  
   const cardData = [
     {
       id: 1,
@@ -61,9 +82,10 @@ const carProduct = () => {
   return (
     <>
       <header>
-        <Navbar />
+          <Navbar />
       </header>
-      <section className="bookingWidget">
+      {isLoggedIn? (
+        <section className="bookingWidget">
         <div className="templateContainer">
           <div className="templateRow">
             <div className="navWidget">
@@ -724,7 +746,9 @@ const carProduct = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section>  ) : (
+        null
+      )}
     </>
   );
 };
