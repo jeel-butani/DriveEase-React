@@ -18,7 +18,7 @@ const driverLoginSignup = ()=> {
     } = useForm();
     const [isLoginFormSubmitting, setIsLoginFormSubmitting] = useState(false);
     const [isSignupFormSubmitting, setIsSignupFormSubmitting] = useState(false);
-    const signupPassword = watchSignup("signupPassword");
+    const password = watchSignup("password");
     const signupRef = useRef(null);
     const loginRef = useRef(null);
     const sliderRef = useRef(null);
@@ -83,8 +83,55 @@ const driverLoginSignup = ()=> {
         }
     };
 
-    const onSubmitSignup = (data) => {
+    const onSubmitSignup = async (data) => {
+        setIsSignupFormSubmitting(true);
         console.log(data);
+
+        try {
+            const fileFormData = new FormData();
+            fileFormData.append('driverAadhar ele', data.adharCardPhoto);
+            console.log(fileFormData); 
+            console.log(data.adharCardPhoto); 
+
+            const fileFormDataLicense = new FormData();
+            fileFormDataLicense.append('driverAadhar ele', data.licensePhoto);
+            console.log(fileFormDataLicense); 
+            console.log(data.licensePhoto); 
+
+            const uploadLicenseResponse = await axios.post('http://localhost:3000/driver/license', fileFormDataLicense);
+            const filenameLicense = uploadLicenseResponse.data.filename;
+            console.log(uploadLicenseResponse.data);
+
+            const uploadAdharResponse = await axios.post('http://localhost:3000/driver/profile', fileFormData);
+            const filenameAdhar = uploadAdharResponse.data.filename;
+            console.log(uploadAdharResponse.data);
+
+            const formData = {
+                name: data.driverName,
+                birthdate: data.birthdate,
+                licenseNumber: data.licenseNumber,
+                licensePhotoUrl: `assets/LicenseImage/${filenameLicense}`,
+                aadharCardNumber: data.adharCardNumber,
+                aadharCardPhotoUrl: `assets/driverAadharImage/${filenameAdhar}`, 
+                price: data.price,
+                location: data.location,
+                phoneNumber: data.phoneNumber,
+                typeOfVehicle: data.driverWheelType,
+                password: data.password
+            };
+
+            const createUserResponse = await axios.post('http://localhost:3000/api/user', formData);
+            
+            if (createUserResponse.status === 200) {
+                console.log(createUserResponse.data);
+            } else {
+                console.error('Error:', createUserResponse.statusText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+        setIsSignupFormSubmitting(false);
     };
 
     return (
@@ -118,15 +165,15 @@ const driverLoginSignup = ()=> {
                                     {errorsSignup.driverName && <span className="error">{errorsSignup.driverName.message}</span>}
                                     <input type="text" className="license-number ele" placeholder="License Number" {...registerSignup("licenseNumber", { required: "Please enter License Number!" })}/>
                                     {errorsSignup.licenseNumber && <span className="error">{errorsSignup.licenseNumber.message}</span>}
-                                    <input type="file" className="license-photo ele" accept="image/*, .pdf" {...registerSignup("licensePhoto", { required: "Please upload License Photo!" })}/>
+                                    <input type="file" className="driverLicense ele" accept="image/*, .pdf" {...registerSignup("licensePhoto", { required: "Please upload License Photo!" })}/>
                                     {errorsSignup.licensePhoto && <span className="error">{errorsSignup.licensePhoto.message}</span>}
                                     <input type="text" className="adharcard-number ele" placeholder="Adharcard Number" {...registerSignup("adharCardNumber", { required: "Please enter Aadharcard Number!" })}/>
                                     {errorsSignup.adharCardNumber && <span className="error">{errorsSignup.adharCardNumber.message}</span>}
-                                    <input type="file" className="adharcard-photo ele" accept="image/*, .pdf" {...registerSignup("adharCardPhoto", { required: "Please upload Aadharcard Photo!" })}/>
+                                    <input type="file" className="driverAadhar ele" accept="image/*, .pdf" {...registerSignup("adharCardPhoto", { required: "Please upload Aadharcard Photo!" })}/>
                                     {errorsSignup.adharCardPhoto && <span className="error">{errorsSignup.adharCardPhoto.message}</span>}
                                     <input type="password" className="password ele" placeholder="password" {...registerSignup("password", { required: "Please enter Password!" })}/>
                                     {errorsSignup.password && <span className="error">{errorsSignup.password.message}</span>}
-                                    <input type="password" className="confirm-password ele" placeholder="confirm password" {...registerSignup("confirmPassword", { required: "Please confirm Password!", validate: value => value === data.password || "Passwords do not match" })}/>
+                                    <input type="password" className="confirm-password ele" placeholder="confirm password" {...registerSignup("confirmPassword", { required: "Please confirm Password!", validate: value => value === password || "Passwords do not match" })}/>
                                     {errorsSignup.confirmPassword && <span className="error">{errorsSignup.confirmPassword.message}</span>}
                                 </div>
                                 <div className="driverRight">
