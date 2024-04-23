@@ -1,10 +1,11 @@
 import Navbar from "../components/navBar";  
 import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";  
 
 const companyCars = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const cardData = [
     {
       id: 1,
@@ -55,6 +56,28 @@ const companyCars = () => {
       availableCar: 3
     },
   ];
+  const checkToken = () => {
+    const companyTokenMatch = document.cookie.match(
+      /(?:(?:^|.*;\s*)companytoken\s*=\s*([^;]*).*$)|^.*$/
+    );
+    const companyToken = companyTokenMatch ? companyTokenMatch[1] : null;
+
+    console.log("Company Token:", companyToken);
+    setIsLoggedIn(!!companyToken);
+  };
+  useEffect(() => {
+    checkToken();
+  }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      const timer = setTimeout(() => {
+        window.location.href = '/companyLoginSignup'; 
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoggedIn]);
+
   const sumTotalCars = cardData.reduce((sum, card) => sum + card.totalCar, 0);
   console.log("Sum of total cars:", sumTotalCars);  
       const handleSelect = (id) => {
@@ -66,7 +89,7 @@ const companyCars = () => {
       <header>
         <Navbar />
       </header>
-      <section className="bookingWidget">
+      {isLoggedIn ? (<section className="bookingWidget">
         <div className="templateContainer">
           <div className="templateRow1">
 
@@ -197,7 +220,7 @@ const companyCars = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section>) : null}
     </>
     )
 }
