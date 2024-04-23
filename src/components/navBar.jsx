@@ -46,7 +46,7 @@ const Navbar = () =>{
                 <Link to="/services" alt="SERVICES" className='font-medium'>SERVICES</Link>
                 <Link to="/contact" alt="CONTACT" className='font-medium'>CONTACT</Link>
             </div>
-            {isLoggedIn? (
+            {!isLoggedIn? (
             <div className='btnDiv'>
                 <a className='loginBtn font-bold' alt="SIGNUP" onClick={toggleSignUpOptions}>SIGNUP</a>
                 {showSignUpOptions && 
