@@ -121,7 +121,7 @@ const driverLoginSignup = ()=> {
                 password: data.password
             };
 
-            const createUserResponse = await axios.post('http://localhost:3000/api/user', formData);
+            const createUserResponse = await axios.post('http://localhost:3000/api/driver', formData);
             
             if (createUserResponse.status === 200) {
                 console.log(createUserResponse.data);
