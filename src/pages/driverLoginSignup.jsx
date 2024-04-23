@@ -51,12 +51,13 @@ const driverLoginSignup = ()=> {
 
     const onSubmitLogin = async (data) => {
         setIsLoginFormSubmitting(true);
-    
+        
         try {
             const formData = {
-                aadharCardNumber: data.loginAdhar,
+                aadharCardNumber: data.loginAadhar,
                 password: data.loginPassword
             };
+            console.log(formData);  
             const loginResponse = await axios.post('http://localhost:3000/api/driver/login', formData);
     
             const driver = loginResponse.data.driver;
