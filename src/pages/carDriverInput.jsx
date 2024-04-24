@@ -33,6 +33,17 @@ const carDriverInput = () => {
     };
   }, []);
 
+  function getEncodedIdFromUrl() {
+      const urlParts = window.location.href.split('/');
+      return urlParts[urlParts.length - 1];
+  }
+  function decodeId(encodedId) {
+      return atob(encodedId);
+  }
+  const encodedId = getEncodedIdFromUrl();
+
+  const ids = decodeId(encodedId);
+  console.log('Decoded ID:', ids);
   return (
     <>
       <header>
