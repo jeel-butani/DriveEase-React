@@ -3,7 +3,6 @@ import Navbar from '../components/navBar';
 import { useParams } from 'react-router-dom';
 import '../pagesCss/editCar.css'
 const editCar = () => {
-    const { id } = useParams();
     const [isChecked, setIsChecked] = useState(true);
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked); 
