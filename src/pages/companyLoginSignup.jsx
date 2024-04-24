@@ -68,9 +68,11 @@ const companyLoginSignup = ()=> {
             } else if (company && company.password === data.loginPassword) {
                 console.log('Login successful');
                 console.log(token);
+                console.log(company);
                 
                 document.cookie = `companytoken=${token}; path=/;`;
-                window.location.href = '/companyCars'
+                const encodedId = btoa(company._id); 
+                window.location.href = `/companyCars/${encodedId}`;
             } else {
                 console.log('Invalid email or password');
             }
