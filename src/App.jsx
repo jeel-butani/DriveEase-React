@@ -31,11 +31,11 @@ function App() {
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
           <Route path="/carProduct" element={<CarProduct/>} />
           <Route path="/confirmCarBook/:id" element={<ConfirmCarBook />} />
-          <Route path="/carDriverInput" element={<CarDriverInput/>} />
-          <Route path="/companyCars" element={<CompanyCars/>} />
-          <Route path="/editCar/:id" element={<EditCar/>} />
+          <Route path="/carDriverInput/:companyId" element={<CarDriverInput/>} />
+          <Route path="/companyCars/:companyId" element={<CompanyCars/>} />
+          <Route path="/editCar/:companyId/:carId" element={<EditCar/>} />
           <Route path="/editDriver/:id" element={<EditDriver/>} />
-          <Route path="/driversList/" element={<DriversList/>} />
+          <Route path="/driversList/:companyId" element={<DriversList/>} />
           <Route path="/driverProfile/" element={<DriProfile/>} />
           
         </Routes>
