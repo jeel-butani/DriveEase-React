@@ -56,6 +56,18 @@ const companyCars = () => {
       availableCar: 3
     },
   ];
+  function getEncodedIdFromUrl() {
+    const urlParts = window.location.href.split('/');
+    return urlParts[urlParts.length - 1];
+  }
+  function decodeId(encodedId) {
+    return atob(encodedId);
+  }
+  const encodedId = getEncodedIdFromUrl();
+
+  const ids = decodeId(encodedId);
+  console.log('Decoded ID:', ids);
+
   const checkToken = () => {
     const companyTokenMatch = document.cookie.match(
       /(?:(?:^|.*;\s*)companytoken\s*=\s*([^;]*).*$)|^.*$/
@@ -80,10 +92,20 @@ const companyCars = () => {
 
   const sumTotalCars = cardData.reduce((sum, card) => sum + card.totalCar, 0);
   console.log("Sum of total cars:", sumTotalCars);  
-      const handleSelect = (id) => {
-        const encodedId = btoa(id); 
-        window.location.href = `/editCar/${encodedId}`; 
-      }; 
+  const handleSelect = (id) => {
+    const encodedId = btoa(id); 
+    const compoanyId = getEncodedIdFromUrl();
+    window.location.href = `/editCar/${compoanyId}/${encodedId}`; 
+  }; 
+
+  const handleCarDriver = () =>{
+    const compoanyId = getEncodedIdFromUrl();
+    window.location.href = `/carDriverInput/${compoanyId}`;
+  }
+  const handleDriver = () =>{
+    const compoanyId = getEncodedIdFromUrl();
+    window.location.href = `/driversList/${compoanyId}`;
+  }
     return (
         <>
       <header>
@@ -98,8 +120,8 @@ const companyCars = () => {
                 <div className="head text-3xl font-bold">
                   Your Cars
                 </div>
-                <Link className="btn text-xl font-bold" to="/driversList">Drivers</Link>
-                <Link className="btn  text-xl font-bold" to="/carDriverInput">Add Cars/Driver</Link>
+                <button className="btn text-xl font-bold" onClick={handleDriver}>Drivers</button>
+                <button className="btn  text-xl font-bold" onClick={handleCarDriver}>Add Cars/Driver</button>
               </div>
               <div class="tabList" id="filteredResults">
                 <div class="cardRow inv_list_wrap" data-filter-id="1">
