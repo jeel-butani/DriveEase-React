@@ -4,7 +4,7 @@ import "../pagesCss/carsProduct.css";
 import React, { useState, useEffect } from "react";
 const carProduct = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  // http://localhost:5173/@fs/D:/Sem_6/drive-ease-backend/assets/carsImage/
   const checkToken = () => {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
     console.log("Token:", token); 
