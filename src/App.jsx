@@ -37,7 +37,7 @@ function App() {
           <Route path="/editCar/:companyId/:carId" element={<EditCar/>} />
           <Route path="/editDriver/:id" element={<EditDriver/>} />
           <Route path="/driversList/:companyId" element={<DriversList/>} />
-          <Route path="/driverProfile/" element={<DriProfile/>} />
+          <Route path="/driverProfile/:driverId" element={<DriProfile/>} />
           
         </Routes>
       </>
