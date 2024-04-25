@@ -90,41 +90,55 @@ const driverLoginSignup = ()=> {
 
         try {
             const fileFormData = new FormData();
-            fileFormData.append('driverAadhar ele', data.adharCardPhoto);
+            fileFormData.append('driverAadhar ele', data.adharCardPhoto[0]);
             console.log(fileFormData); 
             console.log(data.adharCardPhoto); 
 
             const fileFormDataLicense = new FormData();
-            fileFormDataLicense.append('driverAadhar ele', data.licensePhoto);
+            fileFormDataLicense.append('driverLicense ele', data.licensePhoto[0]);
             console.log(fileFormDataLicense); 
             console.log(data.licensePhoto); 
 
-            const uploadLicenseResponse = await axios.post('http://localhost:3000/driver/license', fileFormDataLicense);
-            const filenameLicense = uploadLicenseResponse.data.filename;
+            const uploadLicenseResponse = await axios.post('http://localhost:3000/driver/license', fileFormDataLicense,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            });
+            const countLicense = uploadLicenseResponse.data.count;
+            const filenameLicense = `Driver_License_${countLicense+1}`;
             console.log(uploadLicenseResponse.data);
 
-            const uploadAdharResponse = await axios.post('http://localhost:3000/driver/profile', fileFormData);
-            const filenameAdhar = uploadAdharResponse.data.filename;
-            console.log(uploadAdharResponse.data);
+            const uploadAdharResponse = await axios.post('http://localhost:3000/driver/profile', fileFormData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            });
+            const countAadhar = uploadAdharResponse.data.count;
+            const filenameAdhar =  `Driver_Aadhar_${countAadhar+1}`;
 
             const formData = {
                 name: data.driverName,
                 birthdate: data.birthdate,
                 licenseNumber: data.licenseNumber,
-                licensePhotoUrl: `assets/LicenseImage/${filenameLicense}`,
+                licensePhotoUrl: filenameLicense,
                 aadharCardNumber: data.adharCardNumber,
-                aadharCardPhotoUrl: `assets/driverAadharImage/${filenameAdhar}`, 
+                aadharCardPhotoUrl: filenameAdhar, 
                 price: data.price,
                 location: data.location,
                 phoneNumber: data.phoneNumber,
                 typeOfVehicle: data.driverWheelType,
                 password: data.password
             };
-
+            console.log(formData);
             const createUserResponse = await axios.post('http://localhost:3000/api/driver', formData);
             
-            if (createUserResponse.status === 200) {
+            if (createUserResponse.status === 201) {
                 console.log(createUserResponse.data);
+                document.cookie = `drivertoken=${createUserResponse.data.token}; path=/;`;
+                const encodedId = btoa(createUserResponse.data.driver._id);
+                window.location.href = `/driverProfile/${encodedId}`;
             } else {
                 console.error('Error:', createUserResponse.statusText);
             }
