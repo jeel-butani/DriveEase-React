@@ -122,7 +122,7 @@ const LoginSignup = () => {
                 console.log(createUserResponse.data);
 
                 document.cookie = `token=${token}; path=/;`;
-                const encodedId = btoa(user._id);
+                const encodedId = btoa(createUserResponse.data.user._id);
                 window.location.href = `/${encodedId}`;
             } else {
                 console.error('Error:', createUserResponse.statusText);
