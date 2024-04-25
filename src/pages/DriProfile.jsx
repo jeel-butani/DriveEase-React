@@ -5,6 +5,18 @@ import "../pagesCss/DriProfile.css";
 const DriProfile = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State to handle redirect
 
+  function getEncodedIdFromUrl() {
+    const urlParts = window.location.href.split('/');
+    return urlParts[urlParts.length - 1];
+  }
+  function decodeId(encodedId) {
+    return atob(encodedId);
+  }
+  const encodedId = getEncodedIdFromUrl();
+
+  const ids = decodeId(encodedId);
+  console.log('Decoded ID:', ids);
+
   const userProfile = {
     fullName: "ABC XYZ",
     email: "example@example.com",
@@ -45,7 +57,7 @@ const DriProfile = () => {
   useEffect(() => {
     if (!isLoggedIn) {
       const timer = setTimeout(() => {
-        window.location.href = '/driverLoginSignup'; 
+        window.location.href = '/driverLoginSignup';
       }, 1000);
       return () => clearTimeout(timer);
     }
@@ -58,22 +70,22 @@ const DriProfile = () => {
         <Navbar />
       </header>
       {isLoggedIn ? (
-        <section style={{ backgroundColor: "#eee" }}>
-          <div className="container py-5">
-            <div className="row">
-              <div className="col-lg-4">
-                <div className="card mb-4">
-                  <div className="card-body text-center">
-                    <p className="text-muted mb-1">Driver</p>
-                    <p className="text-muted mb-4">Rajkot, Gujarat</p>+
-                    <ul className="list-group list-group-flush rounded-3">
+        <section class="bg-light">
+          <div class="container py-5">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="card mb-4">
+                  <div class="card-body text-center">
+                    <p class="text-muted mb-1">Driver</p>
+                    <p class="text-muted mb-4">Rajkot, Gujarat</p>
+                    <ul class="list-group list-group-flush rounded-3">
                       {Object.entries(userProfile).map(([key, value]) => (
                         <li
                           key={key}
-                          className="list-group-item d-flex justify-content-between align-items-center py-4"
+                          class="list-group-item d-flex justify-content-between align-items-center py-4"
                         >
                           <span>{key}</span>
-                          <span className="text-muted">{value}</span>
+                          <span class="text-muted">{value}</span>
                         </li>
                       ))}
                     </ul>
@@ -81,40 +93,41 @@ const DriProfile = () => {
                 </div>
               </div>
 
-              <div className="col-lg-8">
-                <h2 className="mb-4">Requests</h2>
+              <div class="col-lg-8">
+                <h2 class="mb-4">Requests</h2>
                 {requests.map((request) => (
-                  <div key={request.id} className="card mb-3 request-card">
-                  <div className="card-body d-flex justify-content-between align-items-center">
-                    <div>
-                      <h5 className="card-title">{request.name}</h5>
-                      <p className="card-text">{request.description}</p>
-                    </div>
-                    <div className="d-flex justify-content-between align-items-center">
+                  <div key={request.id} class="card mb-3 request-card">
+                    <div class="card-body d-flex justify-content-between align-items-center">
                       <div>
-                        <button
-                          onClick={() => handleAccept(request.id)}
-                          className="btn btn-success me-2"
-                        >
-                          Accept
-                        </button>
+                        <h5 class="card-title">{request.name}</h5>
+                        <p class="card-text">{request.description}</p>
                       </div>
-                      <div>
-                        <button
-                          onClick={() => handleReject(request.id)}
-                          className="btn btn-danger"
-                        >
-                          Reject
-                        </button>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <button
+                            onClick={() => handleAccept(request.id)}
+                            class="success"
+                          >
+                            Accept
+                          </button>
+                        </div>
+                        <div>
+                          <button
+                            onClick={() => handleReject(request.id)}
+                            class="reject"
+                          >
+                            Reject
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 ))}
               </div>
             </div>
           </div>
         </section>
+
       ) : null}
     </>
   );
