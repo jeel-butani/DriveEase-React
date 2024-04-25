@@ -70,7 +70,8 @@ const LoginSignup = () => {
                 console.log(token);
                 
                 document.cookie = `token=${token}; path=/;`;
-                window.location.href = '/'
+                const encodedId = btoa(user._id);
+                window.location.href = `/${encodedId}`;
             } else {
                 console.log('Invalid email or password');
             }
@@ -89,19 +90,20 @@ const LoginSignup = () => {
     const onSubmitSignup = async (data) => {
         setIsSignupFormSubmitting(true);
         console.log(data);
-
         try {
             const fileFormData = new FormData();
             fileFormData.append('userAadhar ele', data.aadharCardPhoto[0]);
             console.log(fileFormData); 
             console.log(data.aadharCardPhoto); 
 
-            const uploadResponse = await axios.post('http://localhost:3000/user/profile', data.aadharCardPhoto,{headers: {
-                "Content-Type": "multipart/form-data",
-              }
+            const uploadResponse = await axios.post('http://localhost:3000/user/profile', fileFormData ,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
             });
-            const filename = uploadResponse.data.filename;
-            console.log(uploadResponse.data);
+            const count = uploadResponse.data.count;
+            const filename = `User_Aadhar_${count+1}`;
 
             const formData = {
                 name: data.fullName,
@@ -110,14 +112,18 @@ const LoginSignup = () => {
                 phoneNumber: data.phoneNumber,
                 location: data.location,
                 aadharCard: data.aadharCardNumber,
-                aadharCardImageUrl: `assets/aadharImage/${filename}`, 
+                aadharCardImageUrl: filename, 
                 password: data.signupPassword
             };
 
             const createUserResponse = await axios.post('http://localhost:3000/api/user', formData);
             
-            if (createUserResponse.status === 200) {
+            if (createUserResponse.status === 201) {
                 console.log(createUserResponse.data);
+
+                document.cookie = `token=${token}; path=/;`;
+                const encodedId = btoa(user._id);
+                window.location.href = `/${encodedId}`;
             } else {
                 console.error('Error:', createUserResponse.statusText);
             }
