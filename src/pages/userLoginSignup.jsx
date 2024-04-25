@@ -92,11 +92,14 @@ const LoginSignup = () => {
 
         try {
             const fileFormData = new FormData();
-            fileFormData.append('userAadhar ele', data.aadharCardPhoto);
+            fileFormData.append('userAadhar ele', data.aadharCardPhoto[0]);
             console.log(fileFormData); 
             console.log(data.aadharCardPhoto); 
 
-            const uploadResponse = await axios.post('http://localhost:3000/user/profile', data.aadharCardPhoto);
+            const uploadResponse = await axios.post('http://localhost:3000/user/profile', data.aadharCardPhoto,{headers: {
+                "Content-Type": "multipart/form-data",
+              }
+            });
             const filename = uploadResponse.data.filename;
             console.log(uploadResponse.data);
 
