@@ -102,8 +102,7 @@ const LoginSignup = () => {
                     "Content-Type": "multipart/form-data",
                 }
             });
-            const count = uploadResponse.data.count;
-            const filename = `User_Aadhar_${count+1}`;
+            const filename = uploadResponse.data.image;
 
             const formData = {
                 name: data.fullName,
