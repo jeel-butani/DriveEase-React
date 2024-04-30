@@ -2,60 +2,16 @@ import Navbar from "../components/navBar";
 import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
 import React, { useState,useEffect } from "react";
-import { Link } from "react-router-dom";  
+import axios from "axios";
 
 const companyCars = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const cardData = [
-    {
-      id: 1,
-      title: "MARUTI WAGON R Petrol MT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/WAGON%20R-P-MT.png",
-      transmission: "Manual",
-      fuel: "Petrol",
-      space: "5 Seater",
-      price: "₹2300",
-      companyName: "abc",
-      totalCar: 5,
-      availableCar: 1
-    },
-    {
-      id: 2,
-      title: "DATSUN REDI GO Petrol MT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/REDI%20GO-P-MT.png",
-      transmission: "Manual",
-      fuel: "Petrol",
-      space: "4 Seater",
-      price: "₹1200",
-      companyName: "abc",
-      totalCar: 5,
-      availableCar: 4
-    },
-    {
-      id: 3,
-      title: "NISSAN MICRA Petrol MT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/MICRA-P-MT.png",
-      transmission: "Manual",
-      fuel: "Petrol",
-      space: "5 Seater",
-      price: "₹2300",
-      companyName: "bcd",
-      totalCar: 5,
-      availableCar: 2
-    },
-    {
-      id: 4,
-      title: "HYUNDAI CRETA Diesel AT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/CRETA-D-AT.png",
-      transmission: "Automatic",
-      fuel: "Petrol",
-      space: "5 Seater",
-      price: "₹4900",
-      companyName: "bcd",
-      totalCar: 5,
-      availableCar: 3
-    },
-  ];
+  const [carData, setCarData] = useState([]);
+  const fetchData = async () => {
+    const getCarResponse = await axios.get('http://localhost:3000/api/company/cars/location?location=mumbai');
+    console.log(getCarResponse.data.cars);
+    setCarData(getCarResponse.data.cars);
+  }
   function getEncodedIdFromUrl() {
     const urlParts = window.location.href.split('/');
     return urlParts[urlParts.length - 1];
@@ -79,6 +35,7 @@ const companyCars = () => {
   };
   useEffect(() => {
     checkToken();
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -90,8 +47,8 @@ const companyCars = () => {
     }
   }, [isLoggedIn]);
 
-  const sumTotalCars = cardData.reduce((sum, card) => sum + card.totalCar, 0);
-  console.log("Sum of total cars:", sumTotalCars);  
+  // const sumTotalCars = cardData.reduce((sum, card) => sum + card.totalCar, 0);
+  // console.log("Sum of total cars:", sumTotalCars);  
   const handleSelect = (id) => {
     const encodedId = btoa(id); 
     const compoanyId = getEncodedIdFromUrl();
@@ -125,9 +82,12 @@ const companyCars = () => {
               </div>
               <div class="tabList" id="filteredResults">
                 <div class="cardRow inv_list_wrap" data-filter-id="1">
-                  {cardData.map((card) => (
+                {carData.length === 0 ? (
+                  <p className="text-center text-xl font-bold mt-4">OOPs!! There are no cars added 😔😔</p>
+                ) : (
+                  carData.map((car) => (
                     <div
-                      key={card.id}
+                      key={car.id}
                       className="carCol"
                       data-id="1"
                       data-transmission="1"
@@ -135,11 +95,11 @@ const companyCars = () => {
                     >
                       <div className="cardTitle">
                         <img src={discount} alt="" />
-                        <strong>{card.title}</strong>
+                        <strong>{car.carName}</strong>
                       </div>
                       <div className="cardContainer">
                         <figure>
-                          <img src={card.imageUrl} alt="" />
+                          <img src={car.imageUrl} alt="" />
                         </figure>
                         <div className="specifications">
                           <a href="#" class="speList">
@@ -158,7 +118,7 @@ const companyCars = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {card.transmission}
+                            {car.transmissionType}
                           </a>
                           <a href="#" class="speList">
                             <div class="icon">
@@ -175,7 +135,7 @@ const companyCars = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {card.fuel}
+                            {car.fuelType}
                           </a>
                           <a href="#" class="speList">
                             <div class="icon">
@@ -194,19 +154,19 @@ const companyCars = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {card.space}
+                            {car.seats}
                           </a>
                         </div>
                       </div>
                       <div className="cardBtm">
                         <div className="priceDetails">
                           <b>Deal!</b>
-                          <strong className="price">{card.price}</strong>
+                          <strong className="price">{car.amount}</strong>
                           <b>onwards</b>
                         </div>
                         <div className="cardCtrl">
                             <button
-                                onClick={() => handleSelect(card.id)}
+                                onClick={() => handleSelect(car.id)}
                                 className="selectBtn open-inv-popup"
                                 data-id="31"
                             >
@@ -230,13 +190,14 @@ const companyCars = () => {
                         
                       </div>
                       <div className="totalCars text-xl font-bold">
-                          Total Cars: {card.totalCar}
+                          Total Cars: {car.totalCount}
                         </div>
                       <div className="totalCars text-l font-bold">
-                        Available Cars: {card.availableCar}
+                        Available Cars: {car.availableCount}
                         </div>
                     </div>
-                  ))}
+                  ))
+                )}              
                 </div>
               </div>
             </div>
