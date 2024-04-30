@@ -105,8 +105,8 @@ const driverLoginSignup = ()=> {
                     "Content-Type": "multipart/form-data",
                 }
             });
-            const countLicense = uploadLicenseResponse.data.count;
-            const filenameLicense = `Driver_License_${countLicense+1}`;
+            
+            const filenameLicense = uploadLicenseResponse.data.image;
             console.log(uploadLicenseResponse.data);
 
             const uploadAdharResponse = await axios.post('http://localhost:3000/driver/profile', fileFormData,
@@ -115,8 +115,8 @@ const driverLoginSignup = ()=> {
                     "Content-Type": "multipart/form-data",
                 }
             });
-            const countAadhar = uploadAdharResponse.data.count;
-            const filenameAdhar =  `Driver_Aadhar_${countAadhar+1}`;
+            
+            const filenameAdhar = uploadAdharResponse.data.image;
 
             const formData = {
                 name: data.driverName,
