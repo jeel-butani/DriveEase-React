@@ -7,6 +7,7 @@ import car3 from "../assets/images/car3.jpg";
 import "../pagesCss/homeCss.css";
 import '../pagesCss/homeCss.css'
 import DriProfile from './DriProfile';
+import BookCar from './BookCar';
 const Home = () => {
   return (
     <>
@@ -14,7 +15,7 @@ const Home = () => {
         <Navbar />
       </header>
       <Slider />
-
+      <BookCar/>
       <main id="main">
 
         <section class="section-agents section-t8">
