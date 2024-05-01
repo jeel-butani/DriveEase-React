@@ -9,8 +9,8 @@ const companyCars = () => {
   const [carData, setCarData] = useState([]);
   const fetchData = async () => {
     const getCarResponse = await axios.get('http://localhost:3000/api/company/cars/location?location=mumbai');
-    console.log(getCarResponse.data.cars);
-    setCarData(getCarResponse.data.cars);
+    console.log(getCarResponse.data);
+    setCarData(getCarResponse.data.allCars);
   }
   function getEncodedIdFromUrl() {
     const urlParts = window.location.href.split('/');
@@ -87,7 +87,7 @@ const companyCars = () => {
                 ) : (
                   carData.map((car) => (
                     <div
-                      key={car.id}
+                      key={car.hexId}
                       className="carCol"
                       data-id="1"
                       data-transmission="1"
@@ -95,11 +95,11 @@ const companyCars = () => {
                     >
                       <div className="cardTitle">
                         <img src={discount} alt="" />
-                        <strong>{car.carName}</strong>
+                        <strong>{car.car.carName}</strong>
                       </div>
                       <div className="cardContainer">
                         <figure>
-                          <img src={car.imageUrl} alt="" />
+                        <img src={"http://localhost:5173/@fs/D:/Sem_6/drive-ease-backend/assets/carsImage/"+car.car.imageUrl} alt="" />
                         </figure>
                         <div className="specifications">
                           <a href="#" class="speList">
@@ -118,7 +118,7 @@ const companyCars = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {car.transmissionType}
+                            {car.car.transmissionType}
                           </a>
                           <a href="#" class="speList">
                             <div class="icon">
@@ -135,7 +135,7 @@ const companyCars = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {car.fuelType}
+                            {car.car.fuelType}
                           </a>
                           <a href="#" class="speList">
                             <div class="icon">
@@ -154,19 +154,19 @@ const companyCars = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {car.seats}
+                            {car.car.seats}
                           </a>
                         </div>
                       </div>
                       <div className="cardBtm">
                         <div className="priceDetails">
                           <b>Deal!</b>
-                          <strong className="price">{car.amount}</strong>
+                          <strong className="price">{car.car.amount}</strong>
                           <b>onwards</b>
                         </div>
                         <div className="cardCtrl">
                             <button
-                                onClick={() => handleSelect(car.id)}
+                                onClick={() => handleSelect(car.hexId)}
                                 className="selectBtn open-inv-popup"
                                 data-id="31"
                             >
@@ -190,10 +190,10 @@ const companyCars = () => {
                         
                       </div>
                       <div className="totalCars text-xl font-bold">
-                          Total Cars: {car.totalCount}
+                          Total Cars: {car.car.totalCount}
                         </div>
                       <div className="totalCars text-l font-bold">
-                        Available Cars: {car.availableCount}
+                        Available Cars: {car.car.availableCount}
                         </div>
                     </div>
                   ))
