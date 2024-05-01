@@ -8,7 +8,7 @@ const companyCars = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [carData, setCarData] = useState([]);
   const fetchData = async () => {
-    const getCarResponse = await axios.get('http://localhost:3000/api/company/cars/location?location=mumbai');
+    const getCarResponse = await axios.get(`http://localhost:3000/api/company/${ids}/cars`);
     console.log(getCarResponse.data);
     setCarData(getCarResponse.data.allCars);
   }
