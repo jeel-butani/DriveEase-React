@@ -15,6 +15,7 @@ import EditCar from './pages/editCar';
 import EditDriver from './pages/editDriver';
 import DriversList from './pages/driversList';
 import DriProfile from './pages/DriProfile';
+import DriverUser from './pages/DriverUser';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/editDriver/:id" element={<EditDriver/>} />
           <Route path="/driversList/:companyId" element={<DriversList/>} />
           <Route path="/driverProfile/:driverId" element={<DriProfile/>} />
+          <Route path="/driverUser" element={<DriverUser/>}/>
           
         </Routes>
       </>
