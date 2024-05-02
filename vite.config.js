@@ -9,6 +9,7 @@ export default defineConfig({
       // Allow serving files from the specified directories
       allow: [
         'D:/Sem_6/drive-ease-backend/assets/carsImage',
+        'D:/Sem_6/drive-ease-backend/assets/bikesImage',
         'D:/Sem_6/AWT/ReactProject/drive-ease/src',
       ],
     },
