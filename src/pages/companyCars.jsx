@@ -7,9 +7,9 @@ import axios from "axios";
 const companyCars = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [carData, setCarData] = useState([]);
+  
   const fetchData = async () => {
     const getCarResponse = await axios.get(`http://localhost:3000/api/company/${ids}/cars`);
-    console.log(getCarResponse.data);
     setCarData(getCarResponse.data.allCars);
   }
   function getEncodedIdFromUrl() {
@@ -47,8 +47,7 @@ const companyCars = () => {
     }
   }, [isLoggedIn]);
 
-  // const sumTotalCars = cardData.reduce((sum, card) => sum + card.totalCar, 0);
-  // console.log("Sum of total cars:", sumTotalCars);  
+  
   const handleSelect = (id) => {
     const encodedId = btoa(id); 
     const compoanyId = getEncodedIdFromUrl();
