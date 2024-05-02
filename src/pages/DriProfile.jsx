@@ -3,7 +3,7 @@ import Navbar from "../components/navBar";
 import "../pagesCss/DriProfile.css";
 
 const DriProfile = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to handle redirect
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function getEncodedIdFromUrl() {
     const urlParts = window.location.href.split('/');
