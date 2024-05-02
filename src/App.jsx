@@ -18,6 +18,9 @@ import DriProfile from './pages/DriProfile';
 import DriverUser from './pages/DriverUser';
 import UserMainProfile from './pages/UserMainProfile';
 import CompanyProfile from './pages/CompanyProfile';
+import BikeProduct from './pages/bikeProduct';
+import CompanyBikes from './pages/companyBikes';
+import EditBike from './pages/editBike';
 
 function App() {
 
@@ -38,12 +41,15 @@ function App() {
           <Route path="/carDriverInput/:companyId" element={<CarDriverInput/>} />
           <Route path="/companyCars/:companyId" element={<CompanyCars/>} />
           <Route path="/editCar/:companyId/:carId" element={<EditCar/>} />
+          <Route path="/editBike/:companyId/:bikeId" element={<EditBike/>} />
           <Route path="/editDriver/:id" element={<EditDriver/>} />
           <Route path="/driversList/:companyId" element={<DriversList/>} />
           <Route path="/driverProfile/:driverId" element={<DriProfile/>} />
-          <Route path="/driverUser" element={<DriverUser/>}/>
+          <Route path="/driverUser/:id" element={<DriverUser/>}/>
           <Route path='/usermainprofile' element={<UserMainProfile/>}/>
           <Route path='/companyprofile' element={<CompanyProfile/>}/>
+          <Route path='/bikeProduct' element={<BikeProduct/>}/>
+          <Route path='/companyBike/:companyId' element={<CompanyBikes/>}/>
           
         </Routes>
       </>
