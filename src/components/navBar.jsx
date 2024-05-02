@@ -9,7 +9,9 @@ import React, { useState, useEffect } from "react";
 const Navbar = () =>{
     const [navClassName, setNavClassName] = useState('navLinks');
     const [showSignUpOptions, setShowSignUpOptions] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [isDriverLoggedIn, setIsDriverLoggedIn] = useState(false);
+    const [isCompanyLoggedIn, setIsCompanyLoggedIn] = useState(false);
 
     const toggleNav = () => {
         if (navClassName === 'navLinks' ) {
@@ -27,8 +29,20 @@ const Navbar = () =>{
 
     const checkToken = () => {
         const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-        console.log("Token:", token); 
-        setIsLoggedIn(!!token); 
+        setIsUserLoggedIn(!!token); 
+        const driverTokenMatch = document.cookie.match(
+            /(?:(?:^|.*;\s*)drivertoken\s*=\s*([^;]*).*$)|^.*$/
+        );
+        setIsDriverLoggedIn(!!driverTokenMatch); 
+        const companyTokenMatch = document.cookie.match(
+            /(?:(?:^|.*;\s*)companytoken\s*=\s*([^;]*).*$)|^.*$/
+        );
+        const companyToken = companyTokenMatch ? companyTokenMatch[1] : null;
+        setIsCompanyLoggedIn(!!companyToken);
+
+        console.log(isUserLoggedIn);
+        console.log(isDriverLoggedIn);
+        console.log(isCompanyLoggedIn);
     };
 
     useEffect(() => {
@@ -46,7 +60,7 @@ const Navbar = () =>{
                 <Link to="/services" alt="SERVICES" className='font-medium'>SERVICES</Link>
                 <Link to="/contact" alt="CONTACT" className='font-medium'>CONTACT</Link>
             </div>
-            {!isLoggedIn? (
+            {isUserLoggedIn || isCompanyLoggedIn || isDriverLoggedIn ?(
             <div className='btnDiv'>
                 <a className='loginBtn font-bold' alt="SIGNUP" onClick={toggleSignUpOptions}>SIGNUP</a>
                 {showSignUpOptions && 
@@ -67,7 +81,6 @@ const Navbar = () =>{
             <a href="javascript:void(0);" className="icon" onClick={toggleNav}>
                 <FontAwesomeIcon icon={faBars} />
             </a>
-            
         </div>
     );
 };
