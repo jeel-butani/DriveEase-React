@@ -1,8 +1,29 @@
 import Navbar from "../components/navBar";  
 import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 const carProduct = () => {
+  const [cardData, setCardData] = useState([]);
+
+  const fetchData = async () => {
+    const getCarResponse = await axios.get('http://localhost:3000/api/company/cars/location?location=mumbai');
+    console.log(getCarResponse.data.allCars);
+    setCardData(getCarResponse.data.allCars);
+  }
+
+  function getEncodedIdFromUrl() {
+    const urlParts = window.location.href.split('/');
+    return urlParts[urlParts.length - 1];
+  }
+  function decodeId(encodedId) {
+    return atob(encodedId);
+  }
+  const encodedId = getEncodedIdFromUrl();
+  
+  const ids = decodeId(encodedId);
+  console.log('Decoded ID:', ids);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // http://localhost:5173/@fs/D:/Sem_6/drive-ease-backend/assets/carsImage/
   const checkToken = () => {
@@ -13,6 +34,7 @@ const carProduct = () => {
 
   useEffect(() => {
     checkToken();
+    fetchData();
   }, []); 
 
   useEffect(() => {
@@ -23,60 +45,11 @@ const carProduct = () => {
       return () => clearTimeout(timer); 
     }
   },[isLoggedIn]);
-  
-  const cardData = [
-    {
-      id: 1,
-      title: "MARUTI WAGON R Petrol MT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/WAGON%20R-P-MT.png",
-      transmission: "Manual",
-      fuel: "Petrol",
-      space: "5 Seater",
-      price: "₹2300",
-      companyName: "abc",
-      totalCar: 5,
-      availableCar: 1
-    },
-    {
-      id: 2,
-      title: "DATSUN REDI GO Petrol MT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/REDI%20GO-P-MT.png",
-      transmission: "Manual",
-      fuel: "Petrol",
-      space: "4 Seater",
-      price: "₹1200",
-      companyName: "abc",
-      totalCar: 5,
-      availableCar: 4
-    },
-    {
-      id: 3,
-      title: "NISSAN MICRA Petrol MT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/MICRA-P-MT.png",
-      transmission: "Manual",
-      fuel: "Petrol",
-      space: "5 Seater",
-      price: "₹2300",
-      companyName: "bcd",
-      totalCar: 5,
-      availableCar: 2
-    },
-    {
-      id: 4,
-      title: "HYUNDAI CRETA Diesel AT",
-      imageUrl: "https://evmwheels.com/uploads/inventory/CRETA-D-AT.png",
-      transmission: "Automatic",
-      fuel: "Petrol",
-      space: "5 Seater",
-      price: "₹4900",
-      companyName: "bcd",
-      totalCar: 5,
-      availableCar: 3
-    },
-  ];
+
   const handleSelect = (id) => {
     const encodedId = btoa(id); 
-    window.location.href = `/confirmCarBook/${encodedId}`; 
+    const companyId = getEncodedIdFromUrl();
+    window.location.href = `/confirmCarBook/${companyId}/${encodedId}`; 
   };  
 
   return (
@@ -638,7 +611,7 @@ const carProduct = () => {
                 <div class="cardRow inv_list_wrap" data-filter-id="1">
                   {cardData.map((card) => (
                     <div
-                      key={card.id}
+                      key={card.hexId}
                       className="carCol"
                       data-id="1"
                       data-transmission="1"
@@ -646,11 +619,11 @@ const carProduct = () => {
                     >
                       <div className="cardTitle">
                         <img src={discount} alt="" />
-                        <strong>{card.title}</strong>
+                        <strong>{card.car.carName}</strong>
                       </div>
                       <div className="cardContainer">
                         <figure>
-                          <img src={card.imageUrl} alt="" />
+                          <img src={"http://localhost:5173/@fs/D:/Sem_6/drive-ease-backend/assets/carsImage/"+card.car.imageUrl} alt="" />
                         </figure>
                         <div className="specifications">
                           <a href="#" class="speList">
@@ -669,7 +642,7 @@ const carProduct = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {card.transmission}
+                            {card.car.transmissionType}
                           </a>
                           <a href="#" class="speList">
                             <div class="icon">
@@ -686,7 +659,7 @@ const carProduct = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {card.fuel}
+                            {card.car.fuelType}
                           </a>
                           <a href="#" class="speList">
                             <div class="icon">
@@ -705,19 +678,19 @@ const carProduct = () => {
                                 ></path>
                               </svg>
                             </div>
-                            {card.space}
+                            {card.car.seats}
                           </a>
                         </div>
                       </div>
                       <div className="cardBtm">
                         <div className="priceDetails">
                           <b>Deal!</b>
-                          <strong className="price">{card.price}</strong>
+                          <strong className="price">{card.car.amount}</strong>
                           <b>onwards</b>
                         </div>
                         <div className="cardCtrl">
               <button
-                onClick={() => handleSelect(card.id)}
+                onClick={() => handleSelect(card.hexId)}
                 className="selectBtn open-inv-popup"
                 data-id="31"
               >
