@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const carDriverInput = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const {
     register: registerCar,
     handleSubmit: handleSubmitCar,
@@ -24,9 +25,30 @@ const carDriverInput = () => {
   const [isDriverDetailSubmit, setIsDriverDetailSubmit] = useState(false);
   const password = watchSignup("password");
 
+  const checkToken = () => {
+    const companyTokenMatch = document.cookie.match(
+      /(?:(?:^|.*;\s*)companytoken\s*=\s*([^;]*).*$)|^.*$/
+    );
+    const companyToken = companyTokenMatch ? companyTokenMatch[1] : null;
+
+    console.log("Company Token:", companyToken);
+    setIsLoggedIn(!!companyToken);
+  };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      const timer = setTimeout(() => {
+        window.location.href = '/companyLoginSignup'; 
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoggedIn]);
+
   
 
   useEffect(() => {
+
+    checkToken();
     const carButton = carRef.current;
     const driverButton = driverRef.current;
     const slider = sliderRef.current;
