@@ -4,6 +4,11 @@ import '../pagesCss/confirmCarBook.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 const ConfirmCarBook = () => {
+  const [formData, setFormData] = useState(null);
+  const [duration, setDuration] = useState(null);
+  const [formattedStartDate, setFormattedStartDate] = useState('');
+  const [formattedEndDate, setFormattedEndDate] = useState('');
+
   const [carData, setCarData] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
@@ -19,8 +24,17 @@ const ConfirmCarBook = () => {
   };
 
   function getEncodedIdFromUrl() {
-    const urlParts = window.location.href.split('/');
-    return urlParts[urlParts.length - 1];
+    const url = new URL(window.location.href);
+    const path = url.pathname;
+    const pathParts = path.split('/');
+    return pathParts[pathParts.length - 1];
+  }
+
+  function getEncodedId() {
+    const url = new URL(window.location.href);
+    const path = url.pathname;
+    const pathParts = path.split('/');
+    return pathParts[pathParts.length - 2];
   }
   function decodeId(encodedId) {
     return atob(encodedId);
@@ -28,12 +42,99 @@ const ConfirmCarBook = () => {
   const encodedId = getEncodedIdFromUrl();
 
   const ids = decodeId(encodedId);
-  console.log('Decoded ID:', ids);
+  console.log('Car Id:', ids);
+
+  const encodedUserId = getEncodedId();
+  const userId = decodeId(encodedUserId);
+
+  console.log('User Id:', userId);
+
+  const checkToken = () => {
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log("Token:", token);
+    setIsLoggedIn(!!token);
+  };
+
+
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      const timer = setTimeout(() => {
+        window.location.href = '/userLoginSignup';
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const formData = {};
+    for (let param of queryParams.entries()) {
+      formData[param[0]] = param[1];
+    }
+    console.log(formData);
+    setFormData(formData);
+
+    const startDate = new Date(formData.startDate + 'T' + formData.startTime);
+    const endDate = new Date(formData.endDate + 'T' + formData.endTime);
+    const durationInMilliseconds = endDate - startDate;
+
+    const days = Math.floor(durationInMilliseconds / (1000 * 60 * 60 * 24));
+    const remainingHours = durationInMilliseconds % (1000 * 60 * 60 * 24);
+    const hours = Math.floor(remainingHours / (1000 * 60 * 60));
+    const remainingMinutes = remainingHours % (1000 * 60 * 60);
+    const minutes = Math.floor(remainingMinutes / (1000 * 60));
+
+    setDuration({ days, hours, minutes });
+
+
+    const startDateObj = new Date(formData.startDate);
+    const endDateObj = new Date(formData.endDate);
+    const startDay = startDateObj.getDate();
+    const endDay = endDateObj.getDate();
+    const startMonth = startDateObj.toLocaleString('default', { month: 'short' });
+    const endMonth = endDateObj.toLocaleString('default', { month: 'short' });
+    const startYear = String(startDateObj.getFullYear()).slice(2);
+    const endYear = String(endDateObj.getFullYear()).slice(2);
+
+    setFormattedStartDate(`${startDay} ${startMonth}' ${startYear}`);
+    setFormattedEndDate(`${endDay} ${endMonth}' ${endYear}`);
+  }, [location.search]);
+
+
+  const bookCar = async () => {
+    const submitData = {
+      userId: userId,
+      location: formData.location,
+      startDate: new Date(formData.startDate + 'T' + formData.startTime),
+      endDate: new Date(formData.endDate + 'T' + formData.endTime),
+      productId: ids,
+      type: "cars",
+      paymentStatus: "1"
+    }
+
+    const BookCar = await axios.post('http://localhost:3000/api/booking', submitData);
+
+    console.log(BookCar);
+  }
+
+  useEffect(() => {
+    checkToken();
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     const getCarResponse = await axios.get(`http://localhost:8080/api/cars/${ids}`);
     console.log(getCarResponse.data);
-    const amount = parseFloat(getCarResponse.data.car.amount); 
+    
+    const baseAmount = parseFloat(getCarResponse.data.car.amount);
+    
+    const { days, hours, minutes } = duration;
+    const totalHours = days * 24 + hours + (minutes / 60);
+    const amnt = (totalHours / 24) * baseAmount;
+    const amount = Math.round(amnt * 100) / 100;
+
+    console.log("Amount based on duration:", amount);
     const gst = (amount * 18) / 100;
     const cgst = (amount * 9) / 100;
     const sgst = (amount * 9) / 100;
@@ -55,27 +156,6 @@ const ConfirmCarBook = () => {
     setCarData(getCarResponse.data);
   }
 
-  const checkToken = () => {
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-    console.log("Token:", token);
-    setIsLoggedIn(!!token);
-  };
-
-  useEffect(() => {
-    checkToken();
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      const timer = setTimeout(() => {
-        window.location.href = '/userLoginSignup';
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isLoggedIn]);
-
-
   return (
     <>
       <NavBarEmpty />
@@ -95,38 +175,38 @@ const ConfirmCarBook = () => {
                     <div class="timeList">
                       <div class="tTitle">TIME PERIOD</div>
                       <div class="day">
-                        <b>2</b>
+                        <b>{duration.days}</b>
                         <p>DAYS</p>
                       </div>
                       <div class="hours">
-                        <b>1</b>
+                        <b>{duration.hours}</b>
                         <p>HOURS</p>
                       </div>
                       <div class="mins">
-                        <b>30</b>
+                        <b>{duration.minutes}</b>
                         <p>MINS</p>
                       </div>
                     </div>
                     <div class="pickupTable">
                       <div class="pickupCol">
                         <div class="tableTitle">PICKUP DATE &amp; TIME</div>
-                        <div class="tableContent">26/02/2024</div>
-                        <div class="tableContent">05:00 AM</div>
+                        <div class="tableContent">{formattedStartDate.split(' ')[0]} {formattedStartDate.split(' ')[1]} {formattedStartDate.split(' ')[2]}</div>
+                        <div class="tableContent">{formData.startTime}</div>
                       </div>
                       <div class="pickupCol">
-                        <div class="tableTitle">DROP OFF DATE &amp; TIME</div>
-                        <div class="tableContent">28/02/2024</div>
-                        <div class="tableContent">06:30 AM</div>
+                        <div class="tableTitle">DROP DATE &amp; TIME</div>
+                        <div class="tableContent">{formattedEndDate.split(' ')[0]} {formattedEndDate.split(' ')[1]} {formattedEndDate.split(' ')[2]}</div>
+                        <div class="tableContent">{formData.endTime}</div>
                       </div>
                     </div>
                     <div class="pickupTable">
                       <div class="pickupCol">
                         <div class="tableTitle">PICKUP LOCATION</div>
-                        <div class="tableContent">Kottayam</div>
+                        <div class="tableContent uppercase">{formData.location}</div>
                       </div>
                       <div class="pickupCol">
-                        <div class="tableTitle">DROP OFF LOCATION</div>
-                        <div class="tableContent">Kottayam</div>
+                        <div class="tableTitle">DROP LOCATION</div>
+                        <div class="tableContent uppercase">{formData.location}</div>
                       </div>
                     </div>
                   </div>
@@ -638,7 +718,7 @@ const ConfirmCarBook = () => {
                         </svg>
                       </span>
                       <span
-                        class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white dark:group-hover:text-gray-200"
+                        class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white dark:group-hover:text-gray-200" onClick={bookCar}
                       >Pay Now</span
                       >
                     </div>
