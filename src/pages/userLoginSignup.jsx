@@ -68,7 +68,14 @@ const LoginSignup = () => {
             } else if (user && user.password === data.loginPassword) {
                 console.log('Login successful');
                 console.log(token);
-                
+
+                if (document.cookie.includes('drivertoken')) {
+                    document.cookie = 'drivertoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+                if (document.cookie.includes('companytoken')) {
+                    document.cookie = 'companytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+
                 document.cookie = `token=${token}; path=/;`;
                 const encodedId = btoa(user._id);
                 window.location.href = `/${encodedId}`;
@@ -119,7 +126,13 @@ const LoginSignup = () => {
             
             if (createUserResponse.status === 201) {
                 console.log(createUserResponse.data);
-
+                
+                if (document.cookie.includes('drivertoken')) {
+                    document.cookie = 'drivertoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+                if (document.cookie.includes('companytoken')) {
+                    document.cookie = 'companytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
                 document.cookie = `token=${token}; path=/;`;
                 const encodedId = btoa(createUserResponse.data.user._id);
                 window.location.href = `/${encodedId}`;
