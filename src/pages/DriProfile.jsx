@@ -71,63 +71,37 @@ const DriProfile = () => {
       </header>
       {isLoggedIn ? (
         <section class="bg-light">
-          <div class="container py-5">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="card mb-4">
-                  <div class="card-body text-center">
-                    <p class="text-muted mb-1">Driver</p>
-                    <p class="text-muted mb-4">Rajkot, Gujarat</p>
-                    <ul class="list-group list-group-flush rounded-3">
-                      {Object.entries(userProfile).map(([key, value]) => (
-                        <li
-                          key={key}
-                          class="list-group-item d-flex justify-content-between align-items-center py-4"
-                        >
-                          <span>{key}</span>
-                          <span class="text-muted">{value}</span>
-                        </li>
-                      ))}
-                    </ul>
+        <div class="container py-5">
+          <div class="row justify-content-center"> 
+            <div class="col-lg-11 mx-5">
+              <h2 class="mb-4 text-2xl font-bold">Requests</h2>
+              {requests.map((request) => (
+              <div key={request.id} class="card mb-3 request-card">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                  <div>
+                    <h5 class="card-title text-l font-bold">{request.name}</h5>
+                    <p class="card-text">{request.description}</p>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <button onClick={() => handleAccept(request.id)} class="success">
+                        Accept
+                      </button>
+                    </div>
+                    <div>
+                      <button onClick={() => handleReject(request.id)} class="reject">
+                        Reject
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div class="col-lg-8">
-                <h2 class="mb-4">Requests</h2>
-                {requests.map((request) => (
-                  <div key={request.id} class="card mb-3 request-card">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                      <div>
-                        <h5 class="card-title">{request.name}</h5>
-                        <p class="card-text">{request.description}</p>
-                      </div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                          <button
-                            onClick={() => handleAccept(request.id)}
-                            class="success"
-                          >
-                            Accept
-                          </button>
-                        </div>
-                        <div>
-                          <button
-                            onClick={() => handleReject(request.id)}
-                            class="reject"
-                          >
-                            Reject
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
-        </section>
-
+        </div>
+      </section>
+      
       ) : null}
     </>
   );
