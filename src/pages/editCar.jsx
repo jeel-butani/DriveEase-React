@@ -79,8 +79,6 @@ const EditCar = () => {
         }
     };
 
-    
-
     return (
         <>
             <header>
