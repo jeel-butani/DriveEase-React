@@ -1,124 +1,85 @@
 import React from "react";
-import {
-  MDBCol,
-  MDBContainer,
-  MDBRow,
-  MDBCard,
-  MDBCardText,
-  MDBCardBody,
-  MDBCardImage,
-  MDBBtn,
-} from "mdb-react-ui-kit";
 
 const UserMainProfile = () => {
   return (
-    <section
-      style={{
-        backgroundColor: "#eee",
-        minHeight: "100vh",
-        paddingTop: "50px",
-      }}
-    >
-      <MDBContainer>
-        <MDBRow>
-          <MDBCol lg="4">
-            <MDBCard className="mb-4">
-              <MDBCardBody className="text-center">
-                <div style={{ marginBottom: "20px" }}>
-                  <MDBCardImage
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                    alt="avatar"
-                    className="rounded-circle"
-                    style={{ width: "250px", margin: "auto" }}
-                    fluid
-                  />
+    <section className="bg-gray-200 min-h-screen pt-16">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+          <div className="lg:col-span-1">
+            <div className="mb-4">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                alt="avatar"
+                className="rounded-full w-64 mx-auto"
+              />
+            </div>
+            <p className="text-center text-gray-600 mb-1">Johnatan Smith</p>
+            <p className="text-center text-gray-600 mb-4">
+              User | Rajkot, Gujarat
+            </p>
+          </div>
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded shadow p-4">
+              <div className="mb-8">
+                <div className="flex mb-4">
+                  <div className="w-1/3">
+                    <p className="font-semibold">Full Name</p>
+                  </div>
+                  <div className="w-2/3">
+                    <p className="text-gray-600">Johnatan Smith</p>
+                  </div>
                 </div>
-                <p className="text-muted mb-1">Johnatan Smith</p>
-                <p className="text-muted mb-4">User | Rajkot, Gujarat</p>
-                <div className="d-flex justify-content-center mb-2"></div>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol lg="8">
-            <MDBCard className="mb-4">
-              <MDBCardBody>
-                <MDBRow className="mb-8">
-                  {" "}
-                  <MDBCol sm="3">
-                    <MDBCardText>Full Name</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      Johnatan Smith
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow className="mb-8">
-                  {" "}
-                  <MDBCol sm="3">
-                    <MDBCardText>Birthdate</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">11/11/2000</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-
-                <MDBRow className="mb-8">
-                  {" "}
-                  <MDBCol sm="3">
-                    <MDBCardText>Email</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      jonathansmith@gmail.com
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-
-                <MDBRow className="mb-8">
-                  {" "}
-                  <MDBCol sm="3">
-                    <MDBCardText>Phone Number</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      +91 8989101029
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-
-                <MDBRow className="mb-8">
-                  {" "}
-                  <MDBCol sm="3">
-                    <MDBCardText>Location</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Rajkot</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-
-                <MDBRow className="mb-8">
-                  {" "}
-                  <MDBCol sm="3">
-                    <MDBCardText>Aadhar Card Number</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">
-                      1234 5678 9012
-                    </MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
+                <hr className="my-4" />
+                <div className="flex mb-4">
+                  <div className="w-1/3">
+                    <p className="font-semibold">Birthdate</p>
+                  </div>
+                  <div className="w-2/3">
+                    <p className="text-gray-600">11/11/2000</p>
+                  </div>
+                </div>
+                <hr className="my-4" />
+                <div className="flex mb-4">
+                  <div className="w-1/3">
+                    <p className="font-semibold">Email</p>
+                  </div>
+                  <div className="w-2/3">
+                    <p className="text-gray-600">jonathansmith@gmail.com</p>
+                  </div>
+                </div>
+                <hr className="my-4" />
+                <div className="flex mb-4">
+                  <div className="w-1/3">
+                    <p className="font-semibold">Phone Number</p>
+                  </div>
+                  <div className="w-2/3">
+                    <p className="text-gray-600">+91 8989101029</p>
+                  </div>
+                </div>
+                <hr className="my-4" />
+                <div className="flex mb-4">
+                  <div className="w-1/3">
+                    <p className="font-semibold">Location</p>
+                  </div>
+                  <div className="w-2/3">
+                    <p className="text-gray-600">Rajkot</p>
+                  </div>
+                </div>
+                <hr className="my-4" />
+                <div className="flex mb-4">
+                  <div className="w-1/3">
+                    <p className="font-semibold">Aadhar Card Number</p>
+                  </div>
+                  <div className="w-2/3">
+                    <p className="text-gray-600">1234 5678 9012</p>
+                  </div>
+                </div>
+                <hr className="my-4" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

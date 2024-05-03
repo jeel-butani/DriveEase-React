@@ -50,7 +50,7 @@ function App() {
           <Route path='/companyprofile' element={<CompanyProfile/>}/>
           <Route path='/bikeProduct' element={<BikeProduct/>}/>
           <Route path='/companyBike/:companyId' element={<CompanyBikes/>}/>
-          
+ 
         </Routes>
       </>
     </BrowserRouter>
