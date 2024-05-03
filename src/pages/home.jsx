@@ -1,22 +1,42 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
 import Footer from "../components/footer";
 import Navbar from '../components/navBar';
 import Slider from "../components/slider";
-import car3 from "../assets/images/car3.jpg";
 import "../pagesCss/homeCss.css";
+import { useForm } from 'react-hook-form';
 const Home = () => {
-  const [location, setLocation] = useState('');
-  const [bikeOrCar, setBikeOrCar] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted");
+  function getEncodedIdFromUrl() {
+    const urlParts = window.location.href.split('/');
+    return urlParts[urlParts.length - 1];
+  }
+
+  const encodedId = getEncodedIdFromUrl();
+
+  const checkId = () => {
+    const urlParts = window.location.href.split('/');
+    if (urlParts[urlParts.length - 1] !== '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  const loginPlease = () => {
+    window.location.href = '/userLoginSignup';
+  }
+
+  const onSubmit = (data) => {
+    const isLogin = checkId();
+    if (!isLogin) {
+      window.location.href = '/userLoginSignup';
+    } else if(data.bikeOrCar == "car") {
+      const queryString = Object.keys(data).map(key => key + '=' + data[key]).join('&');
+      window.location.href = `/carProduct/${encodedId}?${queryString}`;
+    } else if(data.bikeOrCar == "bike") {
+      const queryString = Object.keys(data).map(key => key + '=' + data[key]).join('&');
+      window.location.href = `/bikeProduct/${encodedId}?${queryString}`;
+    }
   };
 
   return (
@@ -27,170 +47,56 @@ const Home = () => {
       <Slider />
 
       <div className="form-container">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-row">
             <div className="form-group">
-              <label>Select Location:</label>
-              <select value={location} onChange={(e) => setLocation(e.target.value)}>
+              <label className='text-xl font-bold'>Select Location:</label>
+              <select className='text-xl' {...register("location", { required: "Please select a location" })}>
                 <option value="">Select Location</option>
-                {/* Add options for locations */}
+                <option value="mumbai">Mumbai</option>
+                <option value="rajkot">Rajkot</option>
               </select>
+              {errors.location && <span className="error">{errors.location.message}</span>}
             </div>
             <div className="form-group">
-              <label>Type:</label>
-              <select value={bikeOrCar} onChange={(e) => setBikeOrCar(e.target.value)}>
+              <label className='text-xl font-bold'>Type:</label>
+              <select className='text-xl' {...register("bikeOrCar", { required: "Please select a type" })}>
                 <option value="">Select Type</option>
                 <option value="bike">Bike</option>
                 <option value="car">Car</option>
               </select>
+              {errors.bikeOrCar && <span className="error">{errors.bikeOrCar.message}</span>}
             </div>
             <div className="form-group">
-              <button type="submit">Submit</button>
+              <button className="button text-xl">
+                Search
+              </button>
             </div>
           </div>
           <div className="form-row">
             <div className="form-group">
-              <label>Start Time:</label>
-              <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+              <label className='text-xl font-bold'>Start Time:</label>
+              <input className='text-xl' type="time" {...register("startTime", { required: "Please enter start time" })} />
+              {errors.startTime && <span className="error">{errors.startTime.message}</span>}
             </div>
             <div className="form-group">
-              <label>Start Date:</label>
-              <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+              <label className='text-xl font-bold'>Start Date:</label>
+              <input className='text-xl' type="date" {...register("startDate", { required: "Please enter start date" })} />
+              {errors.startDate && <span className="error">{errors.startDate.message}</span>}
             </div>
             <div className="form-group">
-              <label>End Time:</label>
-              <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+              <label className='text-xl font-bold'>End Time:</label>
+              <input className='text-xl' type="time" {...register("endTime", { required: "Please enter end time" })} />
+              {errors.endTime && <span className="error">{errors.endTime.message}</span>}
             </div>
             <div className="form-group">
-              <label>End Date:</label>
-              <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+              <label className='text-xl font-bold'>End Date:</label>
+              <input className='text-xl' type="date" {...register("endDate", { required: "Please enter end date" })} />
+              {errors.endDate && <span className="error">{errors.endDate.message}</span>}
             </div>
           </div>
         </form>
       </div>
-      <main id="main">
-        <section class="section-agents">
-          <div class="containers">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="title-wrap d-flex justify-content-between">
-                  <div class="title-box">
-                    <h2 class="title-a">New Cars</h2>
-                  </div>
-                  <div class="title-link">
-                    <Link to="/carProduct">
-                      All Cars
-                      <span class="bi bi-chevron-right"></span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="card-box-d">
-                  <div class="card-img-d">
-                    <img src={car3} alt="" class="img-d img-fluid" />
-                  </div>
-                  <div class="card-overlay card-overlay-hover">
-                    <div class="card-header-d">
-                      <div class="card-title-d align-self-center">
-                        <h3 class="title-d">
-                          <a href="agent-single.html" class="link-two">
-                            G Class
-                            <br />{" "}
-                          </a>
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="card-body-d">
-                      <p class="content-d color-text-a">
-                        Sed porttitor lectus nibh, Cras ultricies ligula sed
-                        magna dictum porta two.
-                      </p>
-                      <div class="info-agents color-a">
-                        <p>
-                          <strong>Price :</strong> $4000
-                        </p>
-                        <p>
-                          <strong>Fuel :</strong> Petrol
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="card-box-d">
-                  <div class="card-img-d">
-                    <img src={car3} alt="" class="img-d img-fluid" />
-                  </div>
-                  <div class="card-overlay card-overlay-hover">
-                    <div class="card-header-d">
-                      <div class="card-title-d align-self-center">
-                        <h3 class="title-d">
-                          <a href="agent-single.html" class="link-two">
-                            G Class
-                            <br />{" "}
-                          </a>
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="card-body-d">
-                      <p class="content-d color-text-a">
-                        Sed porttitor lectus nibh, Cras ultricies ligula sed
-                        magna dictum porta two.
-                      </p>
-                      <div class="info-agents color-a">
-                        <p>
-                          <strong>Price :</strong> $4000
-                        </p>
-                        <p>
-                          <strong>Fuel :</strong> Petrol
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="card-box-d">
-                  <div class="card-img-d">
-                    <img src={car3} alt="" class="img-d img-fluid" />
-                  </div>
-                  <div class="card-overlay card-overlay-hover">
-                    <div class="card-header-d">
-                      <div class="card-title-d align-self-center">
-                        <h3 class="title-d">
-                          <a href="agent-single.html" class="link-two">
-                            G Class
-                            <br />{" "}
-                          </a>
-                        </h3>
-                      </div>
-                    </div>
-                    <div class="card-body-d">
-                      <p class="content-d color-text-a">
-                        Sed porttitor lectus nibh, Cras ultricies ligula sed
-                        magna dictum porta two.
-                      </p>
-                      <div class="info-agents color-a">
-                        <p>
-                          <strong>Price :</strong> $4000
-                        </p>
-                        <p>
-                          <strong>Fuel :</strong> Petrol
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
       <div class="iconWidget">
         <div class="templateContainer">
           <div class="iconSlideRow">
@@ -239,7 +145,74 @@ const Home = () => {
         </div>
 
       </div>
+      <div className="templateContainer">
+        <h2 className="textLeft text-3xl font-bold">Featured Vehicles</h2>
 
+
+        <div className="featuredRow">
+          <div className="featured-vehicle-list-item p-8">
+            <div className="featuredList">
+              <div className="vertically-centered featuredList-img">
+                <img src="https://evmwheels.com/front-theme/images/tabImg1.png" alt="" />
+              </div>
+            </div>
+            <div className="p-10">
+              <p>Skoda</p>
+              <h2>Slavia</h2>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+          </div>
+          <div className="featured-vehicle-list-item p-10">
+            <div className="featuredList">
+              <div className="vertically-centered featuredList-img">
+                <img src="https://evmwheels.com/front-theme/images/HECTOR PLUS-D-MT.png" alt="MG Hector Plus rent a car" />
+              </div>
+            </div>
+            <div className="p-10">
+              <p>MG</p>
+              <h2>Hector</h2>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+          </div>
+          <div className="featured-vehicle-list-item p-10">
+            <div className="featuredList">
+              <div className="vertically-centered featuredList-img">
+                <img src="https://evmwheels.com/front-theme/images/tabImg3.png" alt="Volkswagen Polo rent a car" />
+              </div>
+            </div>
+            <div className="p-10">
+              <p>Volkswagen</p>
+              <h2>Polo</h2>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+          </div>
+          <div className="featured-vehicle-list-item p-10">
+            <div className="featuredList">
+              <div className="vertically-centered featuredList-img">
+                <img src="https://evmwheels.com/front-theme/images/tabImg4.png" alt="Toyota Innova rent a car" />
+              </div>
+            </div>
+            <div className="p-10">
+              <p>Toyota</p>
+              <h2>Innova</h2>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+              <span>★</span>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
       <section class="howitWork">
         <div class="templateContainer">
           <h2>How it works</h2>
@@ -303,7 +276,6 @@ const Home = () => {
           </div>
         </div></section>
       <Footer />
-      {/* <DriProfile/> */}
     </>
   );
 };
