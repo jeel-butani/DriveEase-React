@@ -69,6 +69,13 @@ const companyLoginSignup = ()=> {
                 console.log('Login successful');
                 console.log(token);
                 console.log(company);
+
+                if (document.cookie.includes('drivertoken')) {
+                    document.cookie = 'drivertoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+                if (document.cookie.includes('token')) {
+                    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
                 
                 document.cookie = `companytoken=${token}; path=/;`;
                 const encodedId = btoa(company._id); 
@@ -104,6 +111,14 @@ const companyLoginSignup = ()=> {
         if (createUserResponse.status === 201) {
             console.log(createUserResponse.data.token);
             const token = createUserResponse.data.token;
+
+            if (document.cookie.includes('drivertoken')) {
+                document.cookie = 'drivertoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            }
+            if (document.cookie.includes('token')) {
+                document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            }
+
             document.cookie = `companytoken=${token}; path=/;`;
             window.location.href = '/companyCars'
         } else {
