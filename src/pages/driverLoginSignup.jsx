@@ -69,6 +69,12 @@ const driverLoginSignup = ()=> {
                 console.log('Login successful');
                 console.log(token);
                 
+                if (document.cookie.includes('token')) {
+                    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+                if (document.cookie.includes('companytoken')) {
+                    document.cookie = 'companytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
                 document.cookie = `drivertoken=${token}; path=/;`;
                 window.location.href = '/'
             } else {
@@ -136,6 +142,14 @@ const driverLoginSignup = ()=> {
             
             if (createUserResponse.status === 201) {
                 console.log(createUserResponse.data);
+
+                if (document.cookie.includes('token')) {
+                    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+                if (document.cookie.includes('companytoken')) {
+                    document.cookie = 'companytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                }
+
                 document.cookie = `drivertoken=${createUserResponse.data.token}; path=/;`;
                 const encodedId = btoa(createUserResponse.data.driver._id);
                 window.location.href = `/driverProfile/${encodedId}`;
