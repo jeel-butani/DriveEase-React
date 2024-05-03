@@ -57,7 +57,7 @@
 .slider {
     height: 60px;
     width: 150px;
-    border-radius: 50px;
+    border-radius: 10px;
     background-image: linear-gradient(to top, rgb(255, 136, 67), rgb(196, 15, 160));
     position: absolute;
     top: 20px;
