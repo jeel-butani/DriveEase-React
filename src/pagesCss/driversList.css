@@ -10,10 +10,10 @@
   font-family: 'Poppins', sans-serif;
 }
 .headDriver{
-  margin:10px 100px 0px 100px  ;
+  margin: 10px 10px 0px 25px;
 }
 .head{
-  margin:10px 100px 0px 25px  ;
+  margin:10px 10px 0px 25px  ;
 }
 
 .drivers-list {
@@ -21,6 +21,10 @@
   row-gap: 25px;
   display: flex;
   flex-wrap: wrap;
+}
+
+.driverList{
+  margin: 0 80px;
 }
 
 .driver-card {
@@ -67,18 +71,28 @@
   .drivers-list {
     overflow-x: auto;
     white-space: nowrap;
+    margin: 0 40px;
   }
   .head{
     transition-delay:1.5s ease-in-out;
-    margin:10px 0px 0px 70px  ;
   }
   .driver-card {
     width: calc(50% - 20px); /* Two cards per row */
     margin: 10px;
   }
+  .button{
+    width: 90px;
+  }
 }
 
 @media (max-width: 576px) {
+  .driverList{
+    margin: 0;
+  }
+
+  .wrapper{
+    padding: 0;
+  }
   .driver-card {
     width: calc(100% - 20px); /* Single card per row */
   }
