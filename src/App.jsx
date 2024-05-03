@@ -21,6 +21,7 @@ import CompanyProfile from './pages/CompanyProfile';
 import BikeProduct from './pages/bikeProduct';
 import CompanyBikes from './pages/companyBikes';
 import EditBike from './pages/editBike';
+import DriverProfile from './pages/DriverProfile';
 
 function App() {
 
@@ -50,7 +51,7 @@ function App() {
           <Route path='/companyprofile' element={<CompanyProfile/>}/>
           <Route path='/bikeProduct' element={<BikeProduct/>}/>
           <Route path='/companyBike/:companyId' element={<CompanyBikes/>}/>
- 
+          <Route path='/driverprofile' element={<DriverProfile/>}/>
         </Routes>
       </>
     </BrowserRouter>
