@@ -15,7 +15,9 @@
 .text-muted {
   color: #6c757d;
 }
-
+.row{
+  display: block;
+}
 .list-group {
   border: none;
 }
