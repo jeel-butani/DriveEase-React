@@ -18,6 +18,9 @@ const ConfirmCarBook = () => {
   const [sgst, setSgst] = useState(0);
   const [hub, setHub] = useState(0);
   const [total, setTotal] = useState(0);
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [mins, setMins] = useState(0);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -84,7 +87,9 @@ const ConfirmCarBook = () => {
     const hours = Math.floor(remainingHours / (1000 * 60 * 60));
     const remainingMinutes = remainingHours % (1000 * 60 * 60);
     const minutes = Math.floor(remainingMinutes / (1000 * 60));
-
+    setDays(days);
+    setHours(hours);
+    setMins(minutes);
     setDuration({ days, hours, minutes });
 
 
@@ -106,41 +111,44 @@ const ConfirmCarBook = () => {
     const submitData = {
       userId: userId,
       location: formData.location,
-      startDate: new Date(formData.startDate + 'T' + formData.startTime),
-      endDate: new Date(formData.endDate + 'T' + formData.endTime),
+      startDate: formData.startDate,
+      endDate: formData.endDate,
+      startTime: formData.startTime,
+      endTime: formData.endTime,
       productId: ids,
       type: "cars",
       paymentStatus: "1"
     }
 
     const BookCar = await axios.post('http://localhost:3000/api/booking', submitData);
-
+    window.location.href = `/bookdetails/${encodedUserId}`;
     console.log(BookCar);
   }
 
   useEffect(() => {
     checkToken();
     fetchData();
-  }, []);
+  }, [days]);
 
   const fetchData = async () => {
     const getCarResponse = await axios.get(`http://localhost:8080/api/cars/${ids}`);
     console.log(getCarResponse.data);
-    
+
     const baseAmount = parseFloat(getCarResponse.data.car.amount);
-    
-    const { days, hours, minutes } = duration;
-    const totalHours = days * 24 + hours + (minutes / 60);
+
+
+
+    const totalHours = days * 24 + hours + (mins / 60);
     const amnt = (totalHours / 24) * baseAmount;
-    const amount = Math.round(amnt * 100) / 100;
+    const amount = parseFloat((Math.round(amnt * 100) / 100).toFixed(2));
 
     console.log("Amount based on duration:", amount);
-    const gst = (amount * 18) / 100;
-    const cgst = (amount * 9) / 100;
-    const sgst = (amount * 9) / 100;
-    const hub = (amount * 5) / 100;
+    const gst = parseFloat((amount * 18) / 100).toFixed(2);
+    const cgst = parseFloat((amount * 9) / 100).toFixed(2);
+    const sgst = parseFloat((amount * 9) / 100).toFixed(2);
+    const hub = parseFloat((amount * 5) / 100).toFixed(2);
 
-    const total = amount + gst + hub;
+    const total = parseFloat((amount + parseFloat(gst) + parseFloat(hub)).toFixed(2));
 
     setRate(amount);
     setGst(gst);
@@ -154,6 +162,8 @@ const ConfirmCarBook = () => {
     console.log(hub);
     console.log(total);
     setCarData(getCarResponse.data);
+
+
   }
 
   return (
