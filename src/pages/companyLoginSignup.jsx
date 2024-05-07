@@ -120,7 +120,7 @@ const companyLoginSignup = ()=> {
             }
 
             document.cookie = `companytoken=${token}; path=/;`;
-            window.location.href = '/companyCars'
+            window.location.href = `/companyCars/${createUserResponse.data._id}`;
         } else {
             console.error('Error:', createUserResponse.statusText);
         }
