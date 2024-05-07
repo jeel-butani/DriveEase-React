@@ -9,11 +9,7 @@ const carProduct = () => {
   const [duration, setDuration] = useState(null);
   const [formattedStartDate, setFormattedStartDate] = useState('');
   const [formattedEndDate, setFormattedEndDate] = useState('');
-
-  const fetchData = async () => {
-    const getCarResponse = await axios.get('http://localhost:3000/api/company/cars/location?location=mumbai');
-    setCardData(getCarResponse.data.allCars);
-  }
+  const [locat, setLocat] = useState('');
 
   function getEncodedIdFromUrl() {
     const url = new URL(window.location.href);
@@ -36,10 +32,12 @@ const carProduct = () => {
     setIsLoggedIn(!!token);
   };
 
-  useEffect(() => {
-    checkToken();
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    const getCarResponse = await axios.get(`http://localhost:3000/api/company/cars/location?location=${locat}`);
+    setCardData(getCarResponse.data.allCars);
+  }
+
+  
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -58,6 +56,8 @@ const carProduct = () => {
     }
     console.log(formData);
     setFormData(formData);
+    console.log(formData.location);
+    setLocat(formData.location);
 
     const startDate = new Date(formData.startDate + 'T' + formData.startTime);
     const endDate = new Date(formData.endDate + 'T' + formData.endTime);
@@ -90,6 +90,11 @@ const carProduct = () => {
     const companyId = getEncodedIdFromUrl();
     window.location.href = `/confirmCarBook/${companyId}/${encodedId}?location=${formData.location}&bikeOrCar=${formData.bikeOrCar}&startTime=${formData.startTime}&startDate=${formData.startDate}&endTime=${formData.endTime}&endDate=${formData.endDate}`;
   };
+
+  useEffect(() => {
+    checkToken();
+    fetchData();
+  }, [fetchData]);
 
   return (
     <>
@@ -648,7 +653,9 @@ const carProduct = () => {
                 </div>
                 <div class="tabList" id="filteredResults">
                   <div class="cardRow inv_list_wrap" data-filter-id="1">
-                    {cardData.map((card) => (
+                  {cardData.length === 0 ? (
+                    <p className="text-center text-xl font-bold mt-4">OOPs SORRY!! There are no cars😔😔</p>
+                  ) : (cardData.map((card) => (
                       <div
                         key={card.hexId}
                         className="carCol"
@@ -752,7 +759,7 @@ const carProduct = () => {
                           </div>
                         </div>
                       </div>
-                    ))}
+                    )))}
                   </div>
                 </div>
               </div>
