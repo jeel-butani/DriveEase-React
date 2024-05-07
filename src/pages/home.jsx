@@ -6,6 +6,7 @@ import "../pagesCss/homeCss.css";
 import { useForm } from 'react-hook-form';
 const Home = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [currentDateTime] = useState(new Date());
 
   function getEncodedIdFromUrl() {
     const urlParts = window.location.href.split('/');
@@ -30,13 +31,24 @@ const Home = () => {
     const isLogin = checkId();
     if (!isLogin) {
       window.location.href = '/userLoginSignup';
-    } else if(data.bikeOrCar == "car") {
+    } else if (data.bikeOrCar == "car") {
       const queryString = Object.keys(data).map(key => key + '=' + data[key]).join('&');
       window.location.href = `/carProduct/${encodedId}?${queryString}`;
-    } else if(data.bikeOrCar == "bike") {
+    } else if (data.bikeOrCar == "bike") {
       const queryString = Object.keys(data).map(key => key + '=' + data[key]).join('&');
       window.location.href = `/bikeProduct/${encodedId}?${queryString}`;
+    } else if (data.bikeOrCar == "driver") {
+      const queryString = Object.keys(data).map(key => key + '=' + data[key]).join('&');
+      window.location.href = `/driverUser/${encodedId}?${queryString}`;
     }
+  };
+
+  const validateDateTime = (value) => {
+    const selectedDateTime = new Date(value);
+    if (selectedDateTime <= currentDateTime) {
+      return "Please select a future date and time";
+    }
+    return true;
   };
 
   return (
@@ -58,12 +70,14 @@ const Home = () => {
               </select>
               {errors.location && <span className="error">{errors.location.message}</span>}
             </div>
+            {/* Other fields */}
             <div className="form-group">
               <label className='text-xl font-bold'>Type:</label>
               <select className='text-xl' {...register("bikeOrCar", { required: "Please select a type" })}>
                 <option value="">Select Type</option>
                 <option value="bike">Bike</option>
                 <option value="car">Car</option>
+                <option value="driver">Driver</option>
               </select>
               {errors.bikeOrCar && <span className="error">{errors.bikeOrCar.message}</span>}
             </div>
@@ -76,14 +90,15 @@ const Home = () => {
           <div className="form-row">
             <div className="form-group">
               <label className='text-xl font-bold'>Start Time:</label>
-              <input className='text-xl' type="time" {...register("startTime", { required: "Please enter start time" })} />
+              <input className='text-xl' type="time" {...register("startTime", { required: "Please enter start time", validate: validateDateTime })} />
               {errors.startTime && <span className="error">{errors.startTime.message}</span>}
             </div>
             <div className="form-group">
               <label className='text-xl font-bold'>Start Date:</label>
-              <input className='text-xl' type="date" {...register("startDate", { required: "Please enter start date" })} />
+              <input className='text-xl' type="date" {...register("startDate", { required: "Please enter start date", validate: validateDateTime })} />
               {errors.startDate && <span className="error">{errors.startDate.message}</span>}
             </div>
+            {/* Other fields */}
             <div className="form-group">
               <label className='text-xl font-bold'>End Time:</label>
               <input className='text-xl' type="time" {...register("endTime", { required: "Please enter end time" })} />
