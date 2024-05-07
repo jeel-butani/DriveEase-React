@@ -6,15 +6,40 @@ import React, { useState, useEffect } from "react";
 
 const bikeProduct = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [formData, setFormData] = useState(null);
+    const [duration, setDuration] = useState(null);
+    const [formattedStartDate, setFormattedStartDate] = useState('');
+    const [formattedEndDate, setFormattedEndDate] = useState('');
+    const [locat, setLocat] = useState('');
     const checkToken = () => {
         const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
         console.log("Token:", token);
         setIsLoggedIn(!!token);
     };
+
+    const handleSelect = (id) => {
+        const encodedId = btoa(id);
+        const companyId = getEncodedIdFromUrl();
+        window.location.href = `/confirmBike/${companyId}/${encodedId}?location=${formData.location}&bikeOrCar=${formData.bikeOrCar}&startTime=${formData.startTime}&startDate=${formData.startDate}&endTime=${formData.endTime}&endDate=${formData.endDate}`;
+      };
+
+    function getEncodedIdFromUrl() {
+        const url = new URL(window.location.href);
+        const path = url.pathname;
+        const pathParts = path.split('/');
+        return pathParts[pathParts.length - 1];
+    }
+    function decodeId(encodedId) {
+        return atob(encodedId);
+    }
+    const encodedId = getEncodedIdFromUrl();
+
+    const ids = decodeId(encodedId);
+    console.log('Decoded ID:', ids);
     const [cardData, setCardData] = useState([]);
 
     const fetchData = async () => {
-        const getCarResponse = await axios.get('http://localhost:3000/api/company/bikes/location?location=mumbai');
+        const getCarResponse = await axios.get(`http://localhost:3000/api/company/bikes/location?location=${locat}`);
         console.log(getCarResponse.data.bikes);
         setCardData(getCarResponse.data.bikes);
     }
@@ -22,7 +47,7 @@ const bikeProduct = () => {
     useEffect(() => {
         checkToken();
         fetchData();
-    }, []);
+    }, [fetchData]);
 
     useEffect(() => {
         if (!isLoggedIn) {
@@ -32,6 +57,42 @@ const bikeProduct = () => {
             return () => clearTimeout(timer);
         }
     }, [isLoggedIn]);
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const formData = {};
+        for (let param of queryParams.entries()) {
+            formData[param[0]] = param[1];
+        }
+        console.log(formData);
+        setLocat(formData.location);
+        setFormData(formData);
+
+        const startDate = new Date(formData.startDate + 'T' + formData.startTime);
+        const endDate = new Date(formData.endDate + 'T' + formData.endTime);
+        const durationInMilliseconds = endDate - startDate;
+
+        const days = Math.floor(durationInMilliseconds / (1000 * 60 * 60 * 24));
+        const remainingHours = durationInMilliseconds % (1000 * 60 * 60 * 24);
+        const hours = Math.floor(remainingHours / (1000 * 60 * 60));
+        const remainingMinutes = remainingHours % (1000 * 60 * 60);
+        const minutes = Math.floor(remainingMinutes / (1000 * 60));
+
+        setDuration({ days, hours, minutes });
+
+
+        const startDateObj = new Date(formData.startDate);
+        const endDateObj = new Date(formData.endDate);
+        const startDay = startDateObj.getDate();
+        const endDay = endDateObj.getDate();
+        const startMonth = startDateObj.toLocaleString('default', { month: 'short' });
+        const endMonth = endDateObj.toLocaleString('default', { month: 'short' });
+        const startYear = String(startDateObj.getFullYear()).slice(2);
+        const endYear = String(endDateObj.getFullYear()).slice(2);
+
+        setFormattedStartDate(`${startDay} ${startMonth}' ${startYear}`);
+        setFormattedEndDate(`${endDay} ${endMonth}' ${endYear}`);
+    }, [location.search]);
 
     return (
         <>
@@ -47,33 +108,33 @@ const bikeProduct = () => {
                                     <div class="timeList">
                                         <div class="tTitle">Duration:</div>
                                         <div class="day">
-                                            <b>02 days</b>
+                                            <b>{duration.days} days</b>
                                         </div>
                                         <div class="hours">
-                                            <b>00 hrs</b>
+                                            <b>{duration.hours} hrs</b>
                                         </div>
                                         <div class="mins">
-                                            <b>00 mins</b>
+                                            <b>{duration.minutes} mins</b>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="locationList locationFrom">
                                     <div class="locationCol">
                                         <a href="/">
-                                            <div class="location">Kochi</div>
-                                            <div class="place">Maradu : EVM Volkswagen</div>
+                                            <div class="location uppercase">{formData.location}</div>
+                                            <div class="place">Adrs: DriveEase Cars</div>
                                         </a>
                                         <div class="dayCol">
                                             <div class="dayRow">
                                                 <div class="col2">
-                                                    <div class="date">22</div>
-                                                    <div class="month">Feb'</div>
-                                                    <div class="year">24</div>
+                                                    <div className="date">{formattedStartDate.split(' ')[0]}</div>
+                                                    <div className="month">{formattedStartDate.split(' ')[1]}</div>
+                                                    <div className="year">{formattedStartDate.split(' ')[2]}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="time">
-                                            8:30<span>AM</span>
+                                            {formData.startTime}
                                         </div>
                                     </div>
                                     <div class="forIcon">
@@ -84,20 +145,20 @@ const bikeProduct = () => {
                                     </div>
                                     <div class="locationCol">
                                         <a href="http://127.0.0.1:8000/">
-                                            <div class="location">Kochi</div>
-                                            <div class="place">Maradu : EVM Volkswagen</div>
+                                            <div class="location uppercase">{formData.location}</div>
+                                            <div class="place">Adrs: DriveEase Cars</div>
                                         </a>
                                         <div class="dayCol">
                                             <div class="dayRow">
                                                 <div class="col2">
-                                                    <div class="date">24</div>
-                                                    <div class="month">Feb'</div>
-                                                    <div class="year">24</div>
+                                                    <div className="date">{formattedEndDate.split(' ')[0]}</div>
+                                                    <div className="month">{formattedEndDate.split(' ')[1]}</div>
+                                                    <div className="year">{formattedEndDate.split(' ')[2]}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="time">
-                                            8:30 <span>AM</span>
+                                            {formData.endTime}
                                         </div>
                                     </div>
                                 </div>
@@ -105,13 +166,13 @@ const bikeProduct = () => {
                                     <div class="timeList">
                                         <div class="tTitle">Duration:</div>
                                         <div class="day">
-                                            <b>02 days</b>
+                                            <b>{duration.days} days</b>
                                         </div>
                                         <div class="hours">
-                                            <b>00 hrs</b>
+                                            <b>{duration.hours} hrs</b>
                                         </div>
                                         <div class="mins">
-                                            <b>00 mins</b>
+                                            <b>{duration.minutes} mins</b>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +228,7 @@ const bikeProduct = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
