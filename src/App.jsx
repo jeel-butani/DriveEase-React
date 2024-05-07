@@ -22,6 +22,10 @@ import BikeProduct from './pages/bikeProduct';
 import CompanyBikes from './pages/companyBikes';
 import EditBike from './pages/editBike';
 import DriverProfile from './pages/DriverProfile';
+import BookingDetails from './pages/BookingDetails';
+import ConfirmBike from './pages/confirmBike';
+
+
 
 function App() {
 
@@ -39,19 +43,21 @@ function App() {
           <Route path="/companyLoginSignup" element={<CompanyLoginSignup/>} />
           <Route path="/carProduct/:id" element={<CarProduct/>} />
           <Route path="/confirmCarBook/:id/:carId" element={<ConfirmCarBook />} />
+          <Route path="/confirmBike/:id/:carId" element={<ConfirmBike />} />
           <Route path="/carDriverInput/:companyId" element={<CarDriverInput/>} />
           <Route path="/companyCars/:companyId" element={<CompanyCars/>} />
           <Route path="/editCar/:companyId/:carId" element={<EditCar/>} />
           <Route path="/editBike/:companyId/:bikeId" element={<EditBike/>} />
           <Route path="/editDriver/:id" element={<EditDriver/>} />
           <Route path="/driversList/:companyId" element={<DriversList/>} />
-          <Route path="/driverProfile/:driverId" element={<DriProfile/>} />
+          <Route path="/driver/:driverId" element={<DriProfile/>} />
           <Route path="/driverUser/:id" element={<DriverUser/>}/>
-          <Route path='/usermainprofile' element={<UserMainProfile/>}/>
-          <Route path='/companyprofile' element={<CompanyProfile/>}/>
-          <Route path='/bikeProduct' element={<BikeProduct/>}/>
+          <Route path='/usermainprofile/:id' element={<UserMainProfile/>}/>
+          <Route path='/companyprofile/:companyId' element={<CompanyProfile/>}/>
+          <Route path='/bikeProduct/:id' element={<BikeProduct/>}/>
           <Route path='/companyBike/:companyId' element={<CompanyBikes/>}/>
-          <Route path='/driverprofile' element={<DriverProfile/>}/>
+          <Route path='/driverprofile/:driverId' element={<DriverProfile/>}/>
+          <Route path='/bookdetails/:id' element={<BookingDetails/>}/>
         </Routes>
       </>
     </BrowserRouter>
