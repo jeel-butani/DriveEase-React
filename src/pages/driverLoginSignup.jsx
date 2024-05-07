@@ -76,7 +76,9 @@ const driverLoginSignup = ()=> {
                     document.cookie = 'companytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                 }
                 document.cookie = `drivertoken=${token}; path=/;`;
-                window.location.href = '/'
+                console.log(loginResponse.data.driver._id);
+                const id =btoa(loginResponse.data.driver._id)
+                window.location.href = `/driver/${id}`;
             } else {
                 console.log('Invalid email or password');
             }
@@ -152,7 +154,7 @@ const driverLoginSignup = ()=> {
 
                 document.cookie = `drivertoken=${createUserResponse.data.token}; path=/;`;
                 const encodedId = btoa(createUserResponse.data.driver._id);
-                window.location.href = `/driverProfile/${encodedId}`;
+                window.location.href = `/driver/${encodedId}`;
             } else {
                 console.error('Error:', createUserResponse.statusText);
             }
