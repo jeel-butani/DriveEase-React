@@ -2,11 +2,31 @@ import discount from "../assets/images/discount.png";
 import Navbar from "../components/navBar";
 import "../pagesCss/carsProduct.css";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import image from "../assets/images/driver.png";
+import axios from "axios";
 const DriverUser = () => {
     const [driverData, setDriverData] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [formData, setFormData] = useState(null);
+    const [duration, setDuration] = useState(null);
+    const [formattedStartDate, setFormattedStartDate] = useState('');
+    const [formattedEndDate, setFormattedEndDate] = useState('');
+    const [locat, setLocat] = useState('');
+
+    function getEncodedIdFromUrl() {
+        const url = new URL(window.location.href);
+        const path = url.pathname;
+        const pathParts = path.split('/');
+        return pathParts[pathParts.length - 1];
+    }
+    function decodeId(encodedId) {
+        return atob(encodedId);
+    }
+    const encodedId = getEncodedIdFromUrl();
+
+    const ids = decodeId(encodedId);
+    console.log('Decoded ID:', ids);
+
     const checkToken = () => {
         const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
         console.log("Token:", token);
@@ -32,9 +52,62 @@ const DriverUser = () => {
         }
     }, [isLoggedIn]);
 
-    const handleSelect = (id) => {
-        const encodedId = btoa(id);
-        window.location.href = `/confirmCarBook/${encodedId}`;
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const formData = {};
+        for (let param of queryParams.entries()) {
+            formData[param[0]] = param[1];
+        }
+        console.log(formData);
+        setLocat(formData.location);
+        setFormData(formData);
+
+        const startDate = new Date(formData.startDate + 'T' + formData.startTime);
+        const endDate = new Date(formData.endDate + 'T' + formData.endTime);
+        const durationInMilliseconds = endDate - startDate;
+
+        const days = Math.floor(durationInMilliseconds / (1000 * 60 * 60 * 24));
+        const remainingHours = durationInMilliseconds % (1000 * 60 * 60 * 24);
+        const hours = Math.floor(remainingHours / (1000 * 60 * 60));
+        const remainingMinutes = remainingHours % (1000 * 60 * 60);
+        const minutes = Math.floor(remainingMinutes / (1000 * 60));
+
+        setDuration({ days, hours, minutes });
+
+
+        const startDateObj = new Date(formData.startDate);
+        const endDateObj = new Date(formData.endDate);
+        const startDay = startDateObj.getDate();
+        const endDay = endDateObj.getDate();
+        const startMonth = startDateObj.toLocaleString('default', { month: 'short' });
+        const endMonth = endDateObj.toLocaleString('default', { month: 'short' });
+        const startYear = String(startDateObj.getFullYear()).slice(2);
+        const endYear = String(endDateObj.getFullYear()).slice(2);
+
+        setFormattedStartDate(`${startDay} ${startMonth}' ${startYear}`);
+        setFormattedEndDate(`${endDay} ${endMonth}' ${endYear}`);
+    }, [location.search]);
+
+    const handleSelect = async (id) => {
+        const form = {
+            driverId: id,
+            userId: ids,
+            startDate: formData.startDate,
+            startTime: formData.startTime,
+            endDate: formData.endDate,
+            endTime: formData.endTime,
+            location: formData.location,
+            isAccept: "false",
+            isReject: "false"
+        }
+        console.log(form);
+        try {
+            const response = await axios.post('http://localhost:3000/api/driverRequest', form);
+            console.log(response.data);
+            window.location.href = `/${encodedId}`;
+        } catch (error) {
+            console.error("Error:", error.message);
+        }
     };
     return (
         <>
@@ -171,11 +244,11 @@ const DriverUser = () => {
                                             </div>
                                             <div className="cardCtrl">
                                                 <button
-                                                    onClick={() => handleSelect(card.id)}
+                                                    onClick={() => handleSelect(card._id)}
                                                     className="selectBtn open-inv-popup"
                                                     data-id="31"
                                                 >
-                                                    Select
+                                                    Request
                                                     <svg
                                                         width="13"
                                                         height="13"
