@@ -91,9 +91,6 @@ const DriversList = () => {
                     <b>Price:</b>
                     <strong>{driver.price}</strong>
                   </div>
-                  <div className="cardCtrl">
-                    <button className="selectBtn">Book</button>
-                  </div>
                 </div>
               </div>
             ))
