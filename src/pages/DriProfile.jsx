@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navBar";
 import "../pagesCss/DriProfile.css";
-
+import axios from "axios";
 const DriProfile = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [requests, setRequests] = useState([]);
+  const [sDate, setSDate] = useState("");
+  const [eDate, setEDate] = useState("");
 
   function getEncodedIdFromUrl() {
     const urlParts = window.location.href.split('/');
@@ -17,28 +20,28 @@ const DriProfile = () => {
   const ids = decodeId(encodedId);
   console.log('Decoded ID:', ids);
 
-  const userProfile = {
-    fullName: "ABC XYZ",
-    email: "example@example.com",
-    mobile: "8978786567",
-    address: "Rajkot, Gujarat",
+  const fetchData = async ()=>{
+    const response = await axios.get(`http://localhost:3000/api/driverRequest/request/${ids}`);
+    setRequests(response.data.driverRequests);
+    console.log(response.data.driverRequests);
+  }
+
+  const handleAccept = async (requestId) => {
+    const formData = {
+      driverId: ids, driverRequestId: requestId
+    }
+    const sendResponse = await axios.post(`http://localhost:3000/api/driverRequest/accept`, formData);
+    window.location.href = `/driver/${encodedId}`;
+    console.log(sendResponse.data);
   };
 
-  const initialRequests = [
-    { id: 1, name: "Request 1", description: "Description of request 1" },
-    { id: 2, name: "Request 2", description: "Description of request 2" },
-    { id: 3, name: "Request 3", description: "Description of request 3" },
-  ];
-
-  const [requests, setRequests] = useState(initialRequests);
-  const [selectedRequest, setSelectedRequest] = useState(null);
-
-  const handleAccept = (requestId) => {
-    console.log("Accepted request with ID:", requestId);
-  };
-
-  const handleReject = (requestId) => {
-    console.log("Rejected request with ID:", requestId);
+  const handleReject = async (requestId) => {
+    const formData = {
+      driverId: ids, driverRequestId: requestId
+    }
+    const sendResponse = await axios.post(`http://localhost:3000/api/driverRequest/reject`, formData);
+    window.location.href = `/driver/${encodedId}`;
+    console.log(sendResponse.data);
   };
 
   const checkToken = () => {
@@ -52,6 +55,7 @@ const DriProfile = () => {
   };
   useEffect(() => {
     checkToken();
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -71,37 +75,37 @@ const DriProfile = () => {
       </header>
       {isLoggedIn ? (
         <section class="bg-light">
-        <div class="container py-5">
-          <div class="row justify-content-center"> 
-            <div class="col-lg-11 mx-5">
-              <h2 class="mb-4 text-2xl font-bold">Requests</h2>
-              {requests.map((request) => (
-              <div key={request.id} class="card mb-3 request-card">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                  <div>
-                    <h5 class="card-title text-l font-bold">{request.name}</h5>
-                    <p class="card-text">{request.description}</p>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center">
+          <div class="container py-5">
+            <div class="row justify-content-center">
+              <div class="col-lg-11 mx-5">
+                <h2 class="mb-4 text-2xl font-bold">Requests</h2>
+                {requests.map((request) => (
+                  request.isReject === "false"? (<div key={request._id} class="card mb-3 request-card">
+                  <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                      <button onClick={() => handleAccept(request.id)} class="success">
-                        Accept
-                      </button>
+                      <h5 class="card-title text-l font-bold">{request.startDate} ---- To ---- {request.endDate} </h5>
+                      <p class="card-text">{request.startTime} ---------------- {request.endTime}</p>
                     </div>
-                    <div>
-                      <button onClick={() => handleReject(request.id)} class="reject">
-                        Reject
-                      </button>
+                    <div class="d-flex justify-content-between align-items-center">
+                      {request.isAccept === "false"?( <div>
+                        <button onClick={() => handleAccept(request._id)} class="success">
+                          Accept
+                        </button>
+                      </div>): null}
+                      <div>
+                        <button onClick={() => handleReject(request._id)} class="reject">
+                          Reject
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </div>): null
+                ))}
               </div>
-              ))}
             </div>
           </div>
-        </div>
-      </section>
-      
+        </section>
+
       ) : null}
     </>
   );
