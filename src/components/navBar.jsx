@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useEffect } from "react";
+import Swal from 'sweetalert2'
 
 const Navbar = () => {
     const [navClassName, setNavClassName] = useState('navLinks');
@@ -70,11 +71,28 @@ const Navbar = () => {
     }
 
     const Logout = ()=>{
-        
-        document.cookie = 'drivertoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = 'companytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        window.location.href = "/";
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Logout it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Logout!",
+                text: "You success has been logout.",
+                icon: "success"
+              });
+              document.cookie = 'drivertoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              document.cookie = 'companytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+              window.location.href = "/";
+            }
+          });
+
     }
 
     useEffect(() => {
