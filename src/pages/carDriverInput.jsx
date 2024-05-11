@@ -3,6 +3,7 @@ import "../pagesCss/carDriverInput.css";
 import Navbar from "../components/navBar";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 const carDriverInput = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,7 +16,7 @@ const carDriverInput = () => {
     register: registerSignup,
     handleSubmit: handleSubmitDriver,
     formState: { errors: errorsSignup },
-    watch: watchSignup 
+    watch: watchSignup
   } = useForm();
   const carRef = useRef(null);
   const driverRef = useRef(null);
@@ -38,13 +39,13 @@ const carDriverInput = () => {
   useEffect(() => {
     if (!isLoggedIn) {
       const timer = setTimeout(() => {
-        window.location.href = '/companyLoginSignup'; 
+        window.location.href = '/companyLoginSignup';
       }, 1000);
       return () => clearTimeout(timer);
     }
   }, [isLoggedIn]);
 
-  
+
 
   useEffect(() => {
 
@@ -89,88 +90,121 @@ const carDriverInput = () => {
   const onSubmitCar = async (data) => {
     setIsCarDetailSubmit(true);
     console.log(data);
-    if (data.carWheelType === "4-wheel") {
-      try {
-        const fileFormData = new FormData();
-        fileFormData.append('image', data.carImage[0]);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to edit few details this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Submit it!"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (data.carWheelType === "4-wheel") {
+          try {
+            const fileFormData = new FormData();
+            fileFormData.append('image', data.carImage[0]);
 
-        const uploadResponse = await axios.post('http://localhost:3000/car/image', fileFormData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
+            const uploadResponse = await axios.post('http://localhost:3000/car/image', fileFormData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                }
+              });
+            const filename = uploadResponse.data.image;
+
+            const formData = {
+              carName: data.carName,
+              fuelType: data.fuelType,
+              transmissionType: data.carType,
+              seats: data.numberOfSeats,
+              companyName: data.companyName,
+              amount: data.amount,
+              imageUrl: filename,
+              totalCount: data.availableCount,
+              availableCount: data.availableCount
+            };
+            console.log(formData)
+            const createCarResponse = await axios.post(`http://localhost:3000/api/company/${ids}/cars`, formData);
+
+            if (createCarResponse.status === 201) {
+              console.log(createCarResponse.data);
+              const encodedId = btoa(ids);
+              window.location.href = `/companyCars/${encodedId}`;
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
+              console.error('Error:', createCarResponse.statusText);
             }
-          });
-        const filename = uploadResponse.data.image;
-
-        const formData = {
-          carName: data.carName,
-          fuelType: data.fuelType,
-          transmissionType: data.carType,
-          seats: data.numberOfSeats,
-          companyName: data.companyName,
-          amount: data.amount,
-          imageUrl: filename,
-          totalCount: data.availableCount,
-          availableCount: data.availableCount
-        };
-        console.log(formData)
-        const createCarResponse = await axios.post(`http://localhost:3000/api/company/${ids}/cars`, formData);
-
-        if (createCarResponse.status === 201) {
-          console.log(createCarResponse.data);
-          const encodedId = btoa(ids);
-          window.location.href = `/companyCars/${encodedId}`;
-        } else {
-          console.error('Error:', createCarResponse.statusText);
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!"
+            });
+            console.error('Error:', error);
+          }
         }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
-    else {
-      try {
-        const fileFormData = new FormData();
-        fileFormData.append('image', data.carImage[0]);
+        else {
+          try {
+            const fileFormData = new FormData();
+            fileFormData.append('image', data.carImage[0]);
 
-        const uploadResponse = await axios.post('http://localhost:3000/bike/image', fileFormData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
+            const uploadResponse = await axios.post('http://localhost:3000/bike/image', fileFormData,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                }
+              });
+            const filename = uploadResponse.data.image;
+            var type;
+            if (data.carType === "manual") {
+              type = "Bike";
+            } else {
+              type = "Scotty";
             }
-          });
-        const filename = uploadResponse.data.image;
-        var type;
-        if (data.carType === "manual") {
-          type = "Bike";
-        } else {
-          type = "Scotty";
-        }
 
-        const formData = {
-          bikeName: data.carName,
-          fuel: data.fuelType,
-          seats: data.numberOfSeats,
-          companyName: data.companyName,
-          amount: data.amount,
-          imageUrl: filename,
-          totalCount: data.availableCount,
-          availableCount: data.availableCount,
-          type: type
-        };
-        console.log(formData)
-        const createBikeResponse = await axios.post(`http://localhost:3000/api/company/${ids}/bikes`, formData);
+            const formData = {
+              bikeName: data.carName,
+              fuel: data.fuelType,
+              seats: data.numberOfSeats,
+              companyName: data.companyName,
+              amount: data.amount,
+              imageUrl: filename,
+              totalCount: data.availableCount,
+              availableCount: data.availableCount,
+              type: type
+            };
+            console.log(formData)
+            const createBikeResponse = await axios.post(`http://localhost:3000/api/company/${ids}/bikes`, formData);
 
-        if (createBikeResponse.status === 201) {
-          console.log(createBikeResponse.data);
-          const encodedId = btoa(ids);
-          window.location.href = `/companyCars/${encodedId}`;
-        } else {
-          console.error('Error:', createBikeResponse.statusText);
+            if (createBikeResponse.status === 201) {
+              console.log(createBikeResponse.data);
+              const encodedId = btoa(ids);
+              window.location.href = `/companyCars/${encodedId}`;
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
+              console.error('Error:', createBikeResponse.statusText);
+            }
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!"
+            });
+            console.error('Error:', error);
+          }
         }
-      } catch (error) {
-        console.error('Error:', error);
       }
-    }
+    });
+
     setIsCarDetailSubmit(false);
   };
 
