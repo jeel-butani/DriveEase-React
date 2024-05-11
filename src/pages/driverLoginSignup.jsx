@@ -3,6 +3,7 @@ import Navbar from '../components/navBar';
 import { useForm } from "react-hook-form";
 import '../pagesCss/userLoginSignup.css';
 import axios from 'axios'; 
+import Swal from 'sweetalert2'
 
 const driverLoginSignup = ()=> {
     const {
@@ -64,6 +65,11 @@ const driverLoginSignup = ()=> {
             const token = loginResponse.data.token;
     
             if (!driver) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "driver not exist or password not match!",
+                  });
                 console.log('driver does not exist');
             } else if (driver && driver.password === data.loginPassword) {
                 console.log('Login successful');
@@ -87,6 +93,12 @@ const driverLoginSignup = ()=> {
                 setIsLoginFormSubmitting(false);
             }, 1000);
         } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
             console.error('Error:', error);
             setIsLoginFormSubmitting(false);
         }
