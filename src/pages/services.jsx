@@ -17,12 +17,12 @@ const Services=()=> {
       </header>
       {/* <h1 className='text-3xl font-bold mb-6'>Services</h1> */}
       
-      <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+      <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[20px]">
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
-              <span className="mb-2 block text-lg font-semibold text-primary">
+              <span className="mb-2 block text-lg font-semibold font-color">
                 Our Services
               </span>
               <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
@@ -115,7 +115,7 @@ const ServiceCard = ({ icon, title, details }) => {
     <>
       <div className="w-full px-4 md:w-1/2 lg:w-1/3">
         <div className="mb-9 rounded-[20px] bg-white p-10 shadow-2 hover:shadow-lg dark:bg-dark-2 md:px-7 xl:px-10">
-          <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
+          <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl icon-color">
             {icon}
           </div>
           <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">
