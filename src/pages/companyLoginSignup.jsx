@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Navbar from '../components/navBar';
 import axios from 'axios'; 
 import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
 
 const companyLoginSignup = ()=> {
     const {
@@ -64,6 +65,11 @@ const companyLoginSignup = ()=> {
             const token = loginResponse.data.token;
     
             if (!company) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Company not exist or password not match!",
+                  });
                 console.log('company does not exist');
             } else if (company && company.password === data.loginPassword) {
                 console.log('Login successful');
@@ -88,6 +94,12 @@ const companyLoginSignup = ()=> {
                 setIsLoginFormSubmitting(false);
             }, 1000);
         } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
             console.error('Error:', error);
             setIsLoginFormSubmitting(false);
         }
