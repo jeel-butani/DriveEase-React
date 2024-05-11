@@ -63,18 +63,17 @@ const Home = () => {
           <div className="form-row">
             <div className="form-group">
               <label className='text-xl font-bold'>Select Location:</label>
-              <select className='text-xl' {...register("location", { required: "Please select a location" })}>
+              <select className='text-xl ele' {...register("location", { required: "Please select a location" })}>
                 <option value="">Select Location</option>
                 <option value="mumbai">Mumbai</option>
                 <option value="rajkot">Rajkot</option>
               </select>
               {errors.location && <span className="error">{errors.location.message}</span>}
             </div>
-            {/* Other fields */}
             <div className="form-group">
-              <label className='text-xl font-bold'>Type:</label>
-              <select className='text-xl' {...register("bikeOrCar", { required: "Please select a type" })}>
-                <option value="">Select Type</option>
+              <label className='text-xl font-bold'>Search Type:</label>
+              <select className='text-xl ele' {...register("bikeOrCar", { required: "Please select a type" })}>
+                <option  value="">Select Type</option>
                 <option value="bike">Bike</option>
                 <option value="car">Car</option>
                 <option value="driver">Driver</option>
@@ -82,32 +81,34 @@ const Home = () => {
               {errors.bikeOrCar && <span className="error">{errors.bikeOrCar.message}</span>}
             </div>
             <div className="form-group">
-              <button className="button text-xl">
-                Search
-              </button>
+              <label className='text-xl font-bold'>Start Date:</label>
+              <input className='text-xl ele' type="date" {...register("startDate", { required: "Please enter start date", validate: validateDateTime })} />
+              {errors.startDate && <span className="error">{errors.startDate.message}</span>}
             </div>
           </div>
           <div className="form-row">
             <div className="form-group">
               <label className='text-xl font-bold'>Start Time:</label>
-              <input className='text-xl' type="time" {...register("startTime", { required: "Please enter start time", validate: validateDateTime })} />
+              <input className='text-xl ele' type="time" {...register("startTime", { required: "Please enter start time", validate: validateDateTime })} />
               {errors.startTime && <span className="error">{errors.startTime.message}</span>}
             </div>
-            <div className="form-group">
-              <label className='text-xl font-bold'>Start Date:</label>
-              <input className='text-xl' type="date" {...register("startDate", { required: "Please enter start date", validate: validateDateTime })} />
-              {errors.startDate && <span className="error">{errors.startDate.message}</span>}
-            </div>
+            
             {/* Other fields */}
+            
+            <div className="form-group">
+              <label className='text-xl font-bold'>End Date:</label>
+              <input className='text-xl ele' type="date" {...register("endDate", { required: "Please enter end date" })} />
+              {errors.endDate && <span className="error">{errors.endDate.message}</span>}
+            </div>
             <div className="form-group">
               <label className='text-xl font-bold'>End Time:</label>
-              <input className='text-xl' type="time" {...register("endTime", { required: "Please enter end time" })} />
+              <input className='text-xl ele' type="time" {...register("endTime", { required: "Please enter end time" })} />
               {errors.endTime && <span className="error">{errors.endTime.message}</span>}
             </div>
             <div className="form-group">
-              <label className='text-xl font-bold'>End Date:</label>
-              <input className='text-xl' type="date" {...register("endDate", { required: "Please enter end date" })} />
-              {errors.endDate && <span className="error">{errors.endDate.message}</span>}
+              <button className="button text-xl">
+                Search
+              </button>
             </div>
           </div>
         </form>
@@ -237,7 +238,7 @@ const Home = () => {
                 <div class="textCol">
                   <div class="cTitle">
                     <span class="slNo">1.</span>
-                    <h3>Search &amp; Book Your Preferred Vehicle</h3>
+                    <h3 className='text-3xl font-bold'>Search &amp; Book Your Preferred Vehicle</h3>
                   </div>
                   <p>Chooose your desired vehicle from
                     our various available options.</p>
@@ -247,7 +248,7 @@ const Home = () => {
                 <div class="textCol">
                   <div class="cTitle">
                     <span class="slNo">2.</span>
-                    <h3>Pick Up your Vehicle</h3>
+                    <h3 className='text-3xl font-bold'>Pick Up your Vehicle</h3>
                   </div>
                   <p>Take delivery of your car from any
                     of our various pickup points or
@@ -259,7 +260,7 @@ const Home = () => {
                 <div class="textCol">
                   <div class="cTitle">
                     <span class="slNo">3.</span>
-                    <h3> Drive your Vehicle</h3>
+                    <h3 className='text-3xl font-bold'> Drive your Vehicle</h3>
                   </div>
                   <p>Take your car for a spin and start
                     your road trip with your loved ones.</p>
@@ -269,7 +270,7 @@ const Home = () => {
                 <div class="textCol">
                   <div class="cTitle">
                     <span class="slNo">4.</span>
-                    <h3>Return your Vehicle</h3>
+                    <h3 className='text-3xl font-bold'>Return your Vehicle</h3>
                   </div>
                   <p>Get the vehicle back to your
                     preferred return location, and we
