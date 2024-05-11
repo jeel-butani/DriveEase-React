@@ -3,6 +3,7 @@ import discount from "../assets/images/discount.png";
 import "../pagesCss/carsProduct.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 const companyCars = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,7 +34,7 @@ const companyCars = () => {
     console.log("Company Token:", companyToken);
     setIsLoggedIn(!!companyToken);
   };
-  
+
   useEffect(() => {
     checkToken();
     fetchData();
@@ -67,6 +68,41 @@ const companyCars = () => {
   const handleBike = () => {
     const compoanyId = getEncodedIdFromUrl();
     window.location.href = `/companyBike/${compoanyId}`;
+  }
+  const deleteItem = () => {
+    console.log("first")
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your imaginary file is safe :)",
+          icon: "error"
+        });
+      }
+    });
   }
   return (
     <>
@@ -173,7 +209,7 @@ const companyCars = () => {
                           <div className="cardCtrl">
                             <button
                               onClick={() => handleSelect(car.hexId)}
-                              className="selectBtn open-inv-popup"
+                              className="selectBtn open-inv-popup mb-3"
                               data-id="31"
                             >
                               Edit
@@ -192,7 +228,11 @@ const companyCars = () => {
                                 ></path>
                               </svg>
                             </button>
+                            <button onClick={deleteItem} class="bg-red-950 text-red-400 border border-red-400 border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group">
+                              <span class="bg-red-400 shadow-red-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+                              Delete                            </button>
                           </div>
+
 
                         </div>
                         <div className="totalCars text-xl font-bold">
