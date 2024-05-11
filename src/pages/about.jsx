@@ -20,12 +20,12 @@ const About = () => {
             <div className="wContent-row">
               <ul>
                 <li>
-                  <b>EVM Wheels - Your Perfect Travel Companion to Explore Spectacular Kerala</b>
-                  <p>Kerala, blessed by nature and culture, beckons you with its palm-fringed beaches, serene backwaters, lush hill stations and rich heritage. To experience the magic of this tropical paradise at your own pace, EVM Wheels offers the perfect travel companion - our wide range of self-drive rental cars.
+                  <b>DriveEase - Your Perfect Travel Companion to Explore Spectacular Kerala</b>
+                  <p>Kerala, blessed by nature and culture, beckons you with its palm-fringed beaches, serene backwaters, lush hill stations and rich heritage. To experience the magic of this tropical paradise at your own pace, DriveEase offers the perfect travel companion - our wide range of self-drive rental cars.
                     <br /><br />
-                    EVM Wheels brings the legacy of EVM Group, trusted automotive partners in Kerala for over 6 decades. We inherit their heritage of excellence in vehicle retail and service to make your travel experiences more memorable.
+                    DriveEase brings the legacy of driverease Group, trusted automotive partners in Kerala for over 6 decades. We inherit their heritage of excellence in vehicle retail and service to make your travel experiences more memorable.
                     <br /><br />
-                    Our hatchbacks, sedans, MUVs and SUVs cater to solo travelers, couples, families and groups of all sizes. Rent for a few days for local drives or take weekly/monthly rentals for leisurely vacations. EVM Wheels rentals will be your flexible travel buddy across Kerala!
+                    Our hatchbacks, sedans, MUVs and SUVs cater to solo travelers, couples, families and groups of all sizes. Rent for a few days for local drives or take weekly/monthly rentals for leisurely vacations. DriveEase rentals will be your flexible travel buddy across Kerala!
 
                     Budget-Friendly Packages for All
 
@@ -37,9 +37,9 @@ const About = () => {
                     <br /><br />
                     You Drive Safely, We Take Care of the Rest
                     <br /><br />
-                    As an EVM Group company, we maintain stringent standards in safety and maintenance for our rental fleet. Our cars are regularly serviced, sanitized and inspected by experts to ensure your peace of mind always. Comprehensive insurance further protects you on the road. You can trust EVM Wheels to be your satisfying, safe and stress-free travel companion across magical Kerala!
+                    As an driveease Group company, we maintain stringent standards in safety and maintenance for our rental fleet. Our cars are regularly serviced, sanitized and inspected by experts to ensure your peace of mind always. Comprehensive insurance further protects you on the road. You can trust DriveEase to be your satisfying, safe and stress-free travel companion across magical Kerala!
                     <br /><br />
-                    So unlock the freedom of self-driven holidays with EVM Wheels as your perfect travel buddy. Our cars, services and reliability will make your Kerala trip comfortable while our affordable prices delight your pocket. Visit www.evmwheels.com to book your preferred self-drive rental today. Let's hit the open roads!</p>
+                    So unlock the freedom of self-driven holidays with DriveEase as your perfect travel buddy. Our cars, services and reliability will make your Kerala trip comfortable while our affordable prices delight your pocket. Visit www.driveease.com to book your preferred self-drive rental today. Let's hit the open roads!</p>
                 </li>
               </ul>
             </div>
