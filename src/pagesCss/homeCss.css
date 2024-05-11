@@ -2087,9 +2087,8 @@ margin-bottom: 40px;
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 16px 10px 15px rgb(0 0 0 / 41%);
 }
-
 .form-row {
   display: flex;
   flex-wrap: wrap;
@@ -2099,6 +2098,7 @@ margin-bottom: 40px;
 
 .form-group {
   margin-bottom: 10px;
+  display: flex;
 }
 
 label {
@@ -2106,7 +2106,7 @@ label {
   margin-bottom: 5px;
 }
 
-select,
+/* select,
 input[type='time'],
 input[type='date'] {
   width: 100%;
@@ -2114,7 +2114,7 @@ input[type='date'] {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
+} */
 
 .button {
   height: 60px;
@@ -2243,4 +2243,14 @@ button:hover {
     row-gap: 10px; 
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.font-color{
+  color: rgb(196, 15, 160);
+}
+
+.icon-color{
+  background-image: linear-gradient(to top,
+  rgb(255, 136, 67),
+  rgb(196, 15, 160));
 }
